@@ -12,7 +12,7 @@ public class AssetTests {
     @Test
     public void testFloorAssetExists() {
         assertTrue("This test will only pass if the floor asset exists",
-                Gdx.files.internal("kitchen_floor.png").exists());
+                Gdx.files.internal("stations\\kitchen_floor.png").exists());
     }
 
 }
