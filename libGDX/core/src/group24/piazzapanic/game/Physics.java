@@ -23,11 +23,11 @@ public class Physics {
                 GameData.player.y - Player.GRID_WIDTH / 2);
         double deltaX = pos.getAbsoluteX() - ((0.01 * Base.WINDOW_WIDTH) / 2) - station.getX();
         double deltaY = pos.getAbsoluteY() - ((0.01 * Base.WINDOW_WIDTH)) - station.getY(); //Magic numbers go BRRRR
-        //Why do we have so many different types of positions and offsets
+        //Why do we have so many different ty pes of positions and offsets
 
         double Threshhold = Base.tile_pixel_width * 1.2; // Station width in pixels divided by three
         if (Math.abs(deltaX) <= Threshhold && Math.abs(deltaY) <= Threshhold) { // If closer than Threshold
-            return Gdx.input.isKeyPressed(Base.ACT_KEY) || Gdx.input.isKeyPressed(Base.PICKUP_KEY);
+            return (Gdx.input.isKeyPressed(Base.ACT_KEY) || Gdx.input.isKeyPressed(Base.PICKUP_KEY));
         }
         return false;
     }

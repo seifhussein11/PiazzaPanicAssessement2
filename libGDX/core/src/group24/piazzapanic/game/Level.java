@@ -1,3 +1,4 @@
+
 package group24.piazzapanic.game;
 
 import group24.piazzapanic.levelElements.IngredientType;

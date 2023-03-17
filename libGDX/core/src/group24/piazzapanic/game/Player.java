@@ -120,7 +120,7 @@ public class Player extends Actor {
      */
     public double top() {
         return y + GRID_WIDTH / 2;
-    }
+    } //tested -- just weird cases left
 
     /**
      * Returns the y position of the bottom of the player's hitbox.
@@ -128,7 +128,7 @@ public class Player extends Actor {
      */
     public double bottom() {
         return y - GRID_WIDTH / 2;
-    }
+    } //tested -- just weird cases left
 
     /**
      * Returns the x position of the right of the player's hitbox.
@@ -136,7 +136,7 @@ public class Player extends Actor {
      */
     public double right() {
         return x + GRID_WIDTH / 2;
-    }
+    } //tested -- just weird cases left
 
     /**
      * Returns the x position of the left of the player's hitbox.
@@ -144,7 +144,7 @@ public class Player extends Actor {
      */
     public double left() {
         return x - GRID_WIDTH / 2;
-    }
+    } //tested -- just weird cases left
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -157,7 +157,7 @@ public class Player extends Actor {
                 (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width,
                 (float) Player.GRID_WIDTH * Player.TEXTURE_SCALE * Base.tile_pixel_width
                         * Player.TEXTURE_HEIGHT / Player.TEXTURE_WIDTH);
-        Base.batch.end(); //Libgdx requires we do this or we get z level tomfoolery
+        Base.batch.end(); //Libgdx requires we do this, or we get z level tomfoolery
         Base.batch.begin();
         if (DrawBar) {
             bar.draw(batch, parentAlpha);
@@ -165,7 +165,7 @@ public class Player extends Actor {
 
     }
 
-    public Station getFacingStation() {
+    public Station getFacingStation() {    //tested -- just weird cases left
         Station activeStation;
         int roundedX = (int) (Math.floor(this.x));
         int roundedY = (int) (Math.floor(this.y));
@@ -189,7 +189,7 @@ public class Player extends Actor {
         return activeStation;
     }
 
-    public boolean pickUp() {
+    public boolean pickUp() {  //tested -- just weird cases left
         // Find the direction the player is facing
         // Then find the nearest object.
         Station activeStation;
@@ -200,13 +200,13 @@ public class Player extends Actor {
         return true;
     }
 
-    public boolean putDown() {
+    public boolean putDown() {    //tested -- just weird cases left
         // Find the direction the player is facing
         // Then find the nearest object.
         Station activeStation;
 
         activeStation = getFacingStation();
-        if (activeStation != null && Physics.isNear(activeStation, GameData.player)) {
+        if (activeStation != null ) { //&& Physics.isNear(activeStation, GameData.player)
             boolean Result = activeStation.placeItem(this.holding);
             if (Result) {
                 this.holding = null;

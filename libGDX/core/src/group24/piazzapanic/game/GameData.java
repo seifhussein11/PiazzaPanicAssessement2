@@ -249,7 +249,7 @@ public class GameData {
     }
 
     /**
-     * Adds an integer to the current score.
+     * an integer to the current score.
      * @param score the integer to add to the score.
      */
     public static void addScore(int score) {

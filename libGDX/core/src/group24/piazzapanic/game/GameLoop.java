@@ -1,31 +1,27 @@
 package group24.piazzapanic.game;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
-
+import group24.piazzapanic.Base;
+import group24.piazzapanic.levelElements.stations.Station;
 import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageAnimation;
 import group24.piazzapanic.ui.StageManager;
 import group24.piazzapanic.ui.WidgetFactory;
-import group24.piazzapanic.Base;
-import group24.piazzapanic.levelElements.stations.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 /**
  * The GameLoop class is the main game loop. It handles setting up the game,
@@ -33,7 +29,7 @@ import group24.piazzapanic.levelElements.stations.*;
  */
 public class GameLoop extends Stage {
     /** The game score */
-    private final Label scoreCounter;
+    public final Label scoreCounter;
     /** The game timer */
     private final Label gameTimer;
     /** Var for storing positions in per frame calculations, making a new vector causes the funni (memory leak)*/

@@ -44,11 +44,11 @@ public class Station extends Image {
     /**
      * The x coordinate of the station in the grid. Do not change this once it is set.
      */
-    protected int gridX;
+    private int gridX;
     /**
      * The y coordinate of the station in the grid. Do not change this once it is set.
      */
-    protected int gridY;
+    private int gridY;
     /**
      * The Station's progress bar
      */
@@ -85,7 +85,7 @@ public class Station extends Image {
             this.item = item;
             return true;
         } else return false;
-    }
+    } 
 
     /**
      * A private convenience method to check if an item can be placed on the station.
