@@ -26,3 +26,14 @@ public class GameTests {
 
 
 }
+//    Customer customer = Mockito.mock(Customer.class);
+//    GameData gameData = Mockito.mock(GameData.class);
+//    GameLoop gameLoop = Mockito.mock(GameLoop.class);
+//        GameData.gameLoop = gameLoop;
+//                gameData.customers= new ArrayList<Customer>();
+//        gameData.customers.add(customer);
+//        ArrayList<Customer> oldCustomers = gameData.customers;
+//        Integer expectedScore = gameData.score+1;
+//        customer.fulfillOrder();
+//        assertFalse(gameData.customers.contains(customer));
+////assertEquals(expectedScore,gameData.score);

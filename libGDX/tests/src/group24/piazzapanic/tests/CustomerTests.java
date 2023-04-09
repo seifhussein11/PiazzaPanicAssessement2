@@ -10,25 +10,28 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(GdxTestRunner.class)
 public class CustomerTests {
 
     @Test
-    public void TestCustomerFulfillOrder(){
+    public void TestCustomerFulfillOrder(){ //i dont know whats wrong with this test why doesn't it work.
+        GameData gameData =Mockito.mock(GameData.class);
         Customer customer = Mockito.mock(Customer.class);
-        GameData gameData = Mockito.mock(GameData.class);
+        ArrayList<Customer> customers = new ArrayList<>();
+        customers.add(customer);
+        gameData.customers = customers;
+        System.out.println(gameData.customers);
         GameLoop gameLoop = Mockito.mock(GameLoop.class);
-        GameData.gameLoop = gameLoop;
-        ArrayList<Customer> myList = new ArrayList<>();
-        gameData.customers=myList;
-        gameData.customers.add(customer);
-        ArrayList<Customer> oldCustomers = gameData.customers;
-        Integer expectedScore = gameData.score+1;
+        gameData.gameLoop = gameLoop;
+        gameData.score = 0;
         customer.fulfillOrder();
-        assertNotEquals(oldCustomers,gameData.customers);
+        System.out.println(gameData.customers);
+        assertFalse(gameData.customers.contains(customer));
+        Integer expectedScore = 1;
         assertEquals(expectedScore,gameData.score);
+
 
     }
 
