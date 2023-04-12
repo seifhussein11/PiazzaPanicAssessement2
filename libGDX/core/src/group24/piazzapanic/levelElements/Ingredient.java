@@ -1,8 +1,6 @@
 package group24.piazzapanic.levelElements;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
-import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.ImageMovable;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.maths.Vector2;
@@ -190,9 +188,15 @@ public class Ingredient extends ImageMovable {
      * Get the ingredient's baking progress.
      * @return an Integer of the baking progress
      */
-
+    public void SetCuttingProgress(Integer progress) { // new
+        this.cuttingProgress = progress;
+    }
     public Integer getBakingProgress() {
         return this.bakingProgress;
+    }
+
+    public void SetBakingProgress(Integer progress) { // new
+        this.bakingProgress = progress;
     }
 
     /**
@@ -201,6 +205,10 @@ public class Ingredient extends ImageMovable {
      */
     public Integer getFryingProgress() {
         return this.fryingProgress;
+    }
+
+    public void SetFryingProgress(Integer progress) { // new
+        this.fryingProgress = progress;
     }
 
     /**

@@ -46,6 +46,7 @@ public class BakingStation extends Station {
     @Override
     public void interact(float delta) {
         if (super.item == null) { // No item to bake.
+            System.out.println("no item to bake......");
             return;
         }
         if (super.item.getIngredient().getBakingProgress() == 1) { // Item already baked, so can't bake further.
@@ -53,6 +54,7 @@ public class BakingStation extends Station {
             return;
         }
         if (super.item.getIngredient().getBakingProgress() == -1) { // Item cannot be baked
+            System.out.println("cannot be baked......");
 
             return;
         }

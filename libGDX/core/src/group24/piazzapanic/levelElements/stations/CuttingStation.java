@@ -1,9 +1,6 @@
 package group24.piazzapanic.levelElements.stations;
 
-import com.badlogic.gdx.Gdx;
-import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
-import group24.piazzapanic.game.Physics;
 import group24.piazzapanic.levelElements.Ingredient;
 
 /**
@@ -31,6 +28,7 @@ public class CuttingStation extends Station {
     @Override
     public void interact(float delta) {
         if (super.item == null) {
+            System.out.println("no item to cut...");
             return;
         }
         if (super.item.getIngredient().getCuttingProgress() == 1) {
@@ -38,6 +36,7 @@ public class CuttingStation extends Station {
             return; // The item is already cut, don't go any further.
         }
         if (super.item.getIngredient().getCuttingProgress() == -1) {
+            System.out.println("cannot be cut...");
             timeKeyHeld = 0;
             return;
         }
