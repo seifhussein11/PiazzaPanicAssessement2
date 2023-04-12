@@ -28,20 +28,24 @@ public class FryingStation extends Station {
     @Override
     public void interact(float delta) {
         if (super.item == null) {
+            System.out.println("no item to fry..."); //new
             return;
         }
         if (super.item.getIngredient().getFryingProgress() == 1) { // The item is already fried.
+            System.out.println("the item is already fried..."); //new
             return; // The item is already fried, don't go any further.
         }
         if (super.item.getIngredient().getFryingProgress() == -1) { // The item cannot be fried.
+            System.out.println("item cannot be fried..."); //new
             timeKeyHeld = 0;
             return;
         }
         timeKeyHeld += delta;
         if (timeKeyHeld > 3 && super.item.getIngredient().getFryingProgress() == 0) {
-            // Cutting is done! poggers
+
             super.item.getIngredient().fry();
             timeKeyHeld = 0; // Reset to avoid horrible loop!
+            System.out.println("frying is done..."); //new
         }
     }
 }

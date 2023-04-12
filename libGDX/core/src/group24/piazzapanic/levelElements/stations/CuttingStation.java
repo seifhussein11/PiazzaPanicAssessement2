@@ -28,7 +28,7 @@ public class CuttingStation extends Station {
     @Override
     public void interact(float delta) {
         if (super.item == null) {
-            System.out.println("no item to cut...");
+            System.out.println("no item to cut..."); //new
             return;
         }
         if (super.item.getIngredient().getCuttingProgress() == 1) {
@@ -36,7 +36,7 @@ public class CuttingStation extends Station {
             return; // The item is already cut, don't go any further.
         }
         if (super.item.getIngredient().getCuttingProgress() == -1) {
-            System.out.println("cannot be cut...");
+            System.out.println("cannot be cut..."); //new
             timeKeyHeld = 0;
             return;
         }
