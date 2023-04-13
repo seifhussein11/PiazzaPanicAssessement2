@@ -26,9 +26,9 @@ public class Dish extends ImageMovable {
     public static Dish SALAD = new Dish(SALAD_RECIPE);
     public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
             Arrays.asList(BURGER, SALAD));
-    ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
+    private ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
     /** Stores the dish's recipe. */
-    ArrayList<Ingredient> recipe;
+    private ArrayList<Ingredient> recipe;
     /** Stores the dish's current progress towards completion. */
     boolean complete;
 
@@ -78,6 +78,7 @@ public class Dish extends ImageMovable {
                 for (Ingredient i : recipe) {
                     System.out.println(i.ingredientType.getName());
                 }
+                System.out.println(this.Ingredients.size());
                 return true;
             }
         } else if (this.recipe.contains(item) && !this.Ingredients.contains(item)) { //Prevents adding duplicate ingredients to the dish.
