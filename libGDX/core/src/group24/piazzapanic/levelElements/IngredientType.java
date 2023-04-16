@@ -38,6 +38,10 @@ public class IngredientType{
      */
     public static final IngredientType CHEESE = new IngredientType("cheese");
     /**
+     * Represents potatoes
+     */
+    public static final IngredientType POTATO = new IngredientType("potato");
+    /**
      * The name of the Ingredient
      */
     private final String name;

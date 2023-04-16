@@ -43,6 +43,8 @@ public class IngredientStation extends Station {
                 return GameData.sauceStationTexture;
             case "cheese":
                 return GameData.cheeseStationTexture;
+            case "potato":
+                return GameData.potatoStationTexture;
         }
         return texture;
     }

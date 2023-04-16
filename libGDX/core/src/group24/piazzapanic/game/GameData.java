@@ -63,6 +63,8 @@ public class GameData {
     public static Ingredient PIZZA_SAUCE;
     /** cheese to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes */
     public static Ingredient CHEESE;
+    /** potato to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes */
+    public static Ingredient BAKED_POTATO;
     /** initial animation for chef 1 */
     public static StageAnimation initialChef1Animation;
     /** initial animation for chef 2 */
@@ -111,6 +113,8 @@ public class GameData {
     public static Texture cheeseStationTexture;
     /** Texture for the SauceStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture sauceStationTexture;
+    /** Texture for the PotatoStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
+    public static Texture potatoStationTexture;
     /** Texture for the DishStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture dishStationTexture;
     /** Texture for the {@link group24.piazzapanic.levelElements.Dish} type */
@@ -159,6 +163,10 @@ public class GameData {
     public static Texture rawCheeseTexture;
     /**Texture for raw sauce */
     public static Texture rawSauceTexture;
+    /**Texture for raw potato */
+    public static Texture rawPotatoTexture;
+    /**Texture for baked potato */
+    public static Texture bakedPotatoTexture;
 
     //completed dish textures
     /** Texture for a completed burger {@link group24.piazzapanic.levelElements.Dish } */
@@ -167,6 +175,8 @@ public class GameData {
     public static Texture saladDishTexture;
     /** Texture for a Pizza {@link group24.piazzapanic.levelElements.Dish} */
     public static Texture pizzaDishTexture;
+    /** Texture for a Jacket Potato {@link group24.piazzapanic.levelElements.Dish} */
+    public static Texture jacketPotatoDishTexture;
 
     /**
      * Initializes all the textures and animations
@@ -238,6 +248,7 @@ public class GameData {
         sauceStationTexture = new Texture("ingredients/sauce.png");
         cheeseStationTexture = new Texture("stations/cheese_sack.png");
         doughStationTexture = new Texture("stations/dough_sack.png");
+        potatoStationTexture = new Texture("stations/potato_sack.png");
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
         dishStationTexture = new Texture("stations/ingredient_station_plate.png");
         binTexture = new Texture("stations/bin.png");
@@ -262,12 +273,15 @@ public class GameData {
         bakedDoughTexture = new Texture("ingredients/baked_dough.png");
         rawCheeseTexture = new Texture("ingredients/cheese.png");
         rawSauceTexture = new Texture("ingredients/sauce.png");
+        rawPotatoTexture = new Texture("ingredients/potato.png");
+        bakedPotatoTexture = new Texture("ingredients/baked_potato.png");
         dishTexture = new Texture("ingredients/plate.png");
 
         //dish textures
         burgerDishTexture = new Texture("ingredients/assembled_burger.png");
         saladDishTexture = new Texture("ingredients/salad.png");
         pizzaDishTexture = new Texture("ingredients/pizza.png");
+        jacketPotatoDishTexture = new Texture("ingredients/jacket_potato.png");
 
         errorTexture = new Texture("stations/sourceerr.png");
 
@@ -279,6 +293,7 @@ public class GameData {
         BAKED_DOUGH = new Ingredient(IngredientType.DOUGH,-1,1,-1);
         PIZZA_SAUCE = new Ingredient(IngredientType.SAUCE,-1,-1,-1);
         CHEESE = new Ingredient(IngredientType.CHEESE,-1,-1,-1);
+        BAKED_POTATO = new Ingredient(IngredientType.POTATO, -1,1,-1);
     }
 
     /**

@@ -44,7 +44,7 @@ public class Level {
             "g.dBCF.1...3",
             "....*......4",
             "o.t.l.b.m.D.",
-            "..c......S.."};
+            "..c..p...S.."};
 
 
             grid = new Station[width][height];
@@ -105,6 +105,7 @@ public class Level {
                         case 'c': // cheese
                         case 'S': // sauce
                         case 'D': // dough
+                        case 'p': // potato
                         case 'd': // dish (plate)
                             grid[x][y] = new IngredientStation(x, y,
                                     extrapolateIngredient(line.charAt(j)));
@@ -164,6 +165,8 @@ public class Level {
                 return new IngredientType("sauce");
             case 'D':
                 return new IngredientType("dough");
+            case 'p':
+                return new IngredientType("potato");
             default:
                 System.out.println("Unknown ingredient '" + abbrevation + "'.");
                 return null;

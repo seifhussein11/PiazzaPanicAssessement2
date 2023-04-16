@@ -94,6 +94,12 @@ public class Ingredient extends ImageMovable {
                 this.bakingProgress = -1;
                 this.fryingProgress = -1;
                 this.texture = GameData.rawSauceTexture;
+                break;
+            case "potato":
+                this.cuttingProgress = -1;
+                this.bakingProgress = 0;
+                this.fryingProgress = -1;
+                this.texture = GameData.rawPotatoTexture;
         }
 
     }
@@ -149,6 +155,19 @@ public class Ingredient extends ImageMovable {
             case "meat":
                 this.fryingProgress = 0; // We can now fry the cut meat.
                 this.texture = GameData.cutMeatTexture;
+                break;
+            case "dough":
+                this.texture = GameData.rawDoughTexture;
+                break;
+            case "sauce":
+                this.texture = GameData.rawSauceTexture;
+                break;
+            case "cheese":
+                this.texture = GameData.rawCheeseTexture;
+                break;
+            case "potato":
+                this.texture = GameData.rawPotatoTexture;
+
         }
     }
 
@@ -185,6 +204,9 @@ public class Ingredient extends ImageMovable {
                 break;
             case "dough":
                 this.texture = GameData.rawDoughTexture;
+                break;
+            case "potato":
+                this.texture = GameData.rawPotatoTexture;
         }
     }
 
@@ -220,6 +242,10 @@ public class Ingredient extends ImageMovable {
             case "dough":
                 this.bakingProgress = 1;
                 this.texture = GameData.bakedDoughTexture;
+                break;
+            case "potato":
+                this.bakingProgress = 1;
+                this.texture = GameData.bakedPotatoTexture;
         }
     }
 

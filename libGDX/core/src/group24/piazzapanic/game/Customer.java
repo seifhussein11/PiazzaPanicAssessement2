@@ -73,6 +73,9 @@ public class Customer extends StageAnimation {
         } else if (order.equals(Dish.PIZZA)) {
             //    this.orderText = "Pizza";
             this.orderTexture = GameData.pizzaDishTexture;
+        } else if (order.equals(Dish.JACKET_POTATO)) {
+            //    this.orderText = "Jacket Potato";
+            this.orderTexture = GameData.jacketPotatoDishTexture;
         }
 
     }
