@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="group24.piazzapanic.tests.AssetTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-02T14:47:04" hostname="LAPTOP-S50501UK" time="0.009">
+<testsuite name="group24.piazzapanic.tests.AssetTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-04-15T16:48:08" hostname="DESKTOP-SLAQSD4" time="0.037">
   <properties/>
-  <testcase name="testFloorAssetExists" classname="group24.piazzapanic.tests.AssetTests" time="0.009"/>
+  <testcase name="testCustomersAssetsExists" classname="group24.piazzapanic.tests.AssetTests" time="0.003"/>
+  <testcase name="testFloorAssetExists" classname="group24.piazzapanic.tests.AssetTests" time="0.001"/>
+  <testcase name="testIngredientsAssetsExists" classname="group24.piazzapanic.tests.AssetTests" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

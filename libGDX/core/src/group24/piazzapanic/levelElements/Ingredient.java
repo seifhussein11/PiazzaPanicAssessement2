@@ -77,7 +77,23 @@ public class Ingredient extends ImageMovable {
                 this.fryingProgress = -1;
                 this.texture = GameData.rawMeatTexture;
                 break;
-
+            case "dough":
+                this.cuttingProgress = -1;
+                this.bakingProgress = 0;
+                this.fryingProgress = -1;
+                this.texture = GameData.rawDoughTexture;
+                break;
+            case "cheese":
+                this.cuttingProgress = -1;
+                this.bakingProgress = -1;
+                this.fryingProgress = -1;
+                this.texture = GameData.rawCheeseTexture;
+                break;
+            case "sauce":
+                this.cuttingProgress = -1;
+                this.bakingProgress = -1;
+                this.fryingProgress = -1;
+                this.texture = GameData.rawSauceTexture;
         }
 
     }
@@ -143,23 +159,32 @@ public class Ingredient extends ImageMovable {
         this.fryingProgress = 1;
         switch (this.ingredientType.getName()) {
             case "tomato":
-                this.bakingProgress = -1;
+                //this.bakingProgress = -1;
                 this.texture = GameData.cutTomatoTexture;
                 break;
             case "onion":
-                this.bakingProgress = 0;
+                //this.bakingProgress = 0;
                 this.texture = GameData.cutOnionTexture;
                 break;
             case "lettuce":
                 this.texture = GameData.cutLettuceTexture;
                 break;
             case "bread":
-                this.bakingProgress = 0;
-                this.texture = GameData.cutOnionTexture;
+                //this.bakingProgress = 0;
+                this.texture = GameData.cutBreadTexture;
                 break;
             case "meat":
                 this.bakingProgress = -1;
                 this.texture = GameData.friedMeatTexture;
+                break;
+            case "sauce":
+                this.texture = GameData.rawSauceTexture;
+                break;
+            case "cheese":
+                this.texture = GameData.rawCheeseTexture;
+                break;
+            case "dough":
+                this.texture = GameData.rawDoughTexture;
         }
     }
 
@@ -170,8 +195,32 @@ public class Ingredient extends ImageMovable {
      */
     public void bake() {
         this.bakingProgress = 1;
-        // this.sprite = baked sprite
-        // update constraints
+        switch (this.ingredientType.getName()) {
+            case "tomato":
+                this.texture = GameData.cutTomatoTexture;
+                break;
+            case "onion":
+                this.texture = GameData.cutOnionTexture;
+                break;
+            case "lettuce":
+                this.texture = GameData.cutLettuceTexture;
+                break;
+            case "bread":
+                this.texture = GameData.cutBreadTexture;
+                break;
+            case "meat":
+                this.texture = GameData.friedMeatTexture;
+                break;
+            case "cheese":
+                this.texture = GameData.rawCheeseTexture;
+                break;
+            case "sauce":
+                this.texture = GameData.rawSauceTexture;
+                break;
+            case "dough":
+                this.bakingProgress = 1;
+                this.texture = GameData.bakedDoughTexture;
+        }
     }
 
     // Getters

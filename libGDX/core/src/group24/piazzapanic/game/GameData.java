@@ -57,6 +57,12 @@ public class GameData {
     public static Ingredient BURGER_BUN;
     /** finished burger to be used in {@link group24.piazzapanic.levelElements.Dish} for serving to customers */
     public static Ingredient BURGER;
+    /** pizza dough to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes. */
+    public static Ingredient BAKED_DOUGH;
+    /** pizza sauce to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes. */
+    public static Ingredient PIZZA_SAUCE;
+    /** cheese to be used in {@link group24.piazzapanic.levelElements.Dish} for recipes */
+    public static Ingredient CHEESE;
     /** initial animation for chef 1 */
     public static StageAnimation initialChef1Animation;
     /** initial animation for chef 2 */
@@ -99,6 +105,12 @@ public class GameData {
     public static Texture breadStationTexture;
     /** Texture for the MeatStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture meatStationTexture;
+    /** Texture for the DoughStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
+    public static Texture doughStationTexture;
+    /** Texture for the CheeseStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
+    public static Texture cheeseStationTexture;
+    /** Texture for the SauceStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
+    public static Texture sauceStationTexture;
     /** Texture for the DishStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture dishStationTexture;
     /** Texture for the {@link group24.piazzapanic.levelElements.Dish} type */
@@ -139,12 +151,22 @@ public class GameData {
     public static Texture cutMeatTexture;
     /**Texture for fried meat */
     public static Texture friedMeatTexture;
+    /**Texture for raw dough */
+    public static Texture rawDoughTexture;
+    /**Texture for baked dough */
+    public static Texture bakedDoughTexture;
+    /**Texture for raw cheese */
+    public static Texture rawCheeseTexture;
+    /**Texture for raw sauce */
+    public static Texture rawSauceTexture;
 
     //completed dish textures
     /** Texture for a completed burger {@link group24.piazzapanic.levelElements.Dish } */
     public static Texture burgerDishTexture;
     /** Texture for a Salad {@link group24.piazzapanic.levelElements.Dish} */
     public static Texture saladDishTexture;
+    /** Texture for a Pizza {@link group24.piazzapanic.levelElements.Dish} */
+    public static Texture pizzaDishTexture;
 
     /**
      * Initializes all the textures and animations
@@ -213,6 +235,9 @@ public class GameData {
         onionStationTexture = new Texture("stations/onion_sack.png");
         lettuceStationTexture = new Texture("stations/lettuce_sack.png");
         breadStationTexture = new Texture("stations/bread_sack.png");
+        sauceStationTexture = new Texture("ingredients/sauce.png");
+        cheeseStationTexture = new Texture("stations/cheese_sack.png");
+        doughStationTexture = new Texture("stations/dough_sack.png");
         meatStationTexture = new Texture("stations/ingredient_station_meat.png");
         dishStationTexture = new Texture("stations/ingredient_station_plate.png");
         binTexture = new Texture("stations/bin.png");
@@ -233,11 +258,16 @@ public class GameData {
         rawMeatTexture = new Texture("ingredients/raw_meat.png");
         cutMeatTexture = new Texture("ingredients/raw_burger.png");
         friedMeatTexture = new Texture("ingredients/cooked_burger.png");
+        rawDoughTexture = new Texture("ingredients/dough.png");
+        bakedDoughTexture = new Texture("ingredients/baked_dough.png");
+        rawCheeseTexture = new Texture("ingredients/cheese.png");
+        rawSauceTexture = new Texture("ingredients/sauce.png");
         dishTexture = new Texture("ingredients/plate.png");
 
         //dish textures
         burgerDishTexture = new Texture("ingredients/assembled_burger.png");
         saladDishTexture = new Texture("ingredients/salad.png");
+        pizzaDishTexture = new Texture("ingredients/pizza.png");
 
         errorTexture = new Texture("stations/sourceerr.png");
 
@@ -246,6 +276,9 @@ public class GameData {
         CHOPPED_ONION = new Ingredient(IngredientType.ONION, 1, -1, -1);
         BURGER_BUN = new Ingredient(IngredientType.BREAD, 1, -1, -1);
         BURGER = new Ingredient(IngredientType.MEAT, 1, -1, 1);
+        BAKED_DOUGH = new Ingredient(IngredientType.DOUGH,-1,1,-1);
+        PIZZA_SAUCE = new Ingredient(IngredientType.SAUCE,-1,-1,-1);
+        CHEESE = new Ingredient(IngredientType.CHEESE,-1,-1,-1);
     }
 
     /**

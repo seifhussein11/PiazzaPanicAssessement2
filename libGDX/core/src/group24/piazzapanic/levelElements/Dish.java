@@ -21,12 +21,17 @@ public class Dish extends ImageMovable {
     /** The Salad recipe. */
     public static final ArrayList<Ingredient> SALAD_RECIPE = new ArrayList<Ingredient>(
             Arrays.asList(GameData.CHOPPED_ONION, GameData.CHOPPED_LETTUCE, GameData.CHOPPED_TOMATO));
+    /** The pizza recipe. */
+    public static final ArrayList<Ingredient>  PIZZA_RECIPE = new ArrayList<Ingredient>(
+            Arrays.asList(GameData.BAKED_DOUGH,GameData.PIZZA_SAUCE,GameData.CHEESE));
+
     /** The list of all dishes. */
     public static Dish BURGER = new Dish(BURGER_RECIPE);
     public static Dish SALAD = new Dish(SALAD_RECIPE);
+    public static Dish PIZZA = new Dish(PIZZA_RECIPE);
     public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
-            Arrays.asList(BURGER, SALAD));
-    private ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
+            Arrays.asList(BURGER, SALAD, PIZZA));
+    public ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
     /** Stores the dish's recipe. */
     private ArrayList<Ingredient> recipe;
     /** Stores the dish's current progress towards completion. */
@@ -105,6 +110,7 @@ public class Dish extends ImageMovable {
     private boolean setRecipe(ArrayList<Ingredient> currentIngredients) {
         boolean matchSalad = true;
         boolean matchBurger = true;
+        boolean matchPizza = true;
         for (Ingredient i : currentIngredients) {
             System.out.println(i.getCuttingProgress());
             System.out.println(i.getBakingProgress());
@@ -116,13 +122,18 @@ public class Dish extends ImageMovable {
             if (!SALAD_RECIPE.contains(i)) {
                 matchSalad = false;
             }
+            if (!PIZZA_RECIPE.contains(i)) {
+                matchPizza = false;
+            }
         }
-        if (matchSalad && !matchBurger)
+        if (matchSalad && !matchBurger && !matchPizza)
             recipe = SALAD_RECIPE; //if it only matches salad set recipe to salad
-        else if (matchBurger && !matchSalad)
+        else if (matchBurger && !matchSalad && !matchPizza)
             recipe = BURGER_RECIPE; //if it only matches burger set recipe to burger
+        else if (!matchBurger && !matchSalad && matchPizza)
+            recipe = PIZZA_RECIPE;
         else
-            return matchBurger || matchSalad; //returns false if it matches none of the recipes
+            return matchBurger || matchSalad || matchPizza; //returns false if it matches none of the recipes
         return true; //returns true if there is a recipe that matches
 
     }
@@ -144,6 +155,8 @@ public class Dish extends ImageMovable {
                 this.texture = GameData.burgerDishTexture;
             else if (recipe == SALAD_RECIPE)
                 this.texture = GameData.saladDishTexture;
+            else if (recipe == PIZZA_RECIPE)
+                this.texture = GameData.pizzaDishTexture;
             this.Ingredients.clear();
             return true;
         }

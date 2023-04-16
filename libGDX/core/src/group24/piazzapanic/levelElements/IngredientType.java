@@ -25,7 +25,18 @@ public class IngredientType{
      * Represents bread
      */
     public static final IngredientType BREAD = new IngredientType("bread");
-
+    /**
+     * Represents pizza dough
+     */
+    public static final IngredientType DOUGH = new IngredientType("dough");
+    /**
+     * Represents tomato pizza sauce
+     */
+    public static final IngredientType SAUCE = new IngredientType("sauce");
+    /**
+     * Represents cheese
+     */
+    public static final IngredientType CHEESE = new IngredientType("cheese");
     /**
      * The name of the Ingredient
      */

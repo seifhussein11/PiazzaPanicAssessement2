@@ -37,6 +37,12 @@ public class IngredientStation extends Station {
                 return GameData.meatStationTexture;
             case "dish":
                 return GameData.dishStationTexture;
+            case "dough":
+                return GameData.doughStationTexture;
+            case "sauce":
+                return GameData.sauceStationTexture;
+            case "cheese":
+                return GameData.cheeseStationTexture;
         }
         return texture;
     }

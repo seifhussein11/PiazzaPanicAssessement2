@@ -70,7 +70,7 @@ public class GameLoop extends Stage {
         }
         //Add pause button
         TextButton pauseButton = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
-                new Vector2(0.15, 0.95), "||", Align.right);
+                new Vector2(0.2, 0.93), "PAUSE", Align.right);
         pauseButton.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
         pauseButton.addListener(new ChangeListener() {
@@ -143,9 +143,9 @@ public class GameLoop extends Stage {
     public void act(float delta) {
         GameData.gameTime += delta;
 
-        if (this.totalCustomers < this.maxCustomers) {
+        //if (this.totalCustomers < this.maxCustomers) {
             GameData.sinceLastSpawn += delta;
-        }
+        //}
         if (GameData.sinceLastSpawn >= 5) {
             //Create new customer offset location.
             Customer customer = new Customer();

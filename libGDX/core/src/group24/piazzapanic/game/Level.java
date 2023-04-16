@@ -36,14 +36,16 @@ public class Level {
         this.levelName = levelName;
         // Read the level file from disk.
         try {
-            width = 10;
-            height = 5;
+            width = 12;
+            height = 6;
 
-            String[] level_string = {"s111111112",
-            ".........3",
-            "g.dBCF1..3",
-            "....*....4",
-            "o.t.l.b.m."};
+            String[] level_string = {"s11111111112",
+            "...........3",
+            "g.dBCF.1...3",
+            "....*......4",
+            "o.t.l.b.m.D.",
+            "..c......S.."};
+
 
             grid = new Station[width][height];
 
@@ -100,6 +102,9 @@ public class Level {
                         case 'l': // lettuce
                         case 'b': // bread
                         case 'm': // meat
+                        case 'c': // cheese
+                        case 'S': // sauce
+                        case 'D': // dough
                         case 'd': // dish (plate)
                             grid[x][y] = new IngredientStation(x, y,
                                     extrapolateIngredient(line.charAt(j)));
@@ -153,6 +158,12 @@ public class Level {
                 return new IngredientType("bread");
             case 'd':
                 return new IngredientType("dish");
+            case 'c':
+                return new IngredientType("cheese");
+            case 'S':
+                return new IngredientType("sauce");
+            case 'D':
+                return new IngredientType("dough");
             default:
                 System.out.println("Unknown ingredient '" + abbrevation + "'.");
                 return null;
