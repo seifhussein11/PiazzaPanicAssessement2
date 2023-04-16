@@ -146,7 +146,7 @@ public class GameLoop extends Stage {
         //if (this.totalCustomers < this.maxCustomers) {
             GameData.sinceLastSpawn += delta;
         //}
-        if (GameData.sinceLastSpawn >= 5) {
+        if (GameData.sinceLastSpawn >= 12 || totalCustomers == 0) {
             //Create new customer offset location.
             Customer customer = new Customer();
             customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
@@ -155,6 +155,7 @@ public class GameLoop extends Stage {
             GameData.sinceLastSpawn = 0;
             this.totalCustomers++;
         }
+
         if (Gdx.input.isKeyJustPressed(Base.SWAP_KEY)) {
             if (GameData.player == GameData.player1) {
                 System.out.println("Swapping player 1 to 2");
