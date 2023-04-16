@@ -398,6 +398,7 @@ public class StageFactory {
             public void changed(ChangeEvent event, Actor actor) {
                 System.out.print("Main Menu");
                 StageManager.setActiveStage("MainMenu");
+                GameData.score = 0;
             }
 
         });
