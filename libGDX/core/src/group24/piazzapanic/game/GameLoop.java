@@ -14,10 +14,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.stations.Station;
 import group24.piazzapanic.maths.Vector2;
-import group24.piazzapanic.ui.FontHandler;
-import group24.piazzapanic.ui.StageAnimation;
-import group24.piazzapanic.ui.StageManager;
-import group24.piazzapanic.ui.WidgetFactory;
+import group24.piazzapanic.ui.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -143,10 +140,14 @@ public class GameLoop extends Stage {
     public void act(float delta) {
         GameData.gameTime += delta;
 
-        //if (this.totalCustomers < this.maxCustomers) {
+        if (!StageFactory.endlessModeEnabled) {
+            if (this.totalCustomers < this.maxCustomers) {
+                GameData.sinceLastSpawn += delta;
+            }
+        } else {
             GameData.sinceLastSpawn += delta;
-        //}
-        if (GameData.sinceLastSpawn >= 12 || totalCustomers == 0) {
+        }
+        if (GameData.sinceLastSpawn >= 10) {
             //Create new customer offset location.
             Customer customer = new Customer();
             customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));

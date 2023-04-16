@@ -21,12 +21,15 @@ import com.badlogic.gdx.utils.Align;
 /**
  * Class responsible for creating stages.
  */
+
 public class StageFactory {
 
     /**
      * Create the main menu stage. 
      * @return The new stage created.
      */
+
+    public static boolean endlessModeEnabled;
     public static Stage createMainMenuStage() {
         // Title
         Stage stage = new Stage();
@@ -39,12 +42,12 @@ public class StageFactory {
         Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         stage.addActor(Title);
 
-        // Play button
-        TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
-                new Vector2(0.5, 0.5), "Play game", Align.center);
-        button.getStyle().overFontColor = Color.BLUE;
+        // Scenario mode button
+        TextButton scenarioModeButton = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.55), "Scenario Mode", Align.center);
+        scenarioModeButton.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
-        button.addListener(new ChangeListener() {
+        scenarioModeButton.addListener(new ChangeListener() {
 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -56,10 +59,34 @@ public class StageFactory {
                 GameData.gameLoop = new GameLoop();
                 StageManager.addStage("Game", GameData.gameLoop);
                 StageManager.setActiveStage("Game");
+                endlessModeEnabled = false;
             }
 
         });
-        stage.addActor(button);
+        stage.addActor(scenarioModeButton);
+
+        // Endless mode button
+        TextButton endlessModeButton = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.45), "Endless Mode", Align.center);
+        endlessModeButton.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        endlessModeButton.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Open Game");
+                GameData.music.dispose();
+                GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
+                GameData.music.setLooping(true);
+                //  GameData.music.play();
+                GameData.gameLoop = new GameLoop();
+                StageManager.addStage("Game", GameData.gameLoop);
+                StageManager.setActiveStage("Game");
+                endlessModeEnabled = true;
+            }
+
+        });
+        stage.addActor(endlessModeButton);
 
         //// Options button
         //TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
