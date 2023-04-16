@@ -526,8 +526,4 @@ public class StageFactory {
         stage.addActor(ChefAnimation1);
         return stage;
     }
-
-    public static String toString(int customers) {
-        return "" + customers;
-    }
 }

@@ -107,11 +107,12 @@ public class GameLoop extends Stage {
         pos = new Vector2(0.05, 0.9); // Score counter position.
         gameTimer.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomRight);
         this.addActor(gameTimer);
+
         //Create Inventory Panel
         StageAnimation ChefAnimation = new StageAnimation(GameData.chef1Animations.get("IdleFrontSelected"), 6, 6, 1,
-                new Vector2(0.85, 0.85), 50, 100);
+                new Vector2(0.9, 0.85), 50, 100);
         StageAnimation ChefAnimation1 = new StageAnimation(GameData.chef2Animations.get("IdleFrontSelected"), 6, 6, 1,
-                new Vector2(0.8, 0.85), 50, 100);
+                new Vector2(0.85, 0.85), 50, 100);
 
         this.addActor(ChefAnimation);
         this.addActor(ChefAnimation1);
@@ -245,7 +246,7 @@ public class GameLoop extends Stage {
 
         //Draw the player inventory
         if (GameData.player1.holding != null) {
-            curPosition.x = 0.85;
+            curPosition.x = 0.9;
             curPosition.y = 0.85;
             //curPosition = new Vector2(0.85, 0.85);
             GameData.player1.holding.drawItemInventory(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
@@ -253,13 +254,13 @@ public class GameLoop extends Stage {
         }
         if (GameData.player2.holding != null) {
             curPosition.y = 0.85;
-            curPosition.x = 0.8;
+            curPosition.x = 0.85;
             GameData.player2.holding.drawItemInventory(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
                     50);
         }
         Base.batch.end();
         Base.batch.begin();
-        super.draw();//Draw stations and player
+        super.draw(); //Draw stations and player
         Base.batch.end();
         Base.batch.begin();
         //Draw items

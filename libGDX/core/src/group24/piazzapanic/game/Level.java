@@ -39,12 +39,13 @@ public class Level {
             width = 12;
             height = 6;
 
-            String[] level_string = {"s11111111112",
-            "...........3",
-            "g.dBCF.1...3",
-            "....*......4",
-            "o.t.l.b.m.D.",
-            "..c..p...S.."};
+            String[] level_string =
+               {"s11111111112",
+                "...........3",
+                "g.dBCF11...3",
+                "....*......3",
+                "o.t.l.b....3",
+                ".c.p.D.m.S.4"};
 
 
             grid = new Station[width][height];
