@@ -27,6 +27,13 @@ public class Level {
     public int startX;
     /** The Y starting position of the player */
     public int startY;
+    public static String[] level_string;
+    public String[] initial_layout = {"s11111111112",
+            "...........3",
+            "g.dBCF11...3",
+            "....*......3",
+            "o.t.l.b....3",
+            ".c.p.D.m.S.4"};
 
     /**
      * Level constructor, reads level data from file and stores it in a 2D array of {@link Station}s.
@@ -39,13 +46,7 @@ public class Level {
             width = 12;
             height = 6;
 
-            String[] level_string =
-               {"s11111111112",
-                "...........3",
-                "g.dBCF11...3",
-                "....*......3",
-                "o.t.l.b....3",
-                ".c.p.D.m.S.4"};
+            String[] level_string = initial_layout;
 
 
             grid = new Station[width][height];
