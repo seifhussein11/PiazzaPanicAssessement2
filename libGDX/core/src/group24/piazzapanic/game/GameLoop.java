@@ -38,7 +38,7 @@ public class GameLoop extends Stage {
     /** The stations in the game level */
     private ArrayList<Station> stations;
 
-    public int maxCustomers = 5; //maximum number of customers to appear 
+    public int maxCustomers = StageFactory.scenarioCustomerAmount; //maximum number of customers to appear
     public int totalCustomers; //number of customers spawned so far
 
     /**
@@ -147,7 +147,7 @@ public class GameLoop extends Stage {
         } else {
             GameData.sinceLastSpawn += delta;
         }
-        if (GameData.sinceLastSpawn >= 10) {
+        if (GameData.sinceLastSpawn >= 2) {
             //Create new customer offset location.
             Customer customer = new Customer();
             customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));

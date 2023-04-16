@@ -30,6 +30,7 @@ public class StageFactory {
      */
 
     public static boolean endlessModeEnabled;
+    public static int scenarioCustomerAmount;
     public static Stage createMainMenuStage() {
         // Title
         Stage stage = new Stage();
@@ -51,15 +52,8 @@ public class StageFactory {
 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.print("Open Game");
-                GameData.music.dispose();
-                GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
-                GameData.music.setLooping(true);
-                //  GameData.music.play();
-                GameData.gameLoop = new GameLoop();
-                StageManager.addStage("Game", GameData.gameLoop);
-                StageManager.setActiveStage("Game");
-                endlessModeEnabled = false;
+                System.out.print("Open Configure");
+                StageManager.setActiveStage("Configure");
             }
 
         });
@@ -88,21 +82,21 @@ public class StageFactory {
         });
         stage.addActor(endlessModeButton);
 
-        //// Options button
-        //TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
-        //        new Vector2(0.5, 0.4), "Options", Align.center);
-        //button2.getStyle().overFontColor = Color.BLUE;
-        ////Create onclick function
-        //button2.addListener(new ChangeListener() {
-        //
-        //    @Override
-        //    public void changed(ChangeEvent event, Actor actor) {
-        //        System.out.print("Open Options");
-        //        StageManager.setActiveStage("Options");
-        //    }
-        //
-        //});
-        //stage.addActor(button2);
+//        // Options button
+//        TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+//                new Vector2(0.5, 0.38), "Options", Align.center);
+//        button2.getStyle().overFontColor = Color.BLUE;
+//        //Create onclick function
+//        button2.addListener(new ChangeListener() {
+//
+//            @Override
+//            public void changed(ChangeEvent event, Actor actor) {
+//                System.out.print("Open Options");
+//                StageManager.setActiveStage("Options");
+//            }
+//
+//        });
+//        stage.addActor(button2);
 
         // quit button
         TextButton button3 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
@@ -152,11 +146,23 @@ public class StageFactory {
         stage.addActor(sliderText);
 
         //Volume bar
+
+        //NOT WORKING
         Skin skin = new Skin(Gdx.files.internal("testSkin/uiskin.json"));
         Slider scrollPane = new Slider(0, 100, 5, false, skin);
         coords = new Vector2(0.5, 0.5);
         scrollPane.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         stage.addActor(scrollPane);
+        //I don't know how to set the volume using this
+        //it doesn't seem to do anything
+        scrollPane.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                float value = ((Slider) actor).getValue();
+                GameData.music.setVolume(value);
+
+            }
+        });
         //Add return to main button
         TextButton button2 = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
                 new Vector2(0.2, 0.7), "Back", Align.right);
@@ -172,6 +178,89 @@ public class StageFactory {
 
         });
         stage.addActor(button2);
+
+        return stage;
+    }
+
+    /**
+     * Create the options menu stage.
+     * @return The new stage created.
+     */
+    public static Stage createScenarioAmountSelectionStage() {
+        //Title
+        Stage stage = new Stage();
+        CharSequence TitleText = "Configure scenario";
+        Label Title = new Label(TitleText, new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
+        Vector2 coords = new Vector2(0.5, 0.7);
+        Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        stage.addActor(Title);
+
+        //Customer bar label
+        CharSequence sliderTextString = "Customers";
+        Label sliderText = new Label(sliderTextString, new LabelStyle(FontHandler.textButtonFormat, Color.WHITE));
+        coords = new Vector2(0.5, 0.55);
+        sliderText.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        stage.addActor(sliderText);
+
+        //Customer bar
+        Skin skin = new Skin(Gdx.files.internal("testSkin/uiskin.json"));
+        Slider customerSlider = new Slider(1, 20, 1, false, skin);
+        coords = new Vector2(0.5, 0.5);
+        customerSlider.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        stage.addActor(customerSlider);
+        final Label customersAmount = new Label("Select Customer Amount", new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
+        coords = new Vector2(0.5,0.44);
+        customersAmount.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        customerSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                float value = ((Slider) actor).getValue();
+                System.out.println(value);
+                scenarioCustomerAmount = (int) value;
+                customersAmount.setText(scenarioCustomerAmount);
+                Vector2 coordsNew = new Vector2(0.48,0.42);
+                customersAmount.setPosition(coordsNew.getAbsoluteX(), coordsNew.getAbsoluteY());
+            }
+        });
+        stage.addActor(customersAmount);
+
+        //Add return to main button
+        TextButton button2 = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
+                new Vector2(0.2, 0.7), "Back", Align.right);
+        button2.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        button2.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Open Main");
+                StageManager.setActiveStage("MainMenu");
+            }
+
+        });
+        stage.addActor(button2);
+
+        //Add start game button
+        TextButton beginScenarioButton = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.27), "Begin Scenario", Align.center);
+        beginScenarioButton.getStyle().overFontColor = Color.BLUE;
+        stage.addActor(beginScenarioButton);
+        beginScenarioButton.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Open Game");
+                GameData.music.dispose();
+                GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
+                GameData.music.setLooping(true);
+                //  GameData.music.play();
+                GameData.gameLoop = new GameLoop();
+                StageManager.addStage("Game", GameData.gameLoop);
+                StageManager.setActiveStage("Game");
+                endlessModeEnabled = false;
+            }
+
+        });
 
         return stage;
     }
@@ -429,5 +518,9 @@ public class StageFactory {
         stage.addActor(ChefAnimation);
         stage.addActor(ChefAnimation1);
         return stage;
+    }
+
+    public static String toString(int customers) {
+        return "" + customers;
     }
 }

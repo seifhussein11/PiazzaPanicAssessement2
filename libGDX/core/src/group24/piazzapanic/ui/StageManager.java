@@ -25,6 +25,7 @@ public class StageManager {
         stages = new HashMap<String, Stage>();
         stages.put("MainMenu", StageFactory.createMainMenuStage());
         stages.put("Options", StageFactory.createOptionsMenuStage());
+        stages.put("Configure",StageFactory.createScenarioAmountSelectionStage());
         //GameData.gameLoop = new GameLoop();
         //stages.put("Game", GameData.gameLoop);
         stages.put("Pause", StageFactory.createPauseMenuStage());
