@@ -17,7 +17,7 @@ public class CustomerTests {
 
     @Test
     public void TestCustomerFulfillOrder(){ //i dont know whats wrong with this test why doesn't it work.
-        GameData gameData =Mockito.mock(GameData.class);
+        GameData gameData = Mockito.mock(GameData.class);
         Customer customer = Mockito.mock(Customer.class);
         ArrayList<Customer> customers = new ArrayList<>();
         customers.add(customer);
