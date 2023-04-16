@@ -169,7 +169,7 @@ public class GameLoop extends Stage {
         if (Gdx.input.isKeyJustPressed(Base.PAUSE_KEY)) {
             StageManager.setActiveStage("Pause");
         }
-        if (this.totalCustomers == this.maxCustomers && GameData.customers.size() == 0) {
+        if (this.totalCustomers == this.maxCustomers && GameData.customers.size() == 0 && maxCustomers != 0) {
             StageManager.setActiveStage("GameOver");
         }
         // Run player movement and physics, it's quite long so I put it in a separate function.

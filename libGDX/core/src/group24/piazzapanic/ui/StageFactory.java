@@ -204,7 +204,7 @@ public class StageFactory {
 
         //Customer bar
         Skin skin = new Skin(Gdx.files.internal("testSkin/uiskin.json"));
-        Slider customerSlider = new Slider(1, 20, 1, false, skin);
+        Slider customerSlider = new Slider(0, 20, 1, false, skin);
         coords = new Vector2(0.5, 0.5);
         customerSlider.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
         stage.addActor(customerSlider);
@@ -217,9 +217,16 @@ public class StageFactory {
                 float value = ((Slider) actor).getValue();
                 System.out.println(value);
                 scenarioCustomerAmount = (int) value;
-                customersAmount.setText(scenarioCustomerAmount);
-                Vector2 coordsNew = new Vector2(0.48,0.42);
-                customersAmount.setPosition(coordsNew.getAbsoluteX(), coordsNew.getAbsoluteY());
+                if (value == 0) {
+                    customersAmount.setText("Practice Mode");
+                    Vector2 coordsNew = new Vector2(0.32,0.42);
+                    customersAmount.setPosition(coordsNew.getAbsoluteX(), coordsNew.getAbsoluteY());
+                } else {
+                    customersAmount.setText(scenarioCustomerAmount);
+                    Vector2 coordsNew = new Vector2(0.48,0.42);
+                    customersAmount.setPosition(coordsNew.getAbsoluteX(), coordsNew.getAbsoluteY());
+                }
+
             }
         });
         stage.addActor(customersAmount);
