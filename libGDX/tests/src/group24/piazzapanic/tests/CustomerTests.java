@@ -19,15 +19,14 @@ public class CustomerTests {
     public void TestCustomerFulfillOrder(){ //i dont know whats wrong with this test why doesn't it work.
         GameData gameData = Mockito.mock(GameData.class);
         Customer customer = Mockito.mock(Customer.class);
+        gameData.gameLoop = Mockito.mock(GameLoop.class);
         ArrayList<Customer> customers = new ArrayList<>();
         customers.add(customer);
         gameData.customers = customers;
-        System.out.println(gameData.customers);
-        GameLoop gameLoop = Mockito.mock(GameLoop.class);
-        gameData.gameLoop = gameLoop;
-        gameData.score = 0;
+        System.out.println("Before fulfillment: \n" + gameData.customers);
         customer.fulfillOrder();
-        System.out.println(gameData.customers);
+        gameData.score = 0;
+        System.out.println("After fulfillment: \n" + gameData.customers);
         assertFalse(gameData.customers.contains(customer));
         Integer expectedScore = 1;
         assertEquals(expectedScore,gameData.score);
