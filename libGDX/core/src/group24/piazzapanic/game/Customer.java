@@ -80,6 +80,33 @@ public class Customer extends StageAnimation {
 
     }
 
+    public Customer(int customerOrder) {
+        super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
+                20, 20, entityWidth, entityHeight);
+        //        timeLimit = 30f;
+        this.timeLimit = 15;
+        LabelStyle style = new LabelStyle();
+        style.font = FontHandler.subtitleFormat;
+        style.fontColor = Color.WHITE;
+
+        // 0 for BURGER, 1 for SALAD, 2 for PIZZA, 3 for JACKET_POTATO
+        this.order = Dish.Dishes.get(customerOrder);
+        if (order.equals(Dish.BURGER)) {
+            //    this.orderText = "Burger";
+            this.orderTexture = GameData.burgerDishTexture;
+        } else if (order.equals(Dish.SALAD)) {
+            //    this.orderText = "Salad";
+            this.orderTexture = GameData.saladDishTexture;
+        } else if (order.equals(Dish.PIZZA)) {
+            //    this.orderText = "Pizza";
+            this.orderTexture = GameData.pizzaDishTexture;
+        } else if (order.equals(Dish.JACKET_POTATO)) {
+            //    this.orderText = "Jacket Potato";
+            this.orderTexture = GameData.jacketPotatoDishTexture;
+        }
+
+    }
+
     /** Fulfil the customer's order i.e. they have had their dish served and are happy now :) */
     public void fulfillOrder() {
         //this.textBubble.setText("Done");

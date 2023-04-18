@@ -331,6 +331,11 @@ public class GameData {
         gameLoop.addScore(GameData.score);
     }
 
+    public static void setScore(int score) {
+        GameData.score = score;
+        gameLoop.addScore(GameData.score);
+    }
+
     /**
      * Free up memory when the game is closed.
      */

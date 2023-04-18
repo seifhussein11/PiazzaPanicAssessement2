@@ -179,6 +179,12 @@ public class GameLoop extends Stage {
         if (Gdx.input.isKeyJustPressed(Base.PAUSE_KEY)) {
             StageManager.setActiveStage("Pause");
         }
+        if (Gdx.input.isKeyJustPressed(Base.SAVE_KEY)) {
+            SaveLoad.save();
+        }
+        if (Gdx.input.isKeyJustPressed(Base.LOAD_KEY)) {
+            SaveLoad.load();
+        }
         if (this.totalCustomers == this.maxCustomers && GameData.customers.size() == 0 && maxCustomers != 0) {
             StageManager.setActiveStage("GameOver");
         }

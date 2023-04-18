@@ -61,6 +61,10 @@ public class Base {
     public static final int SWAP_KEY = Keys.Q;
     /** The pause keybind. */
     public static final int PAUSE_KEY = Keys.ESCAPE;
+    /** The save keybind. */
+    public static final int SAVE_KEY = Keys.F6;
+    /** The load keybind. */
+    public static final int LOAD_KEY = Keys.F7;
 
 
     /**

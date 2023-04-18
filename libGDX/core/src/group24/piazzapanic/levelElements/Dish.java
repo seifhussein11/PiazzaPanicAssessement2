@@ -33,9 +33,9 @@ public class Dish extends ImageMovable {
     public static Dish SALAD = new Dish(SALAD_RECIPE);
     public static Dish PIZZA = new Dish(PIZZA_RECIPE);
     public static Dish JACKET_POTATO = new Dish(JACKET_POTATO_RECIPE);
-    public static ArrayList<Dish> Dishes = new ArrayList<Dish>(
+    public static ArrayList<Dish> Dishes = new ArrayList<>(
             Arrays.asList(BURGER, SALAD, PIZZA, JACKET_POTATO));
-    public ArrayList<Ingredient> Ingredients = new ArrayList<Ingredient>();
+    public ArrayList<Ingredient> Ingredients = new ArrayList<>();
     /** Stores the dish's recipe. */
     private ArrayList<Ingredient> recipe;
     /** Stores the dish's current progress towards completion. */
