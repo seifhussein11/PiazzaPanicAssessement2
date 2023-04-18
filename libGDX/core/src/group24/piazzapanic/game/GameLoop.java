@@ -88,9 +88,12 @@ public class GameLoop extends Stage {
         GameData.player1 = GameData.player;
         GameData.player2 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
                 GameData.initialChef2Animation, GameData.chef2Animations);
+        GameData.player3 = new Player(GameData.level.startX + 0.5, GameData.level.startY + 0.5,
+                GameData.initialChef3Animation, GameData.chef3Animations);
 
         this.addActor(GameData.player1);
         this.addActor(GameData.player2);
+        this.addActor(GameData.player3);
 
         this.curPosition = new Vector2(0, 0);
         //Create score counter
@@ -113,9 +116,12 @@ public class GameLoop extends Stage {
                 new Vector2(0.9, 0.85), 50, 100);
         StageAnimation ChefAnimation1 = new StageAnimation(GameData.chef2Animations.get("IdleFrontSelected"), 6, 6, 1,
                 new Vector2(0.85, 0.85), 50, 100);
+        StageAnimation ChefAnimation2 = new StageAnimation(GameData.chef3Animations.get("IdleFrontSelected"), 6, 6, 1,
+                new Vector2(0.875, 0.55), 50, 100);
 
         this.addActor(ChefAnimation);
         this.addActor(ChefAnimation1);
+        this.addActor(ChefAnimation2);
 
         //Create customers
         GameData.customerSpriteSheets = new ArrayList<String>(Arrays.asList("customers/customer_1_idle.png",
@@ -163,7 +169,10 @@ public class GameLoop extends Stage {
                 System.out.println("Swapping player 1 to 2");
                 GameData.player = GameData.player2;
             } else if (GameData.player == GameData.player2) {
-                System.out.println("Swapping player 2 to 1");
+                System.out.println("Swapping player 2 to 3");
+                GameData.player = GameData.player3;
+            } else if (GameData.player == GameData.player3) {
+                System.out.println("Swapping player 3 to 1");
                 GameData.player = GameData.player1;
             }
         }
@@ -195,6 +204,11 @@ public class GameLoop extends Stage {
             }
             if (GameData.level.getHeight() - 1 - ((int) Math.floor(GameData.player2.y)) == ylevel - offset) {
                 GameData.player2.setZIndex(ylevel);
+                offset++;
+                ylevel++;
+            }
+            if (GameData.level.getHeight() - 1 - ((int) Math.floor(GameData.player3.y)) == ylevel - offset) {
+                GameData.player3.setZIndex(ylevel);
                 offset++;
                 ylevel++;
             }
@@ -256,6 +270,12 @@ public class GameLoop extends Stage {
             curPosition.y = 0.85;
             curPosition.x = 0.85;
             GameData.player2.holding.drawItemInventory(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
+                    50);
+        }
+        if (GameData.player3.holding != null) {
+            curPosition.y = 0.55;
+            curPosition.x = 0.875;
+            GameData.player3.holding.drawItemInventory(curPosition.getAbsoluteX(), curPosition.getAbsoluteY() - 50, 50,
                     50);
         }
         Base.batch.end();

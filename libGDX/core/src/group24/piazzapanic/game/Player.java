@@ -244,7 +244,7 @@ public class Player extends Actor {
         } else if (this.x_vel == 0 && this.y_vel == 0) {
             key = "Idle" + key + "Selected";
         }
-        if (key != this.currentKey) {
+        if (!key.equals(this.currentKey)) {
             currentKey = key;
             this.animation.setAnimation(this.AnimMap.get(key));
         }

@@ -29,12 +29,14 @@ public class GameData {
     public static float sinceLastSpawn;
     /** The active {@link Level} */
     public static Level level;
-    /** The active {@link Player}. Points to either {@link #player1} or {@link #player2} */
+    /** The active {@link Player}. Points to either {@link #player1}, {@link #player2} or {@link #player3} */
     public static Player player;
     /** The first player */
     public static Player player1;
     /** The second player */
     public static Player player2;
+
+    public static Player player3;
     /** The active {@link Music} */
     public static Music music;
     /** A list of all the possible customer sprites */
@@ -69,10 +71,14 @@ public class GameData {
     public static StageAnimation initialChef1Animation;
     /** initial animation for chef 2 */
     public static StageAnimation initialChef2Animation;
+    /** initial animation for chef 3 */
+    public static StageAnimation initialChef3Animation;
     /** HashMap of all animations for chef1 */
     public static HashMap<String, Animation<TextureRegion>> chef1Animations;
     /** HashMap of all animations for chef2 */
     public static HashMap<String, Animation<TextureRegion>> chef2Animations;
+    /** HashMap of all animations for chef3 */
+    public static HashMap<String, Animation<TextureRegion>> chef3Animations;
 
     /** The texture for the debug square */
     public static Texture debugSquareTexture;
@@ -225,9 +231,29 @@ public class GameData {
         chef2Animations.put("Left", StageAnimation.makeAnimation("chef/chef_1_walk_left.png", 6, 1, 6));
         chef2Animations.put("Right", StageAnimation.makeAnimation("chef/chef_1_walk_right.png", 6, 1, 6));
 
+        chef3Animations = new HashMap<String, Animation<TextureRegion>>();
+        chef3Animations.put("IdleFrontSelected",
+                StageAnimation.makeAnimation("chef/chef_1_idle_front_selected.png", 6, 1, 6));
+        chef3Animations.put("IdleBackSelected",
+                StageAnimation.makeAnimation("chef/chef_1_idle_back_selected.png", 6, 1, 6));
+        chef3Animations.put("IdleLeftSelected",
+                StageAnimation.makeAnimation("chef/chef_1_idle_left_selected.png", 6, 1, 6));
+        chef3Animations.put("IdleRightSelected",
+                StageAnimation.makeAnimation("chef/chef_1_idle_right_selected.png", 6, 1, 6));
+        chef3Animations.put("IdleFront", StageAnimation.makeAnimation("chef/chef_1_idle_front.png", 6, 1, 6));
+        chef3Animations.put("IdleBack", StageAnimation.makeAnimation("chef/chef_1_idle_back.png", 6, 1, 6));
+        chef3Animations.put("IdleLeft", StageAnimation.makeAnimation("chef/chef_1_idle_left.png", 6, 1, 6));
+        chef3Animations.put("IdleRight", StageAnimation.makeAnimation("chef/chef_1_idle_right.png", 6, 1, 6));
+        chef3Animations.put("Front", StageAnimation.makeAnimation("chef/chef_1_walk_front.png", 6, 1, 6));
+        chef3Animations.put("Back", StageAnimation.makeAnimation("chef/chef_1_walk_back.png", 6, 1, 6));
+        chef3Animations.put("Left", StageAnimation.makeAnimation("chef/chef_1_walk_left.png", 6, 1, 6));
+        chef3Animations.put("Right", StageAnimation.makeAnimation("chef/chef_1_walk_right.png", 6, 1, 6));
+
         initialChef1Animation = new StageAnimation(chef1Animations.get("IdleFrontSelected"), 6, 6, 1, 0, 0,
                 Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
         initialChef2Animation = new StageAnimation(chef2Animations.get("IdleFrontSelected"), 6, 6, 1, 0, 0,
+                Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
+        initialChef3Animation = new StageAnimation(chef3Animations.get("IdleFrontSelected"), 6, 6, 1, 0, 0,
                 Player.TEXTURE_WIDTH, Player.TEXTURE_HEIGHT);
         debugSquareTexture = new Texture("debugsquare.png");
 
