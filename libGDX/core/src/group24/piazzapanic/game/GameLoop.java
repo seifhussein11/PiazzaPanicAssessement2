@@ -27,6 +27,8 @@ import java.util.Random;
 public class GameLoop extends Stage {
     /** The game score */
     public final Label scoreCounter;
+    /** The player's money */
+    public final Label moneyCounter;
     /** The game timer */
     private final Label gameTimer;
     /** Var for storing positions in per frame calculations, making a new vector causes the funni (memory leak)*/
@@ -106,6 +108,13 @@ public class GameLoop extends Stage {
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
+        //Create money counter
+        CharSequence count2 = Integer.toString(GameData.money);
+        moneyCounter = new Label(count2, style);
+        Vector2 pos2 = new Vector2(0.95, 0.85); // Score counter position.
+        moneyCounter.setPosition(pos2.getAbsoluteX(), pos2.getAbsoluteY(), Align.bottomLeft);
+        this.addActor(moneyCounter);
+
         gameTimer = new Label(count, style);
         pos = new Vector2(0.05, 0.9); // Score counter position.
         gameTimer.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomRight);
@@ -137,6 +146,15 @@ public class GameLoop extends Stage {
     public void addScore(int score) {
         CharSequence count = Integer.toString(score);
         this.scoreCounter.setText(count);
+    }
+
+    /**
+     * Adds money to the money counter.
+     * @param money The money to add (Integer)
+     */
+    public void addMoney(int money) {
+        CharSequence count = Integer.toString(money);
+        this.moneyCounter.setText(count);
     }
 
     /**

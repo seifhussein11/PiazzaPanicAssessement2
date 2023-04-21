@@ -114,6 +114,7 @@ public class Customer extends StageAnimation {
         this.remove();
         GameData.gameLoop.resortCustomers();
         GameData.addScore(1);
+        GameData.addMoney(5);
     }
 
     /** Update the customer's order text box location with the customer's location */

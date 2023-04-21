@@ -21,6 +21,8 @@ public class GameData {
     public static GameLoop gameLoop;
     /** The game's score */
     public static Integer score = 0;
+    /** The player's money */
+    public static Integer money = 0;
     /** The customers waiting to be served */
     public static ArrayList<Customer> customers;
     /** The in-game timer, updated every frame */
@@ -334,6 +336,11 @@ public class GameData {
     public static void setScore(int score) {
         GameData.score = score;
         gameLoop.addScore(GameData.score);
+    }
+
+    public static void addMoney(int money) {
+        GameData.money += money;
+        gameLoop.addMoney(GameData.money);
     }
 
     /**

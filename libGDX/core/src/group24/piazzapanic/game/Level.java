@@ -28,7 +28,8 @@ public class Level {
     /** The Y starting position of the player */
     public int startY;
     public static String[] level_string;
-    public String[] initial_layout = {"s11111111112",
+    public String[] initial_layout =
+           {"s11111111112",
             "...........3",
             "g.dBCF11...3",
             "....*......3",
