@@ -95,10 +95,22 @@ project(":tests") {
     }
 }
 
-jar {
+task dist(type: Jar) {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     manifest {
-        attributes(
-                'Main-Class': 'group24.piazzapanic.DesktopLauncher'
-        )
+        attributes 'Main-Class': "group24.piazzapanic.DesktopLauncher"
     }
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
 }
+
+//jar {
+//    manifest {
+//        attributes(
+//                'Main-Class': 'group24.piazzapanic.DesktopLauncher'
+//        )
+//    }
+//}

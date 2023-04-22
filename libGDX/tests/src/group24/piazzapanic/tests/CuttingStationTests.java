@@ -32,18 +32,18 @@ public class CuttingStationTests {
         Mockito.when(item.getIngredient()).thenReturn(item);
         Mockito.when(item.getCuttingProgress()).thenReturn(1);
         station.interact(1);
-        assertEquals("Already cut...\n", output1.toString());
+        assertEquals("Already cut...\r\n", output1.toString());
         Mockito.when(item.getCuttingProgress()).thenReturn(-1);
         ByteArrayOutputStream output2 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output2));
         station.interact(1);
-        assertEquals("cannot be cut...\n", output2.toString());
+        assertEquals("cannot be cut...\r\n", output2.toString());
         assertEquals(0,station.timeKeyHeld,0.0000001);
         station.item=null;
         ByteArrayOutputStream output3 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output3));
         station.interact(1);
-        assertEquals("no item to cut...\n", output3.toString());
+        assertEquals("no item to cut...\r\n", output3.toString());
         ByteArrayOutputStream output4 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output4));
         IngredientType tomato = new IngredientType("tomato");
@@ -54,7 +54,7 @@ public class CuttingStationTests {
         station.interact(1);
         assertEquals(1, item2.getCuttingProgress(),0.0000001);
         assertEquals(0,station.timeKeyHeld,0.0000001);
-        assertEquals("Cutting complete...\n", output4.toString());
+        assertEquals("Cutting complete...\r\n", output4.toString());
 
 
     }

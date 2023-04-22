@@ -30,18 +30,18 @@ public class FryingStationTests {
         Mockito.when(item.getIngredient()).thenReturn(item);
         Mockito.when(item.getFryingProgress()).thenReturn(1);
         station.interact(1);
-        assertEquals("the item is already fried...\n", output1.toString());
+        assertEquals("the item is already fried..."+System.lineSeparator(), output1.toString());
         Mockito.when(item.getFryingProgress()).thenReturn(-1);
         ByteArrayOutputStream output2 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output2));
         station.interact(1);
-        assertEquals("item cannot be fried...\n", output2.toString());
+        assertEquals("item cannot be fried..."+System.lineSeparator(), output2.toString());
         assertEquals(0,station.timeKeyHeld,0.0000001);
         station.item=null;
         ByteArrayOutputStream output3 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output3));
         station.interact(1);
-        assertEquals("no item to fry...\n", output3.toString());
+        assertEquals("no item to fry..."+System.lineSeparator(), output3.toString());
         ByteArrayOutputStream output4 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output4));
         IngredientType tomato = new IngredientType("tomato");
@@ -52,7 +52,7 @@ public class FryingStationTests {
         station.interact(1);
         assertEquals(1, item2.getFryingProgress(),0.0000001);
         assertEquals(0,station.timeKeyHeld,0.0000001);
-        assertEquals("frying is done...\n", output4.toString());
+        assertEquals("frying is done..."+System.lineSeparator(), output4.toString());
 
     }
 
