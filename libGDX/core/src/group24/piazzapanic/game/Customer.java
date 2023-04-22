@@ -3,9 +3,7 @@ package group24.piazzapanic.game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-
 import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.ui.FontHandler;
@@ -80,6 +78,7 @@ public class Customer extends StageAnimation {
 
     }
 
+
     public Customer(int customerOrder) {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
                 20, 20, entityWidth, entityHeight);
@@ -106,6 +105,7 @@ public class Customer extends StageAnimation {
         }
 
     }
+
 
     /** Fulfil the customer's order i.e. they have had their dish served and are happy now :) */
     public void fulfillOrder() {

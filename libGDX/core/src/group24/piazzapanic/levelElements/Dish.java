@@ -39,7 +39,7 @@ public class Dish extends ImageMovable {
     /** Stores the dish's recipe. */
     private ArrayList<Ingredient> recipe;
     /** Stores the dish's current progress towards completion. */
-    boolean complete;
+    private boolean complete;
 
     /**
      * Initialise the Dish. Set its texture, size, completeness, and recipe.
