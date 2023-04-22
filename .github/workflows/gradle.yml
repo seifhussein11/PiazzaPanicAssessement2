@@ -50,4 +50,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: PiazzaPanic
-        path: build/libs/PiazzaPanic.jar
+        path: build/libs/PiazzaPanic-1.0.jar
