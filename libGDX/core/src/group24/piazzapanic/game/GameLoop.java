@@ -26,9 +26,9 @@ import java.util.Random;
  */
 public class GameLoop extends Stage {
     /** The game score */
-    public final Label scoreCounter;
+    public Label scoreCounter; // was final changed bec of testings causes
     /** The player's money */
-    public final Label moneyCounter;
+    public Label moneyCounter; // was final but changed it for testings
     /** The game timer */
     private final Label gameTimer;
     /** Var for storing positions in per frame calculations, making a new vector causes the funni (memory leak)*/
