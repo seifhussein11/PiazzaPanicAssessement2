@@ -64,7 +64,7 @@ public class CustomerTests {
         GameData gameData = Mockito.mock(GameData.class);
         gameData.gameLoop = Mockito.mock(GameLoop.class);
         gameData.customerSpriteSheets = new ArrayList<String>();
-        gameData.customerSpriteSheets.add("customer_1_idle.png");
+        gameData.customerSpriteSheets.add("customers\\customer_1_idle.png");
         gameData.rand = new Random();
         Texture texture = Mockito.mock(Texture.class);
         gameData.burgerDishTexture = texture;
