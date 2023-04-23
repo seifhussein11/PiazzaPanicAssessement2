@@ -52,8 +52,8 @@ jobs:
     - name: Upload JAR file
       uses: actions/upload-artifact@v3
       with:
-        name: desktop-jar
-        path: build/libs/desktop-1.0.jar
+        name: desktop1.0-jar
+        path: /home/runner/work/PiazzaPanicAssessement2/PiazzaPanicAssessement2/libGDX/desktop/build/libs/desktop1.0.jar
         
     - name: List files in directory
       run: |
