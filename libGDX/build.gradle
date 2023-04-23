@@ -51,9 +51,9 @@ project(":desktop") {
 
     dependencies {
         implementation project(":core")
-        api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
         
     }
 }
@@ -63,9 +63,9 @@ project(":core") {
 
 
     dependencies {
-        api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 
     }
 }
@@ -95,22 +95,10 @@ project(":tests") {
     }
 }
 
-task dist(type: Jar) {
-    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+jar {
     manifest {
-        attributes 'Main-Class': "group24.piazzapanic.DesktopLauncher"
+        attributes(
+                'Main-Class': 'group24.piazzapanic.DesktopLauncher'
+        )
     }
-    dependsOn configurations.runtimeClasspath
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    with jar
 }
-
-//jar {
-//    manifest {
-//        attributes(
-//                'Main-Class': 'group24.piazzapanic.DesktopLauncher'
-//        )
-//    }
-//}

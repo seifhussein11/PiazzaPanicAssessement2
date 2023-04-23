@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("Piazza Panic");
 		config.setResizable(false);
-		config.setWindowIcon("./windowIcon.png");
+		//config.setWindowIcon(".\\windowIcon.png");
 		new Lwjgl3Application(new PiazzaPanic(), config);
 	}
 
