@@ -53,4 +53,8 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: desktop-jar
-        path: desktop/build/libs/desktop-1.0.jar
+        path: build/libs/desktop-1.0.jar
+        
+    - name: List files in directory
+      run: |
+        ls -R ${{ github.workspace }}
