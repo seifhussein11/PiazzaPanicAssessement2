@@ -53,4 +53,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: PiazzaPanic
-        path: build/libs/desktop-1.0.jar
+        path: desktop/build/libs/desktop-1.0.jar
