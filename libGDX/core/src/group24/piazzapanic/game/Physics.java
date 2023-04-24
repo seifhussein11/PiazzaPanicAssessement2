@@ -1,15 +1,18 @@
 package group24.piazzapanic.game;
 
-import com.badlogic.gdx.Gdx;
-
 import group24.piazzapanic.Base;
-import group24.piazzapanic.levelElements.stations.Station;
-import group24.piazzapanic.maths.Vector2;
+
+import static com.badlogic.gdx.Gdx.input;
 
 /**
  * A class that contains static methods for checking collisions and other physics.
  */
 public class Physics {
+
+    public static boolean upPressed;
+    public static boolean downPressed;
+    public static boolean leftPressed;
+    public static boolean rightPressed;
 
     /**
      * Checks if the player is close to a station. 
@@ -17,20 +20,20 @@ public class Physics {
      * @param player The player.
      * @return True if player near the station, false otherwise.
      */
-    public static boolean isNear(Station station, Player player) {
-        Vector2 pos = Vector2.worldUnitTranslate(
-                GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
-                GameData.player.y - Player.GRID_WIDTH / 2);
-        double deltaX = pos.getAbsoluteX() - ((0.01 * Base.WINDOW_WIDTH) / 2) - station.getX();
-        double deltaY = pos.getAbsoluteY() - ((0.01 * Base.WINDOW_WIDTH)) - station.getY(); //Magic numbers go BRRRR
-        //Why do we have so many different ty pes of positions and offsets
-
-        double Threshhold = Base.tile_pixel_width * 1.2; // Station width in pixels divided by three
-        if (Math.abs(deltaX) <= Threshhold && Math.abs(deltaY) <= Threshhold) { // If closer than Threshold
-            return (Gdx.input.isKeyPressed(Base.ACT_KEY) || Gdx.input.isKeyPressed(Base.PICKUP_KEY));
-        }
-        return false;
-    }
+//    public static boolean isNear(Station station, Player player) {  not used now.
+//        Vector2 pos = Vector2.worldUnitTranslate(
+//                GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
+//                GameData.player.y - Player.GRID_WIDTH / 2);
+//        double deltaX = pos.getAbsoluteX() - ((0.01 * Base.WINDOW_WIDTH) / 2) - station.getX();
+//        double deltaY = pos.getAbsoluteY() - ((0.01 * Base.WINDOW_WIDTH)) - station.getY(); //Magic numbers go BRRRR
+//        //Why do we have so many different ty pes of positions and offsets
+//
+//        double Threshhold = Base.tile_pixel_width * 1.2; // Station width in pixels divided by three
+//        if (Math.abs(deltaX) <= Threshhold && Math.abs(deltaY) <= Threshhold) { // If closer than Threshold
+//            return (Gdx.input.isKeyPressed(Base.ACT_KEY) || Gdx.input.isKeyPressed(Base.PICKUP_KEY));
+//        }
+//        return false;
+//    }
 
     /**
      * Checks if the given coordinates are solid (i.e. a station is there).
@@ -45,7 +48,7 @@ public class Physics {
         if (x < 0 || y < 0 || x >= GameData.level.getWidth() || y >= GameData.level.getHeight()) {
             return true;
         }
-
+        System.out.println(GameData.level.getStation((int) x, (int) y));
         return GameData.level.getStation((int) x, (int) y) != null;
     }
 
@@ -67,7 +70,7 @@ public class Physics {
         (new vel)    (old vel)
         player_vel = player_vel + acceleration * delta;
         */
-        if (Gdx.input.isKeyPressed(Base.UP_KEY)) {
+        if (input.isKeyPressed(Base.UP_KEY) || upPressed == true) { // new for testing
             // This is just the implementation of the formula above.
             player.y_vel += Player.acceleration * delta;
 
@@ -75,7 +78,7 @@ public class Physics {
                 player.direction = Player.facing.UP;
                 //player.animation.setAnimation("chef/chef_walk_back.png", 6, 1, 6);
             }
-        } else if (Gdx.input.isKeyPressed(Base.DOWN_KEY)) {
+        } else if (input.isKeyPressed(Base.DOWN_KEY) || downPressed == true) {
             player.y_vel -= Player.acceleration * delta;
 
             if (player.direction != Player.facing.DOWN) {
@@ -101,14 +104,14 @@ public class Physics {
             }
         }
 
-        if (Gdx.input.isKeyPressed(Base.LEFT_KEY)) {
+        if (input.isKeyPressed(Base.LEFT_KEY) || leftPressed == true) {
             player.x_vel -= Player.acceleration * delta;
 
             if (player.direction != Player.facing.LEFT) {
                 player.direction = Player.facing.LEFT;
                 //player.animation.setAnimation("chef/chef_walk_left.png", 6, 1, 6);
             }
-        } else if (Gdx.input.isKeyPressed(Base.RIGHT_KEY)) {
+        } else if (input.isKeyPressed(Base.RIGHT_KEY) || rightPressed == true) {
             player.x_vel += Player.acceleration * delta;
 
             if (player.direction != Player.facing.RIGHT) {

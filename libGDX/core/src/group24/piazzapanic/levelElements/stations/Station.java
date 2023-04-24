@@ -99,6 +99,8 @@ public class Station extends Image {
         return true;
     }
 
+
+
     /**
      * Checks if the station has an item on it.
      *
@@ -140,6 +142,14 @@ public class Station extends Image {
      * @param delta The time in seconds since the last frame.
      */
     public void interact(float delta) {
+    }
+
+    public void setGridX(int x){
+        this.gridX = x;
+    }
+
+    public void setGridY(int y){
+        this.gridY = y;
     }
 
 }
