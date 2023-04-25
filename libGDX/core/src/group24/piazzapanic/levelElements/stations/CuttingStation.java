@@ -1,6 +1,7 @@
 package group24.piazzapanic.levelElements.stations;
 
 import group24.piazzapanic.game.GameData;
+import group24.piazzapanic.game.GameLoop;
 import group24.piazzapanic.levelElements.Ingredient;
 
 /**
@@ -27,6 +28,14 @@ public class CuttingStation extends Station {
      */
     @Override
     public void interact(float delta) {
+        if (available == 0) {
+            if (GameData.money >= cost) {
+                GameData.addMoney(-cost);
+                available = 1;
+            }
+            System.out.println("Disabled");
+            return;
+        }
         if (super.item == null) {
             System.out.println("no item to cut..."); //new
             return;
@@ -41,7 +50,8 @@ public class CuttingStation extends Station {
             return;
         }
         timeKeyHeld += delta;
-        if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0) {
+        if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0
+                && available == 1) {
             super.item.getIngredient().cut();
             System.out.println("Cutting complete...");
             timeKeyHeld = 0;

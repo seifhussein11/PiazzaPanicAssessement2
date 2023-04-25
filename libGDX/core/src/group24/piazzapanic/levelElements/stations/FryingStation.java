@@ -27,6 +27,14 @@ public class FryingStation extends Station {
      */
     @Override
     public void interact(float delta) {
+        if (available == 0) {
+            if (GameData.money >= cost) {
+                GameData.addMoney(-cost);
+                available = 1;
+            }
+            System.out.println("Disabled");
+            return;
+        }
         if (super.item == null) {
             System.out.println("no item to fry..."); //new
             return;

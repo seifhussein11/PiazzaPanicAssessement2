@@ -45,6 +45,14 @@ public class BakingStation extends Station {
      */
     @Override
     public void interact(float delta) {
+        if (available == 0) {
+            if (GameData.money >= cost) {
+                GameData.addMoney(-cost);
+                available = 1;
+            }
+            System.out.println("Disabled");
+            return;
+        }
         if (super.item == null) { // No item to bake.
             System.out.println("no item to bake......"); //new
             return;

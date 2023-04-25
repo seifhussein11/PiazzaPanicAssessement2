@@ -29,12 +29,12 @@ public class Level {
     public int startY;
     public static String[] level_string;
     public String[] initial_layout =
-           {"s11111111112",
+           {"s11bcf111112",
             "...........3",
             "g.dBCF11...3",
             "....*......3",
-            "o.t.l.b....3",
-            ".c.p.D.m.S.4"};
+            "o.t.l.r....3",
+            ".h.p.D.m.S.4"};
 
     /**
      * Level constructor, reads level data from file and stores it in a 2D array of {@link Station}s.
@@ -82,6 +82,10 @@ public class Level {
                         case 'B':
                             grid[x][y] = new BakingStation();
                             break;
+                        case 'b':
+                            grid[x][y] = new BakingStation();
+                            grid[x][y].available = 0;
+                            break;
                         case '1':
                             grid[x][y] = new CounterTop(GameData.counterTopTexture);
                             break;
@@ -97,15 +101,23 @@ public class Level {
                         case 'C':
                             grid[x][y] = new CuttingStation();
                             break;
+                        case 'c':
+                            grid[x][y] = new CuttingStation();
+                            grid[x][y].available = 0;
+                            break;
                         case 'F':
                             grid[x][y] = new FryingStation();
+                            break;
+                        case 'f':
+                            grid[x][y] = new FryingStation();
+                            grid[x][y].available = 0;
                             break;
                         case 't': // tomato
                         case 'o': // onion
                         case 'l': // lettuce
-                        case 'b': // bread
+                        case 'r': // bread
                         case 'm': // meat
-                        case 'c': // cheese
+                        case 'h': // cheese
                         case 'S': // sauce
                         case 'D': // dough
                         case 'p': // potato
@@ -158,11 +170,11 @@ public class Level {
                 return new IngredientType("lettuce");
             case 'm':
                 return new IngredientType("meat");
-            case 'b':
+            case 'r':
                 return new IngredientType("bread");
             case 'd':
                 return new IngredientType("dish");
-            case 'c':
+            case 'h':
                 return new IngredientType("cheese");
             case 'S':
                 return new IngredientType("sauce");

@@ -22,7 +22,7 @@ public class GameData {
     /** The game's score */
     public static Integer score = 0;
     /** The player's money */
-    public static Integer money = 0;
+    public static Integer money = 5;
     /** The customers waiting to be served */
     public static ArrayList<Customer> customers;
     /** The in-game timer, updated every frame */

@@ -48,7 +48,7 @@ public class Physics {
         if (x < 0 || y < 0 || x >= GameData.level.getWidth() || y >= GameData.level.getHeight()) {
             return true;
         }
-        System.out.println(GameData.level.getStation((int) x, (int) y));
+        //System.out.println(GameData.level.getStation((int) x, (int) y));
         return GameData.level.getStation((int) x, (int) y) != null;
     }
 

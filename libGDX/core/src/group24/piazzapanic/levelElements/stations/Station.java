@@ -22,6 +22,8 @@ public class Station extends Image {
      * A counter of how long the player has been holding the BASE.ACT_KEY key for.
      */
     public float timeKeyHeld;
+    public int available = 1;
+    public int cost = 2;
 
     /**
      * Initialise the station class
