@@ -1,6 +1,9 @@
 package group24.piazzapanic.levelElements.stations;
 
+import com.badlogic.gdx.Gdx;
+import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
+import group24.piazzapanic.game.Player;
 import group24.piazzapanic.levelElements.Ingredient;
 
 /**
@@ -15,6 +18,11 @@ public class FryingStation extends Station {
     public FryingStation() {
         super(GameData.fryingStationTexture);
     }
+
+    /**
+     * Boolean for if item is ready to be flipped or taken from station
+     */
+    public boolean done = false;
 
     /**
      * Allows the player to fry the item.
@@ -39,7 +47,12 @@ public class FryingStation extends Station {
             System.out.println("no item to fry..."); //new
             return;
         }
-        if (super.item.getIngredient().getFryingProgress() == 1) { // The item is already fried.
+
+        if (super.item.getIngredient().getFryingProgress() == 3) { // The item is burnt.
+            System.out.println("the item is burnt..."); //new
+            return; // The item is already fried, don't go any further.
+        }
+        if (super.item.getIngredient().getFryingProgress() == 2) { // The item is already fried.
             System.out.println("the item is already fried..."); //new
             return; // The item is already fried, don't go any further.
         }
@@ -49,11 +62,21 @@ public class FryingStation extends Station {
             return;
         }
         timeKeyHeld += delta;
-        if (timeKeyHeld > 3 && super.item.getIngredient().getFryingProgress() == 0) {
-
+        if (!done) {
+            if (timeKeyHeld < 3) {
+                return;
+            }
+            done = true;
+            timeKeyHeld = 0;
+        } else if (Gdx.input.isKeyJustPressed(Base.ACT_KEY)) {
             super.item.getIngredient().fry();
-            timeKeyHeld = 0; // Reset to avoid horrible loop!
             System.out.println("frying is done..."); //new
+            done = false;
+        } else if (timeKeyHeld > 3) {
+            super.item.getIngredient().burn();
+            timeKeyHeld = 0;
+            System.out.println("item has been burnt whilst frying");
+            done = false;
         }
     }
 }

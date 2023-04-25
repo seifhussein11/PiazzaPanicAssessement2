@@ -175,7 +175,7 @@ public class Ingredient extends ImageMovable {
      * Fry the ingredient
      */
     public void fry() {
-        this.fryingProgress = 1;
+        this.fryingProgress += 1;
         switch (this.ingredientType.getName()) {
             case "tomato":
                 //this.bakingProgress = -1;
@@ -194,7 +194,11 @@ public class Ingredient extends ImageMovable {
                 break;
             case "meat":
                 this.bakingProgress = -1;
-                this.texture = GameData.friedMeatTexture;
+                if (this.fryingProgress == 1) {
+                    this.texture = GameData.halfFriedMeatTexture;
+                } else {
+                    this.texture = GameData.friedMeatTexture;
+                }
                 break;
             case "sauce":
                 this.texture = GameData.rawSauceTexture;
@@ -207,6 +211,14 @@ public class Ingredient extends ImageMovable {
                 break;
             case "potato":
                 this.texture = GameData.rawPotatoTexture;
+        }
+    }
+
+    public void burn() {
+        switch (this.ingredientType.getName()) {
+            case "meat":
+                this.fryingProgress = 3;
+                this.texture = GameData.burntMeatTexture;
         }
     }
 

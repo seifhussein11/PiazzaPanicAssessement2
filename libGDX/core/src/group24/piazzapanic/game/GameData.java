@@ -164,8 +164,12 @@ public class GameData {
     public static Texture rawMeatTexture;
     /**Texture for cut meat */
     public static Texture cutMeatTexture;
+    /**Texture for half fried meat */
+    public static Texture halfFriedMeatTexture;
     /**Texture for fried meat */
     public static Texture friedMeatTexture;
+    /**Texture for burnt meat */
+    public static Texture burntMeatTexture;
     /**Texture for raw dough */
     public static Texture rawDoughTexture;
     /**Texture for baked dough */
@@ -299,7 +303,9 @@ public class GameData {
         friedBreadTexture = new Texture("stations/sourceerr.png"); //remove?
         rawMeatTexture = new Texture("ingredients/raw_meat.png");
         cutMeatTexture = new Texture("ingredients/raw_burger.png");
+        halfFriedMeatTexture = new Texture("ingredients/half_cooked_burger.png");
         friedMeatTexture = new Texture("ingredients/cooked_burger.png");
+        burntMeatTexture = new Texture("ingredients/burnt_burger.png");
         rawDoughTexture = new Texture("ingredients/dough.png");
         bakedDoughTexture = new Texture("ingredients/baked_dough.png");
         rawCheeseTexture = new Texture("ingredients/cheese.png");
