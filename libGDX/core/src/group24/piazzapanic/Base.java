@@ -66,6 +66,9 @@ public class Base {
     /** The load keybind. */
     public static final int LOAD_KEY = Keys.F7;
 
+    /** The powerup keybind. */
+    public static final int POWERUP_KEY = Keys.X;
+
 
     /**
      * Read the config file and set the values of the variables in this class.

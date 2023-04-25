@@ -19,6 +19,7 @@ import group24.piazzapanic.ui.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * The GameLoop class is the main game loop. It handles setting up the game,
@@ -218,6 +219,10 @@ public class GameLoop extends Stage {
         }
         if (Gdx.input.isKeyJustPressed(Base.LOAD_KEY)) {
             SaveLoad.load();
+        }
+        if (Gdx.input.isKeyJustPressed(Base.POWERUP_KEY)) {
+            Power.up(ThreadLocalRandom.current().nextInt(1, 6));
+            System.out.println(ThreadLocalRandom.current().nextInt(1, 6));
         }
         if (GameData.score == this.maxCustomers && maxCustomers != 0) {
             StageManager.setActiveStage("GameWin");
