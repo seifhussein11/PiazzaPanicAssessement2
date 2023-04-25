@@ -31,6 +31,8 @@ public class GameLoop extends Stage {
     public Label moneyCounter; // was final but changed it for testings
     /** The player's reputation */
     public Label reputationCounter;
+    /** Price labels */
+    public Label stationPrice;
     /** The game timer */
     private final Label gameTimer;
     /** Var for storing positions in per frame calculations, making a new vector causes the funni (memory leak)*/

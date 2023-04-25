@@ -4,6 +4,8 @@ package group24.piazzapanic.levelElements.stations;
 //import com.badlogic.gdx.math.Vector2;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.game.GameData;
 
@@ -50,6 +52,7 @@ public class BakingStation extends Station {
             if (GameData.money >= cost) {
                 GameData.addMoney(-cost);
                 available = 1;
+                this.setDrawable(new SpriteDrawable(new Sprite(GameData.bakingStationTexture)));
             }
             System.out.println("Disabled");
             return;

@@ -1,11 +1,20 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.Align;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
+import group24.piazzapanic.game.GameLoop;
 import group24.piazzapanic.game.Player;
 import group24.piazzapanic.levelElements.Ingredient;
+import group24.piazzapanic.maths.Vector2;
+import group24.piazzapanic.ui.FontHandler;
 
 /**
  * FryingStations allow users to fry Ingredients.
@@ -40,8 +49,20 @@ public class FryingStation extends Station {
             if (GameData.money >= cost) {
                 GameData.addMoney(-cost);
                 available = 1;
+                this.setDrawable(new SpriteDrawable(new Sprite(GameData.fryingStationTexture)));
             }
             System.out.println("Disabled");
+
+            /** TESTING Create Price label TESTING
+            Label.LabelStyle style = new Label.LabelStyle();
+            style.font = FontHandler.subtitleFormat;
+            style.fontColor = Color.WHITE;
+            CharSequence price = Integer.toString(this.cost);
+            GameData.gameLoop.stationPrice = new Label(price, style);
+            Vector2 pos = new Vector2(0.5, 0.9); // Score counter position.
+            GameData.gameLoop.stationPrice.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
+            GameData.gameLoop.addActor(GameData.gameLoop.stationPrice); */
+
             return;
         }
         if (super.item == null) {

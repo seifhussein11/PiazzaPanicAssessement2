@@ -1,6 +1,8 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.game.GameLoop;
 import group24.piazzapanic.levelElements.Ingredient;
@@ -33,6 +35,7 @@ public class CuttingStation extends Station {
             if (GameData.money >= cost) {
                 GameData.addMoney(-cost);
                 available = 1;
+                this.setDrawable(new SpriteDrawable(new Sprite(GameData.cuttingStationTexture)));
             }
             System.out.println("Disabled");
             return;
