@@ -29,6 +29,8 @@ public class GameLoop extends Stage {
     public Label scoreCounter; // was final changed bec of testings causes
     /** The player's money */
     public Label moneyCounter; // was final but changed it for testings
+    /** The player's reputation */
+    public Label reputationCounter;
     /** The game timer */
     private final Label gameTimer;
     /** Var for storing positions in per frame calculations, making a new vector causes the funni (memory leak)*/
@@ -111,12 +113,19 @@ public class GameLoop extends Stage {
         //Create money counter
         CharSequence count2 = Integer.toString(GameData.money);
         moneyCounter = new Label(count2, style);
-        Vector2 pos2 = new Vector2(0.95, 0.85); // Score counter position.
+        Vector2 pos2 = new Vector2(0.95, 0.85); // Money counter position.
         moneyCounter.setPosition(pos2.getAbsoluteX(), pos2.getAbsoluteY(), Align.bottomLeft);
         this.addActor(moneyCounter);
 
+        //Create reputation counter
+        CharSequence count3 = Integer.toString(GameData.reputation);
+        reputationCounter = new Label(count3, style);
+        Vector2 pos3 = new Vector2(0.95, 0.8); // Reputation counter position.
+        reputationCounter.setPosition(pos3.getAbsoluteX(), pos3.getAbsoluteY(), Align.bottomLeft);
+        this.addActor(reputationCounter);
+
         gameTimer = new Label(count, style);
-        pos = new Vector2(0.05, 0.9); // Score counter position.
+        pos = new Vector2(0.05, 0.9); // Timer position.
         gameTimer.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomRight);
         this.addActor(gameTimer);
 
@@ -155,6 +164,11 @@ public class GameLoop extends Stage {
     public void addMoney(int money) {
         CharSequence count = Integer.toString(money);
         this.moneyCounter.setText(count);
+    }
+
+    public void loseReputation(int reputation) {
+        CharSequence count = Integer.toString(reputation);
+        this.reputationCounter.setText(count);
     }
 
     /**
@@ -203,7 +217,10 @@ public class GameLoop extends Stage {
         if (Gdx.input.isKeyJustPressed(Base.LOAD_KEY)) {
             SaveLoad.load();
         }
-        if (this.totalCustomers == this.maxCustomers && GameData.customers.size() == 0 && maxCustomers != 0) {
+        if (GameData.score == this.maxCustomers && maxCustomers != 0) {
+            StageManager.setActiveStage("GameWin");
+        }
+        if (GameData.reputation <= 0) {
             StageManager.setActiveStage("GameOver");
         }
         // Run player movement and physics, it's quite long so I put it in a separate function.

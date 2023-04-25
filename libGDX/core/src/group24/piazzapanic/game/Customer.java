@@ -44,6 +44,7 @@ public class Customer extends StageAnimation {
      * The time limit for the customer's order to be filled.
      */
     private float timeLimit;
+
     /**
      * The text bubble for the customer
      */
@@ -56,7 +57,7 @@ public class Customer extends StageAnimation {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
                 20, 20, entityWidth, entityHeight);
         //        timeLimit = 30f;
-        this.timeLimit = 15;
+        this.timeLimit = 60;
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
         style.fontColor = Color.WHITE;
@@ -83,7 +84,7 @@ public class Customer extends StageAnimation {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
                 20, 20, entityWidth, entityHeight);
         //        timeLimit = 30f;
-        this.timeLimit = 15;
+        this.timeLimit = 60;
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
         style.fontColor = Color.WHITE;
@@ -103,7 +104,6 @@ public class Customer extends StageAnimation {
             //    this.orderText = "Jacket Potato";
             this.orderTexture = GameData.jacketPotatoDishTexture;
         }
-
     }
 
 
@@ -115,6 +115,13 @@ public class Customer extends StageAnimation {
         GameData.gameLoop.resortCustomers();
         GameData.addScore(1);
         GameData.addMoney(5);
+    }
+
+    public void outOfTime() {
+        GameData.customers.remove(this);
+        this.remove();
+        GameData.gameLoop.resortCustomers();
+        GameData.loseReputation(1);
     }
 
     /** Update the customer's order text box location with the customer's location */
@@ -155,4 +162,14 @@ public class Customer extends StageAnimation {
     public Dish getOrder() {
         return this.order;
     }
+
+    @Override
+    public void act(float delta) {
+        timeLimit -= delta;
+        System.out.println(timeLimit);
+        if (timeLimit <= 0) {
+            outOfTime();
+        }
+    }
+
 }

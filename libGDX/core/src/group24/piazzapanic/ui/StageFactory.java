@@ -264,6 +264,12 @@ public class StageFactory {
                 GameData.gameLoop = new GameLoop();
                 StageManager.addStage("Game", GameData.gameLoop);
                 StageManager.setActiveStage("Game");
+                //  Sets reputation points to max customers if less than 3
+                System.out.println(StageFactory.scenarioCustomerAmount);
+                if (StageFactory.scenarioCustomerAmount < 3 &&
+                        StageFactory.scenarioCustomerAmount > 0) {
+                    GameData.loseReputation(3-StageFactory.scenarioCustomerAmount);
+                }
                 endlessModeEnabled = false;
             }
 
@@ -467,6 +473,66 @@ public class StageFactory {
     }
 
     /**
+     * Create Game Win Stage
+     * @return The new stage created
+     */
+    public static Stage createGameWinStage() {
+        Stage stage = new Stage();
+        GameData.music = Gdx.audio.newMusic(Gdx.files.internal("TITLE-MUSIC.mp3"));
+        GameData.music.setLooping(true);
+        //GameData.music.play();
+
+        //Title
+        CharSequence TitleText = "Level Complete!";
+        Label Title = new Label(TitleText, new LabelStyle(FontHandler.titleFormat, Color.WHITE));
+        Vector2 coords = new Vector2(0.5, 0.7);
+        Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        stage.addActor(Title);
+
+        // return to menu button
+        TextButton button = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.5), "Main Menu", Align.center);
+        button.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        button.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Main Menu");
+                StageManager.setActiveStage("MainMenu");
+                GameData.score = 0;
+            }
+
+        });
+        stage.addActor(button);
+
+        // quit button
+        TextButton button2 = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.4), "Quit", Align.center);
+        button2.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        button2.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Quit");
+                Gdx.app.exit();
+            }
+
+        });
+        stage.addActor(button2);
+
+        // Temporary (?) dancing chef.
+        StageAnimation ChefAnimation = new StageAnimation("chef/chef_idle_front_selected.png", 6, 6, 1, 20, 20, 154,
+                307);
+        StageAnimation ChefAnimation1 = new StageAnimation("chef/chef_1_idle_front_selected.png", 6, 6, 1,
+                Base.WINDOW_WIDTH - 180, 20, 154, 307);
+
+        stage.addActor(ChefAnimation);
+        stage.addActor(ChefAnimation1);
+        return stage;
+    }
+    /**
      * Create Game Over Stage
      * @return The new stage created
      */
@@ -477,7 +543,7 @@ public class StageFactory {
         //GameData.music.play();
 
         //Title
-        CharSequence TitleText = "Level Complete!";
+        CharSequence TitleText = "Game Over!";
         Label Title = new Label(TitleText, new LabelStyle(FontHandler.titleFormat, Color.WHITE));
         Vector2 coords = new Vector2(0.5, 0.7);
         Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);

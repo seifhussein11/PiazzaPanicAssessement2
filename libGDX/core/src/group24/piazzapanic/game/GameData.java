@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.ui.StageAnimation;
+import group24.piazzapanic.ui.StageFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,9 @@ public class GameData {
     /** The game's score */
     public static Integer score = 0;
     /** The player's money */
-    public static Integer money = 5;
+    public static Integer money = 0;
+    /** The player's reputation points */
+    public static Integer reputation = 3;
     /** The customers waiting to be served */
     public static ArrayList<Customer> customers;
     /** The in-game timer, updated every frame */
@@ -322,6 +325,8 @@ public class GameData {
         PIZZA_SAUCE = new Ingredient(IngredientType.SAUCE,-1,-1,-1);
         CHEESE = new Ingredient(IngredientType.CHEESE,-1,-1,-1);
         BAKED_POTATO = new Ingredient(IngredientType.POTATO, -1,1,-1);
+
+
     }
 
     /**
@@ -341,6 +346,11 @@ public class GameData {
     public static void addMoney(int money) {
         GameData.money += money;
         gameLoop.addMoney(GameData.money);
+    }
+
+    public static void loseReputation(int reputation) {
+        GameData.reputation -= reputation;
+        gameLoop.loseReputation(GameData.reputation);
     }
 
     /**
