@@ -174,6 +174,11 @@ public class GameLoop extends Stage {
         this.reputationCounter.setText(count);
     }
 
+    public void addReputation(int reputation) {
+        CharSequence count = Integer.toString(reputation);
+        this.reputationCounter.setText(count);
+    }
+
     /**
      * Spawns customers, handles swapping players and pausing game.
      * @param delta Time in seconds since the last frame.

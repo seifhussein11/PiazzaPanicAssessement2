@@ -368,6 +368,11 @@ public class GameData {
         gameLoop.loseReputation(GameData.reputation);
     }
 
+    public static void addReputation(int reputation) {
+        GameData.reputation += reputation;
+        gameLoop.addReputation(GameData.reputation);
+    }
+
     /**
      * Free up memory when the game is closed.
      */
