@@ -221,7 +221,12 @@ public class GameLoop extends Stage {
             StageManager.setActiveStage("GameWin");
         }
         if (GameData.reputation <= 0) {
-            StageManager.setActiveStage("GameOver");
+            if (StageFactory.endlessModeEnabled == false){
+                StageManager.setActiveStage("ScenarioGameOver");
+            }
+            else {
+                StageManager.setActiveStage("EndlessGameOver");
+            }
         }
         // Run player movement and physics, it's quite long so I put it in a separate function.
         CharSequence count = Integer.toString(Math.toIntExact((long) Math.floor(GameData.gameTime)));
