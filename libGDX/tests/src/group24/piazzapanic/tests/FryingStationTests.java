@@ -25,7 +25,7 @@ public class FryingStationTests {
         Texture texture = Mockito.mock(Texture.class);
         gameData.fryingStationTexture = texture;
         Ingredient item = Mockito.mock(Ingredient.class);
-        FryingStation station = new FryingStation();
+        FryingStation station = new FryingStation(GameData.fryingStationTexture);
         station.item = item;
         Mockito.when(item.getIngredient()).thenReturn(item);
         Mockito.when(item.getFryingProgress()).thenReturn(1);

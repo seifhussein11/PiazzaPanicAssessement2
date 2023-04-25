@@ -27,7 +27,7 @@ public class CuttingStationTests {
         Texture texture = Mockito.mock(Texture.class);
         gameData.cuttingStationTexture = texture;
         Ingredient item = Mockito.mock(Ingredient.class);
-        CuttingStation station = new CuttingStation();
+        CuttingStation station = new CuttingStation(GameData.cuttingStationTexture);
         station.item = item;
         Mockito.when(item.getIngredient()).thenReturn(item);
         Mockito.when(item.getCuttingProgress()).thenReturn(1);

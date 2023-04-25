@@ -3,6 +3,7 @@ package group24.piazzapanic.levelElements.stations;
 //import com.badlogic.gdx.graphics.Texture;
 //import com.badlogic.gdx.math.Vector2;
 
+import com.badlogic.gdx.graphics.Texture;
 import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.game.GameData;
 
@@ -15,8 +16,8 @@ public class BakingStation extends Station {
     /**
      * Constructor for BakingStation with no item.
      */
-    public BakingStation() {
-        super(GameData.bakingStationTexture);
+    public BakingStation(Texture t) {
+        super(t);
         this.item = null;
     }
 

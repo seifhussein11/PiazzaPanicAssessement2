@@ -23,7 +23,7 @@ public class GameData {
     /** The game's score */
     public static Integer score = 0;
     /** The player's money */
-    public static Integer money = 0;
+    public static Integer money = 5;
     /** The player's reputation points */
     public static Integer reputation = 3;
     /** The customers waiting to be served */
@@ -91,6 +91,8 @@ public class GameData {
     public static Texture floorTexture;
     /** The texture for the {@link group24.piazzapanic.levelElements.stations.BakingStation} */
     public static Texture bakingStationTexture;
+    /** The texture for the locked baking station */
+    public static Texture lockedBakingStationTexture;
     /** A texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
     public static Texture counterTopTexture;
     /** A corner texture for the {@link group24.piazzapanic.levelElements.stations.CounterTop} */
@@ -104,8 +106,12 @@ public class GameData {
     public static Texture counterEndTexture;
     /** Texture for the {@link group24.piazzapanic.levelElements.stations.CuttingStation} */
     public static Texture cuttingStationTexture;
+    /** Texture for the locked cutting station} */
+    public static Texture lockedCuttingStationTexture;
     /** Texture for the {@link group24.piazzapanic.levelElements.stations.FryingStation} */
     public static Texture fryingStationTexture;
+    /** Texture for the locked frying station */
+    public static Texture lockedFryingStationTexture;
     /** Texture for the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
     public static Texture ingredientStationTexture;
     /** Texture for the TomatoStation variant of the {@link group24.piazzapanic.levelElements.stations.IngredientStation} */
@@ -269,12 +275,15 @@ public class GameData {
         // Load station textures.
         floorTexture = new Texture("stations/kitchen_floor_2.png");
         bakingStationTexture = new Texture("stations/baking_station_closed.png");
+        lockedBakingStationTexture = new Texture("stations/locked_baking_station.png");
         counterTopTexture = new Texture("stations/countertop.png");
         counterRightCornerTexture = new Texture("stations/countertop_rightcorner.png");
         counterRightTexture = new Texture("stations/counterside.png");
         counterEndTexture = new Texture("stations/counterend.png");
         cuttingStationTexture = new Texture("stations/cutting_station.png");
+        lockedCuttingStationTexture = new Texture("stations/locked_cutting_station.png");
         fryingStationTexture = new Texture("stations/frying_station_off.png");
+        lockedFryingStationTexture = new Texture("stations/locked_frying_station.png");
         ingredientStationTexture = new Texture("stations/ingredientstation.png");
         tomatoStationTexture = new Texture("stations/tomato_sack.png");
         onionStationTexture = new Texture("stations/onion_sack.png");

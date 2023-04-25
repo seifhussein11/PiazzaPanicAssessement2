@@ -1,5 +1,6 @@
 package group24.piazzapanic.levelElements.stations;
 
+import com.badlogic.gdx.graphics.Texture;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.game.GameLoop;
 import group24.piazzapanic.levelElements.Ingredient;
@@ -13,8 +14,8 @@ public class CuttingStation extends Station {
     /**
      * Initialise the CuttingStation and set its texture
      */
-    public CuttingStation() {
-        super(GameData.cuttingStationTexture);
+    public CuttingStation(Texture t) {
+        super(t);
     }
 
     /**

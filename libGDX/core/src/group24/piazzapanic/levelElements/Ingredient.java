@@ -23,7 +23,8 @@ public class Ingredient extends ImageMovable {
      */
     protected Integer bakingProgress;
     /**
-     * The frying progress. -1 if the item cannot be fried, 0 if the item can be fried, 1 if already fried.
+     * The frying progress. -1 if the item cannot be fried, 0 if the item can be fried,
+     * 1 if fried once, 2 if fully fried, 3 if burnt
      */
     protected Integer fryingProgress;
     /**

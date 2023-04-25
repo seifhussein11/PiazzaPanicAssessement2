@@ -1,6 +1,7 @@
 
 package group24.piazzapanic.game;
 
+import com.badlogic.gdx.Game;
 import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.levelElements.stations.*;
 import group24.piazzapanic.maths.Vector2;
@@ -80,10 +81,10 @@ public class Level {
                             startY = height - i - 1;
                             continue;
                         case 'B':
-                            grid[x][y] = new BakingStation();
+                            grid[x][y] = new BakingStation(GameData.bakingStationTexture);
                             break;
                         case 'b':
-                            grid[x][y] = new BakingStation();
+                            grid[x][y] = new BakingStation(GameData.lockedBakingStationTexture);
                             grid[x][y].available = 0;
                             break;
                         case '1':
@@ -99,17 +100,17 @@ public class Level {
                             grid[x][y] = new CounterTop(GameData.counterEndTexture);
                             break;
                         case 'C':
-                            grid[x][y] = new CuttingStation();
+                            grid[x][y] = new CuttingStation(GameData.cuttingStationTexture);
                             break;
                         case 'c':
-                            grid[x][y] = new CuttingStation();
+                            grid[x][y] = new CuttingStation(GameData.lockedCuttingStationTexture);
                             grid[x][y].available = 0;
                             break;
                         case 'F':
-                            grid[x][y] = new FryingStation();
+                            grid[x][y] = new FryingStation(GameData.fryingStationTexture);
                             break;
                         case 'f':
-                            grid[x][y] = new FryingStation();
+                            grid[x][y] = new FryingStation(GameData.lockedFryingStationTexture);
                             grid[x][y].available = 0;
                             break;
                         case 't': // tomato

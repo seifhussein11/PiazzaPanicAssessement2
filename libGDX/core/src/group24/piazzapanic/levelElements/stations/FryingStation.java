@@ -1,6 +1,7 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.game.Player;
@@ -15,8 +16,8 @@ public class FryingStation extends Station {
     /**
      * Initialise the FryingStation and set its texture
      */
-    public FryingStation() {
-        super(GameData.fryingStationTexture);
+    public FryingStation(Texture t) {
+        super(t);
     }
 
     /**
