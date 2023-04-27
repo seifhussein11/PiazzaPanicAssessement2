@@ -1,7 +1,6 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.graphics.Texture;
-import group24.piazzapanic.Base;
 import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.levelElements.Dish;
@@ -83,6 +82,28 @@ public class IngredientStation extends Station {
             return new Dish();
         }
         return new Ingredient(ingredientType);
+    }
+
+    @Override
+    public boolean isEqual(Object obj){
+        if(!(obj instanceof Station)){
+            return false;
+        }
+        IngredientStation station = (IngredientStation) obj;
+        if (this.ingredientType.equals(station.ingredientType) == false){
+            return false;
+        }
+        if(this.item!=station.item){
+            return false;
+        }
+        if(this.texture != station.texture){
+            return false;
+        }
+        if(this.available != station.available){
+            return false;
+        }
+        return true;
+
     }
 
 }

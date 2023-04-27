@@ -1,7 +1,6 @@
 
 package group24.piazzapanic.game;
 
-import com.badlogic.gdx.Game;
 import group24.piazzapanic.levelElements.IngredientType;
 import group24.piazzapanic.levelElements.stations.*;
 import group24.piazzapanic.maths.Vector2;
@@ -37,6 +36,121 @@ public class Level {
             "o.t.l.r....3",
             ".h.p.D.m.S.4"};
 
+    public Level(String levelName,String [] layout){
+        this.initial_layout = layout;
+        this.levelName = levelName;
+        // Read the level file from disk.
+        try {
+            width = 12;
+            height = 6;
+
+            String[] level_string = initial_layout;
+
+
+            grid = new Station[width][height];
+
+            // The x and y coordinates of the current station.
+            int x;
+            int y;
+
+            // Loop variables to interpret a level string array (i, the outer loop, refers to y coordinate).
+            int j;
+            int i = 0;
+
+            for (String line : level_string) {
+                if (line.length() != width) {
+                    throw new Exception(
+                            "Expected " + width + " characters , but found " + line.length() + ".");
+                }
+
+                for (j = 0; j < width; j++) {
+                    y = height - i - 1;
+                    x = j;
+
+                    switch (line.charAt(j)) {
+                        case '.':
+                            grid[x][y] = null;
+                            continue;
+                        case '*':
+                            grid[x][y] = null;
+                            startX = j;
+                            startY = height - i - 1;
+                            continue;
+                        case 'B':
+                            grid[x][y] = new BakingStation(GameData.bakingStationTexture);
+                            break;
+                        case 'b':
+                            grid[x][y] = new BakingStation(GameData.lockedBakingStationTexture);
+                            grid[x][y].available = 0;
+                            break;
+                        case '1':
+                            grid[x][y] = new CounterTop(GameData.counterTopTexture);
+                            break;
+                        case '2':
+                            grid[x][y] = new CounterTop(GameData.counterRightCornerTexture);
+                            break;
+                        case '3':
+                            grid[x][y] = new CounterTop(GameData.counterRightTexture);
+                            break;
+                        case '4':
+                            grid[x][y] = new CounterTop(GameData.counterEndTexture);
+                            break;
+                        case 'C':
+                            grid[x][y] = new CuttingStation(GameData.cuttingStationTexture);
+                            break;
+                        case 'c':
+                            grid[x][y] = new CuttingStation(GameData.lockedCuttingStationTexture);
+                            grid[x][y].available = 0;
+                            break;
+                        case 'F':
+                            grid[x][y] = new FryingStation(GameData.fryingStationTexture);
+                            break;
+                        case 'f':
+                            grid[x][y] = new FryingStation(GameData.lockedFryingStationTexture);
+                            grid[x][y].available = 0;
+                            break;
+                        case 't': // tomato
+                        case 'o': // onion
+                        case 'l': // lettuce
+                        case 'r': // bread
+                        case 'm': // meat
+                        case 'h': // cheese
+                        case 'S': // sauce
+                        case 'D': // dough
+                        case 'p': // potato
+                        case 'd': // dish (plate)
+                            grid[x][y] = new IngredientStation(x, y,
+                                    extrapolateIngredient(line.charAt(j)));
+                            break;
+                        case 'W': //wall
+                            grid[x][y] = new Obstacle();
+                            break;
+                        case 'g':
+                            grid[x][y] = new Bin();
+                            break;
+                        case 's':
+                            grid[x][y] = new ServingStation(GameData.servingStationTexture);
+                            break;
+                        default:
+                            System.out.println(
+                                    "Unknown character '" + line.charAt(j) + "' in level file '" + levelName + "''.");
+                            grid[x][y] = new ErrorStation();
+                    }
+                    Vector2 pos = Vector2.gridUnitTranslate(x, y);
+                    grid[x][y].setPosition(pos.getAbsoluteX() + GameData.offsetX,
+                            pos.getAbsoluteY() + GameData.offsetY);
+                }
+
+                i += 1;
+            }
+            //levelScanner.close();
+        } catch (Exception exception) {
+            System.out.println("Error reading level, '" + levelName + "'.");
+            exception.printStackTrace();
+        }
+
+    }
+
     /**
      * Level constructor, reads level data from file and stores it in a 2D array of {@link Station}s.
      * @param levelName The name of the level file on disk.
@@ -64,7 +178,7 @@ public class Level {
             for (String line : level_string) {
                 if (line.length() != width) {
                     throw new Exception(
-                            "Expected " + width + " characters in line " + i + ", but found " + line.length() + ".");
+                            "Expected " + width + " characters , but found " + line.length() + ".");
                 }
 
                 for (j = 0; j < width; j++) {

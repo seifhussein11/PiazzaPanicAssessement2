@@ -25,6 +25,8 @@ public class Station extends Image {
     public int available = 1;
     public int cost = 2;
 
+    public Texture texture;
+
     /**
      * Initialise the station class
      *
@@ -34,6 +36,7 @@ public class Station extends Image {
         super(Texture);
         super.setWidth(Base.tile_pixel_width);
         super.setHeight(Base.tile_pixel_height);
+        this.texture=Texture;
     }
 
     //protected Vector2 location;
@@ -144,6 +147,24 @@ public class Station extends Image {
      * @param delta The time in seconds since the last frame.
      */
     public void interact(float delta) {
+    }
+
+    public boolean isEqual(Object obj){
+        if(!(obj instanceof Station)){
+            return false;
+        }
+        Station station = (Station) obj;
+        if(this.item!=station.item){
+            return false;
+        }
+        if(this.texture != station.texture){
+            return false;
+        }
+        if(this.available != station.available){
+            return false;
+        }
+        return true;
+
     }
 
     public void setGridX(int x){
