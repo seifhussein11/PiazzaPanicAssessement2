@@ -253,33 +253,6 @@ public class PhysicsTests {
         assertEquals(expectedPlayerYpos,player2.y,0.0000001);
         assertEquals(Player.facing.UP,player2.direction);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
