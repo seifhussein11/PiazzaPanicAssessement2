@@ -219,7 +219,7 @@ public class GameLoop extends Stage {
         } else {
             GameData.sinceLastSpawn += delta;
         }
-        if (GameData.sinceLastSpawn >= 2) {
+        if (GameData.sinceLastSpawn >= 6) {
             //Create new customer offset location.
             Customer customer = new Customer();
             customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
@@ -258,7 +258,7 @@ public class GameLoop extends Stage {
             StageManager.setActiveStage("GameWin");
         }
         if (GameData.reputation <= 0) {
-            if (StageFactory.endlessModeEnabled == false){
+            if (!StageFactory.endlessModeEnabled){
                 StageManager.setActiveStage("ScenarioGameOver");
             }
             else {

@@ -42,7 +42,7 @@ public class GameData {
     public static Player player1;
     /** The second player */
     public static Player player2;
-
+    /** The third player */
     public static Player player3;
     /** The active {@link Music} */
     public static Music music;
@@ -365,6 +365,11 @@ public class GameData {
         gameLoop.addMoney(GameData.money);
     }
 
+    public static void setMoney(int money) {
+        GameData.money = money;
+        gameLoop.addMoney(GameData.money);
+    }
+
     public static void loseReputation(int reputation) {
         GameData.reputation -= reputation;
         gameLoop.loseReputation(GameData.reputation);
@@ -372,6 +377,11 @@ public class GameData {
 
     public static void addReputation(int reputation) {
         GameData.reputation += reputation;
+        gameLoop.addReputation(GameData.reputation);
+    }
+
+    public static void setReputation(int reputation) {
+        GameData.reputation = reputation;
         gameLoop.addReputation(GameData.reputation);
     }
 

@@ -1,12 +1,12 @@
 package group24.piazzapanic.game;
 
-import group24.piazzapanic.levelElements.Dish;
-import group24.piazzapanic.levelElements.Ingredient;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class SaveLoad {
     public static void save() {
@@ -27,7 +27,31 @@ public class SaveLoad {
         // Need to figure out a structure for the data
         try {
             FileWriter myWriter = new FileWriter("piazzaSave.txt");
-            myWriter.write("order name");
+            // TODO: Write customer orders and their time remaining
+            for (Customer customer : GameData.customers) {
+                myWriter.write(customer.getOrderString() + System.lineSeparator()
+                        + customer.remainingTime() + System.lineSeparator());
+
+            }
+            myWriter.write("###" + System.lineSeparator());
+
+            // TODO: Write chefs' positions to the file (and item they are holding)
+            myWriter.write(GameData.player1.x + "," + GameData.player1.y + System.lineSeparator());
+            //myWriter.write(GameData.player1.holding + System.lineSeparator());
+            myWriter.write(GameData.player2.x + "," + GameData.player2.y + System.lineSeparator());
+            //myWriter.write(GameData.player2.holding + System.lineSeparator());
+            myWriter.write(GameData.player3.x + "," + GameData.player3.y + System.lineSeparator());
+            //myWriter.write(GameData.player3.holding + System.lineSeparator());
+
+            myWriter.write("@@@" + System.lineSeparator());
+
+            // TODO: Write score, time and reputation
+            myWriter.write(GameData.reputation + System.lineSeparator());
+            myWriter.write(GameData.gameTime + System.lineSeparator());
+            myWriter.write(GameData.score + System.lineSeparator());
+            myWriter.write(GameData.money + System.lineSeparator());
+
+            myWriter.write(">>>" + System.lineSeparator());
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
@@ -41,36 +65,22 @@ public class SaveLoad {
         while (!GameData.customers.isEmpty()) {
             GameData.customers.get(0).fulfillOrder();
         }
-        // TODO: Sets score to saved score value
+        // TODO: Sets score, money, rep to saved values
         GameData.setScore(0);
+        GameData.setMoney(5);
+        GameData.setReputation(3);
 
-        // TODO: Loads saved customers and their orders
+        // TODO: Loads saved customers and their orders + time remaining
+        Scanner input = new Scanner("piazzaSave.txt");
+        ArrayList<String> saveData = new ArrayList<>();
 
-        // The code here right now is just a placeholder test that i made lol
-        Customer customer1 = new Customer(0);
-        customer1.setX(GameData.customers.size() * (Customer.entityWidth + 30));
-        GameData.customers.add(customer1);
-        GameData.gameLoop.addActor(customer1);
+        while (input.hasNextLine()) {
+            saveData.add(input.nextLine());
+        }
 
-        Customer customer2 = new Customer(1);
-        customer2.setX(GameData.customers.size() * (Customer.entityWidth + 30));
-        GameData.customers.add(customer2);
-        GameData.gameLoop.addActor(customer2);
+        // TODO: Load players' positions
 
-        Customer customer3 = new Customer(2);
-        customer3.setX(GameData.customers.size() * (Customer.entityWidth + 30));
-        GameData.customers.add(customer3);
-        GameData.gameLoop.addActor(customer3);
-
-        Customer customer4 = new Customer(3);
-        customer4.setX(GameData.customers.size() * (Customer.entityWidth + 30));
-        GameData.customers.add(customer4);
-        GameData.gameLoop.addActor(customer4);
-
-        Customer customer5 = new Customer(1);
-        customer5.setX(GameData.customers.size() * (Customer.entityWidth + 30));
-        GameData.customers.add(customer5);
-        GameData.gameLoop.addActor(customer5);
+        System.out.println(saveData);
     }
 }
 

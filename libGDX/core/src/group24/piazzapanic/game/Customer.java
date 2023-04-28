@@ -163,10 +163,14 @@ public class Customer extends StageAnimation {
         return this.order;
     }
 
+    protected String getOrderString() { return this.order.getRecipe();}
+
+    protected float remainingTime() { return this.timeLimit; }
+
     @Override
     public void act(float delta) {
         timeLimit -= delta;
-        System.out.println(timeLimit);
+        //System.out.println(timeLimit);
         if (timeLimit <= 0) {
             outOfTime();
         }

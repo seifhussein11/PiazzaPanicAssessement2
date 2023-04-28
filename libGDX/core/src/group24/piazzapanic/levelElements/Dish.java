@@ -5,6 +5,7 @@ import group24.piazzapanic.Physics.ImageMovable;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.levelElements.stations.Station;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -201,6 +202,19 @@ public class Dish extends ImageMovable {
             ingredient.drawItemInventory(x, y, Base.tile_pixel_width / 2,
                     Base.tile_pixel_width / 2);
         }
+    }
+
+    public String getRecipe() {
+        if (this.equals(BURGER)) {
+            return "Burger";
+        } else if (this.equals(SALAD)) {
+            return "Salad";
+        } else if (this.equals(PIZZA)) {
+            return "Pizza";
+        } else if (this.equals(JACKET_POTATO)) {
+            return "Jacket Potato";
+        }
+        return "Error";
     }
 
     @Override
