@@ -72,7 +72,7 @@ public class IngredientTests {
         IngredientType meat = new IngredientType("meat");
         Ingredient meatIngr = new Ingredient(meat,-1,-1,0);
         Texture texture2 = Mockito.mock(Texture.class);
-        gameData.friedMeatTexture = texture2;
+        gameData.halfFriedMeatTexture = texture2;
         meatIngr.fry();
         assertEquals(1,meatIngr.getFryingProgress(),0.000001);
         assertEquals(texture2,meatIngr.texture);

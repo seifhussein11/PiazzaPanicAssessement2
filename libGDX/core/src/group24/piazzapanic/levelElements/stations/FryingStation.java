@@ -77,7 +77,7 @@ public class FryingStation extends Station {
         }
         timeKeyHeld += delta;
         if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {act = true;}  // Needed to be able to set act to true in testing
-        if (!done) {                                            
+        if (!done) {
             if (timeKeyHeld < 3) {
                 return;
             }
