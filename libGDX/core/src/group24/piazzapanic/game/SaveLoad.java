@@ -72,7 +72,7 @@ public class SaveLoad {
     public static void load() throws FileNotFoundException {
         // Removes current customers to prep for loading saved ones
         while (!GameData.customers.isEmpty()) {
-            GameData.customers.get(0).fulfillOrder();
+            GameData.customers.get(0).fulfillOrder2();
         }
         GameData.gameLoop.resortCustomers();
 
@@ -100,7 +100,7 @@ public class SaveLoad {
         // TODO: Loads saved customers and their orders + time remaining
         //ArrayList<Customer> customers = new ArrayList<>();
         for (int i = 12; i <= saveData.size() - 2; i += 2) {
-            Customer customer = new Customer(orderInt(saveData.get(i)));
+            Customer customer = new Customer(orderInt(saveData.get(i)),Float.parseFloat(saveData.get(i+1)));
             //customers.add(customer);
             customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
             GameData.customers.add(customer);

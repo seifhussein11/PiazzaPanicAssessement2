@@ -80,7 +80,7 @@ public class Customer extends StageAnimation {
     }
 
 
-    public Customer(int customerOrder, int timeLimit) {
+    public Customer(int customerOrder, float timeLimit) {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
                 20, 20, entityWidth, entityHeight);
         //        timeLimit = 30f;
@@ -115,6 +115,12 @@ public class Customer extends StageAnimation {
         GameData.gameLoop.resortCustomers();
         GameData.addScore(1);
         GameData.addMoney(5);
+    }
+
+    public void fulfillOrder2() {
+        GameData.customers.remove(this);
+        this.remove();
+        GameData.gameLoop.resortCustomers();
     }
 
     public void outOfTime() {
