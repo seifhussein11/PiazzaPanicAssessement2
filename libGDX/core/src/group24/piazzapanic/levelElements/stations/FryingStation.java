@@ -50,18 +50,9 @@ public class FryingStation extends Station {
                 GameData.addMoney(-cost);
                 available = 1;
                 this.setDrawable(new SpriteDrawable(new Sprite(GameData.fryingStationTexture)));
+                GameData.gameLoop.fryingStationPrice.remove();
             }
             System.out.println("Disabled");
-
-            /** TESTING Create Price label TESTING
-            Label.LabelStyle style = new Label.LabelStyle();
-            style.font = FontHandler.subtitleFormat;
-            style.fontColor = Color.WHITE;
-            CharSequence price = Integer.toString(this.cost);
-            GameData.gameLoop.stationPrice = new Label(price, style);
-            Vector2 pos = new Vector2(0.5, 0.9); // Score counter position.
-            GameData.gameLoop.stationPrice.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
-            GameData.gameLoop.addActor(GameData.gameLoop.stationPrice); */
 
             return;
         }

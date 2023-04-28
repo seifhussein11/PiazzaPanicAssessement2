@@ -33,8 +33,10 @@ public class GameLoop extends Stage {
     /** The player's reputation */
     public Label reputationCounter;
     /** Price labels */
-    public Label stationPrice;
-    /** The game timer */
+    public Label fryingStationPrice;
+    /** Price labels */
+    public Label cuttingStationPrice;
+    public Label bakingStationPrice;
     private final Label gameTimer;
     /** Var for storing positions in per frame calculations, making a new vector causes the funni (memory leak)*/
     private Vector2 curPosition;
@@ -113,24 +115,47 @@ public class GameLoop extends Stage {
         scoreCounter.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomLeft);
         this.addActor(scoreCounter);
 
-        //Create money counter
-        CharSequence count2 = Integer.toString(GameData.money);
-        moneyCounter = new Label(count2, style);
-        Vector2 pos2 = new Vector2(0.95, 0.85); // Money counter position.
-        moneyCounter.setPosition(pos2.getAbsoluteX(), pos2.getAbsoluteY(), Align.bottomLeft);
-        this.addActor(moneyCounter);
-
-        //Create reputation counter
-        CharSequence count3 = Integer.toString(GameData.reputation);
-        reputationCounter = new Label(count3, style);
-        Vector2 pos3 = new Vector2(0.95, 0.8); // Reputation counter position.
-        reputationCounter.setPosition(pos3.getAbsoluteX(), pos3.getAbsoluteY(), Align.bottomLeft);
-        this.addActor(reputationCounter);
-
+        // Create timer
         gameTimer = new Label(count, style);
         pos = new Vector2(0.05, 0.9); // Timer position.
         gameTimer.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomRight);
         this.addActor(gameTimer);
+
+        //Create reputation counter
+        LabelStyle reputation = new LabelStyle();
+        reputation.font = FontHandler.subtitleFormat;
+        reputation.fontColor = Color.FOREST;
+        CharSequence count2 = Integer.toString(GameData.reputation);
+        reputationCounter = new Label(count2, reputation);
+        Vector2 pos2 = new Vector2(0.95, 0.84); // Money counter position.
+        reputationCounter.setPosition(pos2.getAbsoluteX(), pos2.getAbsoluteY(), Align.bottomLeft);
+        this.addActor(reputationCounter);
+
+        //Create money counter
+        LabelStyle money = new LabelStyle();
+        money.font = FontHandler.subtitleFormat;
+        money.fontColor = Color.YELLOW;
+        CharSequence count3 = Integer.toString(GameData.money);
+        moneyCounter = new Label(count3, money);
+        Vector2 pos3 = new Vector2(0.95, 0.78); // Reputation counter position.
+        moneyCounter.setPosition(pos3.getAbsoluteX(), pos3.getAbsoluteY(), Align.bottomLeft);
+        this.addActor(moneyCounter);
+
+        CharSequence price = Integer.toString(GameData.stationCost);
+        fryingStationPrice = new Label(price, money);
+        Vector2 pos4 = new Vector2(0.5, 0.9); // 2nd frying station position.
+        fryingStationPrice.setPosition(pos4.getAbsoluteX(), pos4.getAbsoluteY(), Align.bottomLeft);
+        this.addActor(fryingStationPrice);
+
+        cuttingStationPrice = new Label(price, money);
+        Vector2 pos5 = new Vector2(0.45, 0.9); // 2nd cutting station position.
+        cuttingStationPrice.setPosition(pos5.getAbsoluteX(), pos5.getAbsoluteY(), Align.bottomLeft);
+        this.addActor(cuttingStationPrice);
+
+        bakingStationPrice = new Label(price, money);
+        Vector2 pos6 = new Vector2(0.4, 0.9); // 2nd baking station position.
+        bakingStationPrice.setPosition(pos6.getAbsoluteX(), pos6.getAbsoluteY(), Align.bottomLeft);
+        this.addActor(bakingStationPrice);
 
         //Create Inventory Panel
         StageAnimation ChefAnimation = new StageAnimation(GameData.chef1Animations.get("IdleFrontSelected"), 6, 6, 1,

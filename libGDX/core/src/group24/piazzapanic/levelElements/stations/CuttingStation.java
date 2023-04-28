@@ -36,6 +36,7 @@ public class CuttingStation extends Station {
                 GameData.addMoney(-cost);
                 available = 1;
                 this.setDrawable(new SpriteDrawable(new Sprite(GameData.cuttingStationTexture)));
+                GameData.gameLoop.cuttingStationPrice.remove();
             }
             System.out.println("Disabled");
             return;

@@ -53,6 +53,7 @@ public class BakingStation extends Station {
                 GameData.addMoney(-cost);
                 available = 1;
                 this.setDrawable(new SpriteDrawable(new Sprite(GameData.bakingStationTexture)));
+                GameData.gameLoop.bakingStationPrice.remove();
             }
             System.out.println("Disabled");
             return;
