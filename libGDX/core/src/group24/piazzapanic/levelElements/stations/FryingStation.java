@@ -33,6 +33,7 @@ public class FryingStation extends Station {
      * Boolean for if item is ready to be flipped or taken from station
      */
     public boolean done = false;
+    public boolean act = false;
 
     /**
      * Allows the player to fry the item.
@@ -75,16 +76,20 @@ public class FryingStation extends Station {
             return;
         }
         timeKeyHeld += delta;
-        if (!done) {
+        if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {act = true;}  // Needed to be able to set act to true in testing
+        if (!done) {                                            
             if (timeKeyHeld < 3) {
                 return;
             }
             done = true;
             timeKeyHeld = 0;
-        } else if (Gdx.input.isKeyJustPressed(Base.ACT_KEY)) {
+            act = false;
+        } else if (act) {
             super.item.getIngredient().fry();
             System.out.println("frying is done..."); //new
+            timeKeyHeld = 0;
             done = false;
+            act = false;
         } else if (timeKeyHeld > 3) {
             super.item.getIngredient().burn();
             timeKeyHeld = 0;
