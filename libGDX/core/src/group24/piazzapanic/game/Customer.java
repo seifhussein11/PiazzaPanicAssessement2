@@ -80,11 +80,11 @@ public class Customer extends StageAnimation {
     }
 
 
-    public Customer(int customerOrder) {
+    public Customer(int customerOrder, int timeLimit) {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
                 20, 20, entityWidth, entityHeight);
         //        timeLimit = 30f;
-        this.timeLimit = 60;
+        this.timeLimit = timeLimit;
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
         style.fontColor = Color.WHITE;
