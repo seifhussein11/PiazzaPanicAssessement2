@@ -1,10 +1,12 @@
 package group24.piazzapanic.game;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,13 +29,6 @@ public class SaveLoad {
         // Need to figure out a structure for the data
         try {
             FileWriter myWriter = new FileWriter("piazzaSave.txt");
-            // TODO: Write customer orders and their time remaining
-            for (Customer customer : GameData.customers) {
-                myWriter.write(customer.getOrderString() + System.lineSeparator()
-                        + customer.remainingTime() + System.lineSeparator());
-
-            }
-            myWriter.write("###" + System.lineSeparator());
 
             // TODO: Write chefs' positions to the file (and item they are holding)
             myWriter.write(GameData.player1.x + "," + GameData.player1.y + System.lineSeparator());
@@ -52,6 +47,16 @@ public class SaveLoad {
             myWriter.write(GameData.money + System.lineSeparator());
 
             myWriter.write(">>>" + System.lineSeparator());
+
+            // TODO: Write customer orders and their time remaining
+            for (Customer customer : GameData.customers) {
+                myWriter.write(customer.getOrderString() + System.lineSeparator()
+                        + customer.remainingTime() + System.lineSeparator());
+
+            }
+            myWriter.write("###" + System.lineSeparator());
+
+
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
@@ -60,7 +65,7 @@ public class SaveLoad {
         }
     }
 
-    public static void load() {
+    public static void load() throws FileNotFoundException {
         // Removes current customers to prep for loading saved ones
         while (!GameData.customers.isEmpty()) {
             GameData.customers.get(0).fulfillOrder();
@@ -71,7 +76,8 @@ public class SaveLoad {
         GameData.setReputation(3);
 
         // TODO: Loads saved customers and their orders + time remaining
-        Scanner input = new Scanner("piazzaSave.txt");
+        File file = new File("piazzaSave.txt");
+        Scanner input = new Scanner(file);
         ArrayList<String> saveData = new ArrayList<>();
 
         while (input.hasNextLine()) {
@@ -80,7 +86,7 @@ public class SaveLoad {
 
         // TODO: Load players' positions
 
-        System.out.println(saveData);
+        System.out.println(saveData.toString());
     }
 }
 

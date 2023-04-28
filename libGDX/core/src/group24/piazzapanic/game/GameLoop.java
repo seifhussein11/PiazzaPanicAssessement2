@@ -16,6 +16,7 @@ import group24.piazzapanic.levelElements.stations.Station;
 import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -248,7 +249,11 @@ public class GameLoop extends Stage {
             SaveLoad.save();
         }
         if (Gdx.input.isKeyJustPressed(Base.LOAD_KEY)) {
-            SaveLoad.load();
+            try {
+                SaveLoad.load();
+            } catch (FileNotFoundException e) {
+                System.out.println("No save file exists");
+            }
         }
         if (Gdx.input.isKeyJustPressed(Base.POWERUP_KEY)) {
             Power.up(ThreadLocalRandom.current().nextInt(1, 6));
