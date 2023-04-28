@@ -127,6 +127,7 @@ public class Customer extends StageAnimation {
         GameData.customers.remove(this);
         this.remove();
         GameData.gameLoop.resortCustomers();
+        GameData.gameLoop.totalCustomers--;
         GameData.loseReputation(1);
     }
 
