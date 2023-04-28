@@ -10,7 +10,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The SaveLoad class contains methods to allow the player to save the current
+ * game state and load back into it later
+ */
 public class SaveLoad {
+    /**
+     * Saves the current game state in a file named piazzaSave.txt
+     */
     public static void save() {
         // Checks if file exists, if not creates a new save file
         try {
@@ -25,12 +32,11 @@ public class SaveLoad {
             e.printStackTrace();
         }
 
-        // TODO: Writes save data to the file
-        // Need to figure out a structure for the data
+        /** Writes save data to the file */
         try {
             FileWriter myWriter = new FileWriter("piazzaSave.txt");
 
-            // TODO: Write chefs' positions to the file (and item they are holding)
+            /** Write chefs' positions to the file (and item they are holding [NOT IMPLEMENTED]) */
             myWriter.write(GameData.player1.x + System.lineSeparator());
             myWriter.write(GameData.player1.y + System.lineSeparator());
             //myWriter.write(GameData.player1.holding + System.lineSeparator());
@@ -43,15 +49,17 @@ public class SaveLoad {
 
             myWriter.write("@@@" + System.lineSeparator());
 
-            // TODO: Write score, time and reputation
+            /** Save other GameData stuff */
             myWriter.write(GameData.reputation + System.lineSeparator());
             myWriter.write(GameData.gameTime + System.lineSeparator());
             myWriter.write(GameData.score + System.lineSeparator());
             myWriter.write(GameData.money + System.lineSeparator());
+            myWriter.write(GameData.gameLoop.maxCustomers + System.lineSeparator());
+            myWriter.write(GameData.gameLoop.totalCustomers + System.lineSeparator());
 
             myWriter.write(">>>" + System.lineSeparator());
 
-            // TODO: Write customer orders and their time remaining
+            /** Write customer orders and their time remaining */
             for (Customer customer : GameData.customers) {
                 myWriter.write(customer.getOrderString() + System.lineSeparator()
                         + customer.remainingTime() + System.lineSeparator());
@@ -69,6 +77,7 @@ public class SaveLoad {
         }
     }
 
+    /** Loads the saved data from piazzaSave.txt into the game */
     public static void load() throws FileNotFoundException {
         // Removes current customers to prep for loading saved ones
         while (!GameData.customers.isEmpty()) {
@@ -83,7 +92,7 @@ public class SaveLoad {
             saveData.add(input.nextLine());
         }
 
-        // TODO: Load players' positions
+        /** Load players' positions */
         GameData.player1.x = Double.parseDouble(saveData.get(0));
         GameData.player1.y = Double.parseDouble(saveData.get(1));
         GameData.player2.x = Double.parseDouble(saveData.get(2));
@@ -91,27 +100,31 @@ public class SaveLoad {
         GameData.player3.x = Double.parseDouble(saveData.get(4));
         GameData.player3.y = Double.parseDouble(saveData.get(5));
 
-        // TODO: Sets score, money, rep to saved values
-        GameData.reputation = Integer.parseInt(saveData.get(7));
+        /** Loads other GameData values */
+        GameData.setReputation(Integer.parseInt(saveData.get(7)));
         GameData.gameTime = Float.parseFloat(saveData.get(8));
-        GameData.score = Integer.parseInt(saveData.get(9));
-        GameData.money = Integer.parseInt(saveData.get(10));
+        GameData.setScore(Integer.parseInt(saveData.get(9)));
+        GameData.setMoney(Integer.parseInt(saveData.get(10)));
+        GameData.gameLoop.maxCustomers = Integer.parseInt(saveData.get(11));
+        GameData.gameLoop.totalCustomers = Integer.parseInt(saveData.get(12));
 
-        // TODO: Loads saved customers and their orders + time remaining
-        //ArrayList<Customer> customers = new ArrayList<>();
-        for (int i = 12; i <= saveData.size() - 2; i += 2) {
+
+        /** Loads saved customers and their orders + time remaining */
+        for (int i = 14; i <= saveData.size() - 2; i += 2) {
             Customer customer = new Customer(orderInt(saveData.get(i)),Float.parseFloat(saveData.get(i+1)));
-            //customers.add(customer);
             customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
             GameData.customers.add(customer);
             GameData.gameLoop.addActor(customer);
         }
-        //GameData.customers = customers;
 
         System.out.println(saveData.toString());
     }
 
 
+    /**
+     * Converts String name of the order into an int used in the
+     * {@link Customer} constructor
+     */
     protected static int orderInt(String order) {
         switch (order) {
             case "Burger":
