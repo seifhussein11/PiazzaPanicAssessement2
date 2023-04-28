@@ -266,9 +266,9 @@ public class StageFactory {
                 GameData.gameLoop = new GameLoop();
                 StageManager.addStage("Game", GameData.gameLoop);
                 StageManager.setActiveStage("Game");
-                GameData.money = 0;
-                GameData.score = 0;
-                GameData.reputation = 3;
+                GameData.setMoney(0);
+                GameData.setScore(0);
+                GameData.setReputation(3);
                 //  Sets reputation points to max customers if less than 3
                 System.out.println(scenarioCustomerAmount);
                 if (scenarioCustomerAmount < 3 &&
