@@ -5,6 +5,7 @@ import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.game.Customer;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.levelElements.Dish;
+import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.stations.ServingStation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 @RunWith(GdxTestRunner.class)
 public class ServingStationTests {
@@ -40,6 +40,38 @@ public class ServingStationTests {
         assertFalse(result2);
 
     }
+
+    @Test
+    public void TestServingStationPlaceItem(){
+        Texture texture = Mockito.mock(Texture.class);
+        ServingStation station = new ServingStation(texture);
+        GameData gameData = Mockito.mock(GameData.class);
+        gameData.dishTexture = texture;
+        Dish dish = Mockito.mock(Dish.class);
+        Ingredient ingredient = Mockito.mock(Ingredient.class);
+        Customer customer = Mockito.mock(Customer.class);
+        Mockito.when(customer.getOrder()).thenReturn(dish);
+        gameData.customers = new ArrayList<>();
+        gameData.customers.add(customer);
+        assertTrue(station.placeItem(dish));
+        assertFalse(station.placeItem(ingredient));
+    }
+
+    @Test
+    public void TestServingStationTakeItem(){
+        Texture texture = Mockito.mock(Texture.class);
+        ServingStation station = new ServingStation(texture);
+        GameData gameData = Mockito.mock(GameData.class);
+        gameData.dishTexture = texture;
+        station.item = Mockito.mock(Dish.class);
+        station.takeItem();
+        assertNull(station.item);
+        station.item = null;
+        station.takeItem();
+        assertNull(station.item);
+
+    }
+
 
 
 }
