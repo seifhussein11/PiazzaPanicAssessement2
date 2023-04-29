@@ -80,11 +80,11 @@ public class Customer extends StageAnimation {
     }
 
 
-    public Customer(int customerOrder) {
+    public Customer(int customerOrder, float timeLimit) {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
                 20, 20, entityWidth, entityHeight);
         //        timeLimit = 30f;
-        this.timeLimit = 60;
+        this.timeLimit = timeLimit;
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
         style.fontColor = Color.WHITE;
@@ -117,10 +117,17 @@ public class Customer extends StageAnimation {
         GameData.addMoney(5);
     }
 
+    public void fulfillOrder2() {
+        GameData.customers.remove(this);
+        this.remove();
+        GameData.gameLoop.resortCustomers();
+    }
+
     public void outOfTime() {
         GameData.customers.remove(this);
         this.remove();
         GameData.gameLoop.resortCustomers();
+        GameData.gameLoop.totalCustomers--;
         GameData.loseReputation(1);
     }
 
@@ -163,10 +170,14 @@ public class Customer extends StageAnimation {
         return this.order;
     }
 
+    protected String getOrderString() { return this.order.getRecipe();}
+
+    protected float remainingTime() { return this.timeLimit; }
+
     @Override
     public void act(float delta) {
         timeLimit -= delta;
-        System.out.println(timeLimit);
+        //System.out.println(timeLimit);
         if (timeLimit <= 0) {
             outOfTime();
         }

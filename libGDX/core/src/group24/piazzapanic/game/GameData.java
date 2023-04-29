@@ -23,9 +23,11 @@ public class GameData {
     /** The game's score */
     public static Integer score = 0;
     /** The player's money */
-    public static Integer money = 5;
+    public static Integer money = 0;
     /** The player's reputation points */
     public static Integer reputation = 3;
+    /** The cost of a new station or chef */
+    public static Integer stationCost = 2;
     /** The customers waiting to be served */
     public static ArrayList<Customer> customers;
     /** The in-game timer, updated every frame */
@@ -40,7 +42,7 @@ public class GameData {
     public static Player player1;
     /** The second player */
     public static Player player2;
-
+    /** The third player */
     public static Player player3;
     /** The active {@link Music} */
     public static Music music;
@@ -363,6 +365,11 @@ public class GameData {
         gameLoop.addMoney(GameData.money);
     }
 
+    public static void setMoney(int money) {
+        GameData.money = money;
+        gameLoop.addMoney(GameData.money);
+    }
+
     public static void loseReputation(int reputation) {
         GameData.reputation -= reputation;
         gameLoop.loseReputation(GameData.reputation);
@@ -370,6 +377,11 @@ public class GameData {
 
     public static void addReputation(int reputation) {
         GameData.reputation += reputation;
+        gameLoop.addReputation(GameData.reputation);
+    }
+
+    public static void setReputation(int reputation) {
+        GameData.reputation = reputation;
         gameLoop.addReputation(GameData.reputation);
     }
 

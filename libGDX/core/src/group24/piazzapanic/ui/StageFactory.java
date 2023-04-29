@@ -1,5 +1,6 @@
 package group24.piazzapanic.ui;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -265,6 +266,9 @@ public class StageFactory {
                 GameData.gameLoop = new GameLoop();
                 StageManager.addStage("Game", GameData.gameLoop);
                 StageManager.setActiveStage("Game");
+                GameData.setMoney(0);
+                GameData.setScore(0);
+                GameData.setReputation(3);
                 //  Sets reputation points to max customers if less than 3
                 System.out.println(scenarioCustomerAmount);
                 if (scenarioCustomerAmount < 3 &&

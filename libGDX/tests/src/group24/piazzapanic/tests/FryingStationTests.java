@@ -1,6 +1,8 @@
 package group24.piazzapanic.tests;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.IngredientType;
@@ -28,7 +30,7 @@ public class FryingStationTests {
         FryingStation station = new FryingStation(GameData.fryingStationTexture);
         station.item = item;
         Mockito.when(item.getIngredient()).thenReturn(item);
-        Mockito.when(item.getFryingProgress()).thenReturn(1);
+        Mockito.when(item.getFryingProgress()).thenReturn(2);
         station.interact(1);
         assertEquals("the item is already fried..."+System.lineSeparator(), output1.toString());
         Mockito.when(item.getFryingProgress()).thenReturn(-1);
@@ -47,8 +49,12 @@ public class FryingStationTests {
         IngredientType tomato = new IngredientType("tomato");
         gameData.errorTexture = texture;
         Ingredient item2 = new Ingredient(tomato,-1,-1,0);
+        Gdx gdx = Mockito.mock(Gdx.class);
+        Mockito.doReturn(true).when(gdx).input.isKeyJustPressed(Base.ACT_KEY);
         station.item = item2;
-        station.timeKeyHeld = 3;
+        station.done = true;
+        station.timeKeyHeld = 2;
+        station.act = true;
         station.interact(1);
         assertEquals(1, item2.getFryingProgress(),0.0000001);
         assertEquals(0,station.timeKeyHeld,0.0000001);

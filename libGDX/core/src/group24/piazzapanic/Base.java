@@ -62,9 +62,9 @@ public class Base {
     /** The pause keybind. */
     public static final int PAUSE_KEY = Keys.ESCAPE;
     /** The save keybind. */
-    public static final int SAVE_KEY = Keys.F6;
+    public static final int SAVE_KEY = Keys.NUM_6;
     /** The load keybind. */
-    public static final int LOAD_KEY = Keys.F7;
+    public static final int LOAD_KEY = Keys.NUM_7;
 
     /** The powerup keybind. */
     public static final int POWERUP_KEY = Keys.X;

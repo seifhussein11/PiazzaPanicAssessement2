@@ -33,10 +33,10 @@ public class CustomerTests {
         gameData.errorTexture = texture;
         gameData.dishTexture = texture;
         //Mockito.when(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size()))).thenReturn(gameData.customerSpriteSheets.get(0));
-        Customer customer = new Customer(0);
-        Customer customer1 = new Customer(1);
-        Customer customer2 = new Customer(2);
-        Customer customer3 = new Customer(3);
+        Customer customer = new Customer(0, 60);
+        Customer customer1 = new Customer(1, 60);
+        Customer customer2 = new Customer(2, 60);
+        Customer customer3 = new Customer(3, 60);
         ArrayList<Customer> customers = new ArrayList<>();
         customers.add(customer);
         customers.add(customer1);
@@ -73,7 +73,7 @@ public class CustomerTests {
         gameData.jacketPotatoDishTexture = texture;
         gameData.errorTexture = texture;
         gameData.dishTexture = texture;
-        Customer customer = new Customer(0);
+        Customer customer = new Customer(0, 60);
         Dish dish = new Dish(Dish.BURGER_RECIPE);
         assertEquals(dish,customer.getOrder());
 
