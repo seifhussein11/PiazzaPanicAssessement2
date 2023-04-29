@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -32,11 +29,11 @@ public class SaveLoad {
             e.printStackTrace();
         }
 
-        /** Writes save data to the file */
+        // Writes save data to the file
         try {
             FileWriter myWriter = new FileWriter("piazzaSave.txt");
 
-            /** Write chefs' positions to the file (and item they are holding [NOT IMPLEMENTED]) */
+            // Writes chefs' positions to the file (and item they are holding [NOT IMPLEMENTED])
             myWriter.write(GameData.player1.x + System.lineSeparator());
             myWriter.write(GameData.player1.y + System.lineSeparator());
             //myWriter.write(GameData.player1.holding + System.lineSeparator());
@@ -49,7 +46,7 @@ public class SaveLoad {
 
             myWriter.write("@@@" + System.lineSeparator());
 
-            /** Save other GameData stuff */
+            // Writes other GameData stuff
             myWriter.write(GameData.reputation + System.lineSeparator());
             myWriter.write(GameData.gameTime + System.lineSeparator());
             myWriter.write(GameData.score + System.lineSeparator());
@@ -59,7 +56,7 @@ public class SaveLoad {
 
             myWriter.write(">>>" + System.lineSeparator());
 
-            /** Write customer orders and their time remaining */
+            // Writes customer orders and their time remaining
             for (Customer customer : GameData.customers) {
                 myWriter.write(customer.getOrderString() + System.lineSeparator()
                         + customer.remainingTime() + System.lineSeparator());
@@ -92,7 +89,7 @@ public class SaveLoad {
             saveData.add(input.nextLine());
         }
 
-        /** Load players' positions */
+        // Loads players' positions
         GameData.player1.x = Double.parseDouble(saveData.get(0));
         GameData.player1.y = Double.parseDouble(saveData.get(1));
         GameData.player2.x = Double.parseDouble(saveData.get(2));
@@ -100,7 +97,7 @@ public class SaveLoad {
         GameData.player3.x = Double.parseDouble(saveData.get(4));
         GameData.player3.y = Double.parseDouble(saveData.get(5));
 
-        /** Loads other GameData values */
+        // Loads other GameData values
         GameData.setReputation(Integer.parseInt(saveData.get(7)));
         GameData.gameTime = Float.parseFloat(saveData.get(8));
         GameData.setScore(Integer.parseInt(saveData.get(9)));
@@ -109,7 +106,7 @@ public class SaveLoad {
         GameData.gameLoop.totalCustomers = Integer.parseInt(saveData.get(12));
 
 
-        /** Loads saved customers and their orders + time remaining */
+        // Loads saved customers and their orders + time remaining
         for (int i = 14; i <= saveData.size() - 2; i += 2) {
             Customer customer = new Customer(orderInt(saveData.get(i)),Float.parseFloat(saveData.get(i+1)));
             customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
