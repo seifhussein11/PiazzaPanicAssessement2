@@ -61,9 +61,9 @@ public class Player extends Actor {
     /** Starting y position for when a player starts to interact with a station. */
     public double playerInteractY;
     /** A boolean to determine whether the player is interacting with a station. */
-    boolean playerInteracting;
+    public boolean playerInteracting;
     /** The {@link Station} the player is interacting with. */
-    Station interactingStation;
+    public Station interactingStation;
 
     /** The player's one-item inventory. */
     public Movable holding; // The player's one-item inventory.
@@ -75,6 +75,9 @@ public class Player extends Actor {
     ProgressBar bar;
     /** A boolean to determine whether the progress bar should be drawn. */
     boolean DrawBar;
+
+    public boolean BaseActKey;
+    public boolean BasePickUpKey;
 
 
     /**
@@ -88,7 +91,9 @@ public class Player extends Actor {
         /** The player is facing left. */
         LEFT,
         /** The player is facing right. */
-        RIGHT
+        RIGHT,
+
+        SOMEOTHERDIRECTION
     }
 
     public facing direction;
@@ -251,7 +256,7 @@ public class Player extends Actor {
 
         this.animation.act(delta);
 
-        if (Gdx.input.isKeyJustPressed(Base.PICKUP_KEY) && GameData.player == this) {
+        if ((Gdx.input.isKeyJustPressed(Base.PICKUP_KEY) || this.BasePickUpKey==true) && GameData.player == this) {
             if (this.holding == null) {
                 System.out.println("Inventory is empty.");
                 this.pickUp();
@@ -261,7 +266,7 @@ public class Player extends Actor {
             }
         }
         Station station = this.getFacingStation();
-        if (Gdx.input.isKeyJustPressed(Base.ACT_KEY) && station != null && GameData.player == this) {
+        if ((Gdx.input.isKeyJustPressed(Base.ACT_KEY)||this.BaseActKey==true) && station != null && GameData.player == this) {
             this.playerInteracting = true;
             this.playerInteractX = this.x;
             this.playerInteractY = this.y;
@@ -295,4 +300,31 @@ public class Player extends Actor {
             DrawBar = false;
         }
     }
+
+
+    public String getKey(){
+        return this.key;
+    }
+
+    public String getCurrentKey(){
+        return this.currentKey;
+    }
+
+    public Vector2 getPlayerPosition(){
+        return this.playerPosition;
+    }
+
+    public ProgressBar getPlayerBar(){
+        return this.bar;
+    }
+
+    public boolean getPlayerDrawBar(){
+        return this.DrawBar;
+    }
+
+
+
+
+
+
 }

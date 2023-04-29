@@ -37,7 +37,7 @@ public class Dish extends ImageMovable {
             Arrays.asList(BURGER, SALAD, PIZZA, JACKET_POTATO));
     public ArrayList<Ingredient> Ingredients = new ArrayList<>();
     /** Stores the dish's recipe. */
-    private ArrayList<Ingredient> recipe;
+    private  ArrayList<Ingredient> recipe;
     /** Stores the dish's current progress towards completion. */
     private boolean complete;
 
