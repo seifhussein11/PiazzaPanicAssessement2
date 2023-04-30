@@ -179,13 +179,13 @@ public class Customer extends StageAnimation {
         float difficulty = StageFactory.difficultyVal;
         switch ((int) difficulty) {
             case 0:
-                return 8;
+                return 100;
             case 1:
-                return 4;
+                return 80;
             case 2:
-                return 2;
+                return 60;
         }
-        return 85;
+        return 80;
     }
 
     @Override
