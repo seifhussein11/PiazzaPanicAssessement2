@@ -33,6 +33,7 @@ public class StageManager {
         stages.put("GameWin", StageFactory.createGameWinStage());
         stages.put("ScenarioGameOver", StageFactory.createScenarioGameOverStage());
         stages.put("EndlessGameOver", StageFactory.createEndlessGameOverStage());
+        stages.put("Difficulty", StageFactory.createDifficultySelectionStage());
         setActiveStage("MainMenu");
     }
 

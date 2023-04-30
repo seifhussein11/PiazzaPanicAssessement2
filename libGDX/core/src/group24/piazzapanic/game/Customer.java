@@ -8,6 +8,7 @@ import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageAnimation;
+import group24.piazzapanic.ui.StageFactory;
 
 /**
  * The customer class represents a customer in the game.
@@ -43,7 +44,7 @@ public class Customer extends StageAnimation {
     /**
      * The time limit for the customer's order to be filled.
      */
-    private float timeLimit;
+    protected float timeLimit;
 
     /**
      * The text bubble for the customer
@@ -57,7 +58,7 @@ public class Customer extends StageAnimation {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
                 20, 20, entityWidth, entityHeight);
         //        timeLimit = 30f;
-        this.timeLimit = 60;
+        this.timeLimit = setTimeLimit();
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
         style.fontColor = Color.WHITE;
@@ -173,6 +174,19 @@ public class Customer extends StageAnimation {
     protected String getOrderString() { return this.order.getRecipe();}
 
     protected float remainingTime() { return this.timeLimit; }
+
+    protected static float setTimeLimit() {
+        float difficulty = StageFactory.difficultyVal;
+        switch ((int) difficulty) {
+            case 0:
+                return 8;
+            case 1:
+                return 4;
+            case 2:
+                return 2;
+        }
+        return 85;
+    }
 
     @Override
     public void act(float delta) {

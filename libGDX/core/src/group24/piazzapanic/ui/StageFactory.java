@@ -1,6 +1,5 @@
 package group24.piazzapanic.ui;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -27,11 +26,12 @@ public class StageFactory {
 
     /**
      * Create the main menu stage. 
-     * @return The new stage created.
+     * returns the new stage created.
      */
 
-    public static boolean endlessModeEnabled;
+    public static boolean endlessModeEnabled = true;
     public static int scenarioCustomerAmount;
+    public static int difficultyVal;
     public static int test;
     public static Stage createMainMenuStage() {
         // Title
@@ -56,13 +56,14 @@ public class StageFactory {
             public void changed(ChangeEvent event, Actor actor) {
                 System.out.print("Open Configure");
                 StageManager.setActiveStage("Configure");
+                endlessModeEnabled = false;
             }
 
         });
         stage.addActor(scenarioModeButton);
 
         // Endless mode button
-        TextButton endlessModeButton = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+        final TextButton endlessModeButton = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
                 new Vector2(0.5, 0.45), "Endless Mode", Align.center);
         endlessModeButton.getStyle().overFontColor = Color.BLUE;
         //Create onclick function
@@ -70,14 +71,8 @@ public class StageFactory {
 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.print("Open Game");
-                GameData.music.dispose();
-                GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
-                GameData.music.setLooping(true);
-                //  GameData.music.play();
-                GameData.gameLoop = new GameLoop();
-                StageManager.addStage("Game", GameData.gameLoop);
-                StageManager.setActiveStage("Game");
+                System.out.print("Open Difficulty");
+                StageManager.setActiveStage("Difficulty");
                 endlessModeEnabled = true;
             }
 
@@ -249,33 +244,17 @@ public class StageFactory {
         });
         stage.addActor(button2);
 
-        //Add start game button
+        //Add go to difficulty stage button
         TextButton beginScenarioButton = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
-                new Vector2(0.5, 0.27), "Begin Scenario", Align.center);
+                new Vector2(0.5, 0.27), "Select Difficulty", Align.center);
         beginScenarioButton.getStyle().overFontColor = Color.BLUE;
         stage.addActor(beginScenarioButton);
         beginScenarioButton.addListener(new ChangeListener() {
 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.print("Open Game");
-                GameData.music.dispose();
-                GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
-                GameData.music.setLooping(true);
-                //  GameData.music.play();
-                GameData.gameLoop = new GameLoop();
-                StageManager.addStage("Game", GameData.gameLoop);
-                StageManager.setActiveStage("Game");
-                GameData.setMoney(0);
-                GameData.setScore(0);
-                GameData.setReputation(3);
-                //  Sets reputation points to max customers if less than 3
-                System.out.println(scenarioCustomerAmount);
-                if (scenarioCustomerAmount < 3 &&
-                        scenarioCustomerAmount > 0) {
-                    GameData.loseReputation(3-scenarioCustomerAmount);
-                }
-                endlessModeEnabled = false;
+                System.out.print("Open Difficulty");
+                StageManager.setActiveStage("Difficulty");
             }
 
         });
@@ -678,6 +657,99 @@ public class StageFactory {
 
         stage.addActor(ChefAnimation);
         stage.addActor(ChefAnimation1);
+        return stage;
+    }
+
+    public static Stage createDifficultySelectionStage() {
+        //Title
+        Stage stage = new Stage();
+        CharSequence TitleText = "Difficulty level";
+        Label Title = new Label(TitleText, new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
+        Vector2 coords = new Vector2(0.5, 0.7);
+        Title.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        stage.addActor(Title);
+
+        // Difficulty bar
+        Skin skin = new Skin(Gdx.files.internal("testSkin/uiskin.json"));
+        Slider difficultySlider = new Slider(0, 2, 1, false, skin);
+        coords = new Vector2(0.5, 0.5);
+        difficultySlider.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        stage.addActor(difficultySlider);
+        final Label difficultyLevel = new Label("Select difficulty level", new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
+        coords = new Vector2(0.5,0.44);
+        difficultyLevel.setPosition(coords.getAbsoluteX(), coords.getAbsoluteY(), Align.center);
+        difficultySlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                float value = ((Slider) actor).getValue();
+                System.out.println(value);
+                if (value == 0) {
+                    difficultyLevel.setText("Easy");
+                    Vector2 coordsNew = new Vector2(0.45, 0.41);
+                    difficultyLevel.setPosition(coordsNew.getAbsoluteX(), coordsNew.getAbsoluteY());
+                } else if (value == 1) {
+                    difficultyLevel.setText("Normal");
+                    Vector2 coordsNew = new Vector2(0.43, 0.41);
+                    difficultyLevel.setPosition(coordsNew.getAbsoluteX(), coordsNew.getAbsoluteY());
+                } else {
+                    difficultyLevel.setText("Hard");
+                    Vector2 coordsNew = new Vector2(0.45, 0.41);
+                    difficultyLevel.setPosition(coordsNew.getAbsoluteX(), coordsNew.getAbsoluteY());
+                }
+                difficultyVal = (int) value;
+            }
+        });
+        stage.addActor(difficultyLevel);
+
+        //Add return to main menu button
+        TextButton button2 = WidgetFactory.createTextButton(FontHandler.textButtonFormat, Color.WHITE,
+                new Vector2(0.2, 0.7), "Back", Align.right);
+        button2.getStyle().overFontColor = Color.BLUE;
+        //Create onclick function
+        button2.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Open Main");
+                StageManager.setActiveStage("MainMenu");
+            }
+
+        });
+        stage.addActor(button2);
+
+        //Add start game button
+        TextButton beginScenarioButton = WidgetFactory.createTextButton(FontHandler.subtitleFormat, Color.WHITE,
+                new Vector2(0.5, 0.27), "Begin Scenario", Align.center);
+        beginScenarioButton.getStyle().overFontColor = Color.BLUE;
+        stage.addActor(beginScenarioButton);
+        beginScenarioButton.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.print("Open Game");
+                GameData.music.dispose();
+                GameData.music = Gdx.audio.newMusic(Gdx.files.internal("MAIN-MUSIC.mp3"));
+                GameData.music.setLooping(true);
+                //  GameData.music.play();
+                GameData.gameLoop = new GameLoop();
+                StageManager.addStage("Game", GameData.gameLoop);
+                StageManager.setActiveStage("Game");
+                GameData.setMoney(0);
+                GameData.setScore(0);
+                GameData.setReputation(3);
+                //  Sets reputation points to max customers if less than 3
+                System.out.println(scenarioCustomerAmount);
+                if (scenarioCustomerAmount < 3 &&
+                        scenarioCustomerAmount > 0) {
+                    GameData.loseReputation(3-scenarioCustomerAmount);
+                }
+
+            }
+
+        });
+
+        test = scenarioCustomerAmount;
+
         return stage;
     }
 }
