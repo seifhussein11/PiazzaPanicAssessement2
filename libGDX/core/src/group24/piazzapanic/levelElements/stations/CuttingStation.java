@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import group24.piazzapanic.game.GameData;
-import group24.piazzapanic.game.GameLoop;
 import group24.piazzapanic.levelElements.Ingredient;
 
 /**
@@ -56,7 +55,7 @@ public class CuttingStation extends Station {
         }
         timeKeyHeld += delta;
         if (timeKeyHeld > 3 && super.item.getIngredient().getCuttingProgress() == 0
-                && available == 1) {
+                ) {
             super.item.getIngredient().cut();
             System.out.println("Cutting complete...");
             timeKeyHeld = 0;

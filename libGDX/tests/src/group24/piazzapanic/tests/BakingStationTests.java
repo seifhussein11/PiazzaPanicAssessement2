@@ -63,7 +63,6 @@ public class BakingStationTests {
         assertEquals(1,station.available);
         assertEquals("Disabled"+System.lineSeparator(), output4.toString());
         station.available=0;
-        gameData.gameLoop.bakingStationPrice = Mockito.mock(Label.class);
         ByteArrayOutputStream output5 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output5));
         station.interact(1);
