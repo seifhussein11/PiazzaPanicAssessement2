@@ -12,6 +12,7 @@ import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.levelElements.stations.Station;
 import group24.piazzapanic.maths.Vector2;
 import group24.piazzapanic.ui.StageAnimation;
+import group24.piazzapanic.ui.StageFactory;
 
 import java.util.HashMap;
 
@@ -320,6 +321,19 @@ public class Player extends Actor {
 
     public boolean getPlayerDrawBar(){
         return this.DrawBar;
+    }
+
+    protected static double setSpeed() {
+        float difficulty = StageFactory.difficultyVal;
+        switch ((int) difficulty) {
+            case 0:
+                return 3.6;
+            case 1:
+                return 3;
+            case 2:
+                return 2.5;
+        }
+        return 3;
     }
 
 

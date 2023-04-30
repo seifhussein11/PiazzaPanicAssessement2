@@ -1,5 +1,7 @@
 package group24.piazzapanic.game;
 
+import group24.piazzapanic.ui.StageFactory;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -18,9 +20,9 @@ public class SaveLoad {
     public static void save() {
         // Checks if file exists, if not creates a new save file
         try {
-            File myObj = new File("piazzaSave.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
+            File saveFile = new File("piazzaSave.txt");
+            if (saveFile.createNewFile()) {
+                System.out.println("File created: " + saveFile.getName());
             } else {
                 System.out.println("File already exists.");
             }
@@ -31,41 +33,44 @@ public class SaveLoad {
 
         // Writes save data to the file
         try {
-            FileWriter myWriter = new FileWriter("piazzaSave.txt");
+            FileWriter saveFileWriter = new FileWriter("piazzaSave.txt");
+
+            saveFileWriter.write("// Chef data:" + System.lineSeparator());
 
             // Writes chefs' positions to the file (and item they are holding [NOT IMPLEMENTED])
-            myWriter.write(GameData.player1.x + System.lineSeparator());
-            myWriter.write(GameData.player1.y + System.lineSeparator());
-            //myWriter.write(GameData.player1.holding + System.lineSeparator());
-            myWriter.write(GameData.player2.x + System.lineSeparator());
-            myWriter.write(GameData.player2.y + System.lineSeparator());
-            //myWriter.write(GameData.player2.holding + System.lineSeparator());
-            myWriter.write(GameData.player3.x + System.lineSeparator());
-            myWriter.write(GameData.player3.y + System.lineSeparator());
-            //myWriter.write(GameData.player3.holding + System.lineSeparator());
+            saveFileWriter.write(GameData.player1.x + System.lineSeparator());
+            saveFileWriter.write(GameData.player1.y + System.lineSeparator());
+            //saveFileWriter.write(GameData.player1.holding + System.lineSeparator());
+            saveFileWriter.write(GameData.player2.x + System.lineSeparator());
+            saveFileWriter.write(GameData.player2.y + System.lineSeparator());
+            //saveFileWriter.write(GameData.player2.holding + System.lineSeparator());
+            saveFileWriter.write(GameData.player3.x + System.lineSeparator());
+            saveFileWriter.write(GameData.player3.y + System.lineSeparator());
+            //saveFileWriter.write(GameData.player3.holding + System.lineSeparator());
 
-            myWriter.write("@@@" + System.lineSeparator());
+            saveFileWriter.write("// GameData data:" + System.lineSeparator());
 
             // Writes other GameData stuff
-            myWriter.write(GameData.reputation + System.lineSeparator());
-            myWriter.write(GameData.gameTime + System.lineSeparator());
-            myWriter.write(GameData.score + System.lineSeparator());
-            myWriter.write(GameData.money + System.lineSeparator());
-            myWriter.write(GameData.gameLoop.maxCustomers + System.lineSeparator());
-            myWriter.write(GameData.gameLoop.totalCustomers + System.lineSeparator());
+            saveFileWriter.write(GameData.reputation + System.lineSeparator());
+            saveFileWriter.write(GameData.gameTime + System.lineSeparator());
+            saveFileWriter.write(GameData.score + System.lineSeparator());
+            saveFileWriter.write(GameData.money + System.lineSeparator());
+            saveFileWriter.write(GameData.gameLoop.maxCustomers + System.lineSeparator());
+            saveFileWriter.write(GameData.gameLoop.totalCustomers + System.lineSeparator());
+            saveFileWriter.write(StageFactory.endlessModeEnabled + System.lineSeparator());
 
-            myWriter.write(">>>" + System.lineSeparator());
+            saveFileWriter.write("// Customer data:" + System.lineSeparator());
 
             // Writes customer orders and their time remaining
             for (Customer customer : GameData.customers) {
-                myWriter.write(customer.getOrderString() + System.lineSeparator()
+                saveFileWriter.write(customer.getOrderString() + System.lineSeparator()
                         + customer.remainingTime() + System.lineSeparator());
 
             }
-            myWriter.write("###" + System.lineSeparator());
+            saveFileWriter.write("###" + System.lineSeparator());
 
 
-            myWriter.close();
+            saveFileWriter.close();
             System.out.println("Successfully wrote to the file.");
 
         } catch (IOException e) {
@@ -82,32 +87,33 @@ public class SaveLoad {
         }
         GameData.gameLoop.resortCustomers();
 
-        File file = new File("piazzaSave.txt");
-        Scanner input = new Scanner(file);
+        File saveFile = new File("piazzaSave.txt");
+        Scanner input = new Scanner(saveFile);
         ArrayList<String> saveData = new ArrayList<>();
         while (input.hasNextLine()) {
             saveData.add(input.nextLine());
         }
 
         // Loads players' positions
-        GameData.player1.x = Double.parseDouble(saveData.get(0));
-        GameData.player1.y = Double.parseDouble(saveData.get(1));
-        GameData.player2.x = Double.parseDouble(saveData.get(2));
-        GameData.player2.y = Double.parseDouble(saveData.get(3));
-        GameData.player3.x = Double.parseDouble(saveData.get(4));
-        GameData.player3.y = Double.parseDouble(saveData.get(5));
+        GameData.player1.x = Double.parseDouble(saveData.get(1));
+        GameData.player1.y = Double.parseDouble(saveData.get(2));
+        GameData.player2.x = Double.parseDouble(saveData.get(3));
+        GameData.player2.y = Double.parseDouble(saveData.get(4));
+        GameData.player3.x = Double.parseDouble(saveData.get(5));
+        GameData.player3.y = Double.parseDouble(saveData.get(6));
 
         // Loads other GameData values
-        GameData.setReputation(Integer.parseInt(saveData.get(7)));
-        GameData.gameTime = Float.parseFloat(saveData.get(8));
-        GameData.setScore(Integer.parseInt(saveData.get(9)));
-        GameData.setMoney(Integer.parseInt(saveData.get(10)));
-        GameData.gameLoop.maxCustomers = Integer.parseInt(saveData.get(11));
-        GameData.gameLoop.totalCustomers = Integer.parseInt(saveData.get(12));
+        GameData.setReputation(Integer.parseInt(saveData.get(8)));
+        GameData.gameTime = Float.parseFloat(saveData.get(9));
+        GameData.setScore(Integer.parseInt(saveData.get(10)));
+        GameData.setMoney(Integer.parseInt(saveData.get(11)));
+        GameData.gameLoop.maxCustomers = Integer.parseInt(saveData.get(12));
+        GameData.gameLoop.totalCustomers = Integer.parseInt(saveData.get(13));
+        StageFactory.endlessModeEnabled = Boolean.parseBoolean(saveData.get(14));
 
 
         // Loads saved customers and their orders + time remaining
-        for (int i = 14; i <= saveData.size() - 2; i += 2) {
+        for (int i = 16; i <= saveData.size() - 2; i += 2) {
             Customer customer = new Customer(orderInt(saveData.get(i)),Float.parseFloat(saveData.get(i+1)));
             customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
             GameData.customers.add(customer);

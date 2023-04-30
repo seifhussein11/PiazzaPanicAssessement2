@@ -212,6 +212,7 @@ public class GameLoop extends Stage {
     @Override
     public void act(float delta) {
         GameData.gameTime += delta;
+        Player.maxSpeed = Player.setSpeed();
 
         if (!StageFactory.endlessModeEnabled) {
             if (this.totalCustomers < this.maxCustomers) {
