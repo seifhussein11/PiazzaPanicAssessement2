@@ -1,20 +1,12 @@
 package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.badlogic.gdx.utils.Align;
 import group24.piazzapanic.Base;
 import group24.piazzapanic.game.GameData;
-import group24.piazzapanic.game.GameLoop;
-import group24.piazzapanic.game.Player;
 import group24.piazzapanic.levelElements.Ingredient;
-import group24.piazzapanic.maths.Vector2;
-import group24.piazzapanic.ui.FontHandler;
 
 /**
  * FryingStations allow users to fry Ingredients.
@@ -34,6 +26,8 @@ public class FryingStation extends Station {
      */
     public boolean done = false;
     public boolean act = false;
+    public boolean BaseActPressed;
+
 
     /**
      * Allows the player to fry the item.
@@ -76,7 +70,7 @@ public class FryingStation extends Station {
             return;
         }
         timeKeyHeld += delta;
-        if (Gdx.input.isKeyPressed(Base.ACT_KEY)) {act = true;}  // Needed to be able to set act to true in testing
+        if (Gdx.input.isKeyPressed(Base.ACT_KEY) || BaseActPressed == true ) {act = true;}  // Needed to be able to set act to true in testing
         if (!done) {
             if (timeKeyHeld < 3) {
                 return;

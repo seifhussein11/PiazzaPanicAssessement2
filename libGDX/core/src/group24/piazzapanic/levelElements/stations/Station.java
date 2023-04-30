@@ -167,6 +167,14 @@ public class Station extends Image {
 
     }
 
+    public int getGridX(){
+        return this.gridX;
+    }
+
+    public int getGridY(){
+        return this.gridY;
+    }
+
 
 
 }

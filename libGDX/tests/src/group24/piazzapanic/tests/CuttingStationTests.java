@@ -92,10 +92,12 @@ public class CuttingStationTests {
         Ingredient ingredientNeg1 = new Ingredient(ingredientType,-1,-1,-1);
         cuttingStation.item = ingredientNeg1;
         cuttingStation.available = 1;
+        cuttingStation.timeKeyHeld = 3;
         gameData.money =3;
         ByteArrayOutputStream output6 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output6));
         cuttingStation.interact(1);
+        assertEquals(0,cuttingStation.timeKeyHeld,0.00001);
         assertEquals("cannot be cut..."+System.lineSeparator(), output6.toString());
         assertNotEquals("disabled"+System.lineSeparator(), output6.toString());
         assertNotEquals("no item to cut..."+System.lineSeparator(), output6.toString());
@@ -103,9 +105,11 @@ public class CuttingStationTests {
         assertEquals(3,gameData.money,0.00001);
         // not available and money more and super item cutting process is -1
         cuttingStation.available = 0;
+        cuttingStation.timeKeyHeld=4;
         ByteArrayOutputStream output7 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output7));
         cuttingStation.interact(1);
+        assertEquals(4,cuttingStation.timeKeyHeld,0.00001);
         assertEquals(3-cuttingStation.cost,gameData.money,0.00001);
         assertEquals(1,cuttingStation.available);
         assertNotEquals(0,cuttingStation.available);

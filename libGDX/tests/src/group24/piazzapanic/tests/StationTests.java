@@ -101,8 +101,13 @@ public class StationTests {
         assertFalse(station1.isEqual(player));
 
 
+    }
 
-
+    @Test
+    public void TestStationConstructerGridXY(){
+        Station station = new Station(7,5);
+        assertEquals(7,station.getGridX());
+        assertEquals(5,station.getGridY());
 
     }
 
