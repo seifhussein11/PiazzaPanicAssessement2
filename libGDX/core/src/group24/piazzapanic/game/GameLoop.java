@@ -287,6 +287,7 @@ public class GameLoop extends Stage {
                 StageManager.setActiveStage("ScenarioGameOver");
             }
             else {
+                StageManager.addStage("EndlessGameOver",StageFactory.createEndlessGameOverStage());
                 StageManager.setActiveStage("EndlessGameOver");
             }
         }
