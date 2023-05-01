@@ -31,7 +31,7 @@ public class Customer extends StageAnimation {
     /**
      * The order for the customer, a {@link Dish}
      */
-    private Dish order;
+    public Dish order;
     /**
      * The text for the customer's order
      */
@@ -44,7 +44,7 @@ public class Customer extends StageAnimation {
     /**
      * The time limit for the customer's order to be filled.
      */
-    protected float timeLimit;
+    public float timeLimit;
 
     /**
      * The text bubble for the customer
@@ -171,9 +171,9 @@ public class Customer extends StageAnimation {
         return this.order;
     }
 
-    protected String getOrderString() { return this.order.getRecipe();}
+    public String getOrderString() { return this.order.getRecipe();}
 
-    protected float remainingTime() { return this.timeLimit; }
+    public float remainingTime() { return this.timeLimit; }
 
     protected static float setTimeLimit() {
         float difficulty = StageFactory.difficultyVal;

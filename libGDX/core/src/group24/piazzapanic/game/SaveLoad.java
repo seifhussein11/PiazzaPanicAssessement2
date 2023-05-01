@@ -128,7 +128,7 @@ public class SaveLoad {
      * Converts String name of the order into an int used in the
      * {@link Customer} constructor
      */
-    protected static int orderInt(String order) {
+    public static int orderInt(String order) {
         switch (order) {
             case "Burger":
                 return 0;
