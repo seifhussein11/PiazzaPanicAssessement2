@@ -71,6 +71,11 @@ public class GameDataTests {
         assertEquals(expectedScore,gameData.score);
     }
 
+    @Test
+    public void TestGameDataSetMoney(){
+        GameData gameData = new GameData()
+    }
+
 
 
 

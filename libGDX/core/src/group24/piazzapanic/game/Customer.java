@@ -39,7 +39,7 @@ public class Customer extends StageAnimation {
     /**
      * The texture for the customer's order
      */
-    private Texture orderTexture; //temporary
+    public Texture orderTexture; //temporary
 
     /**
      * The time limit for the customer's order to be filled.
@@ -175,7 +175,7 @@ public class Customer extends StageAnimation {
 
     public float remainingTime() { return this.timeLimit; }
 
-    protected static float setTimeLimit() {
+    public static float setTimeLimit() {
         float difficulty = StageFactory.difficultyVal;
         switch ((int) difficulty) {
             case 0:
