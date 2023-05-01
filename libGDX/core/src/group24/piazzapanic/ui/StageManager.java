@@ -30,6 +30,7 @@ public class StageManager {
         //stages.put("Game", GameData.gameLoop);
         stages.put("Pause", StageFactory.createPauseMenuStage());
         stages.put("Instructions", StageFactory.createInstructionsStage());
+        stages.put("Instructions2", StageFactory.createInstructionsStageP2());
         stages.put("GameWin", StageFactory.createGameWinStage());
         stages.put("ScenarioGameOver", StageFactory.createScenarioGameOverStage());
         stages.put("EndlessGameOver", StageFactory.createEndlessGameOverStage());
