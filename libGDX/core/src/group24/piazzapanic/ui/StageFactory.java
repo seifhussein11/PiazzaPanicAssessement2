@@ -490,7 +490,7 @@ public class StageFactory {
         };
 
         CharSequence Recipes2 = "Pizza:\n-bake dough\n-apply sauce\n-apply cheese\n\nJacket Potato:\n-bake potato\n-apply cheese";
-        CharSequence BurgerFlip = "To flip burger:\n-fry once\n-remove from heat\n-place back on\n-fry once more\n-remove before it burns";
+        CharSequence BurgerFlip = "To flip burger:\n-fry one side\n-interact to flip\n-fry other side\n-remove before it burns";
 
         //Title
         Label title1 = new Label("More Recipes", new LabelStyle(FontHandler.subtitleFormat, Color.WHITE));
