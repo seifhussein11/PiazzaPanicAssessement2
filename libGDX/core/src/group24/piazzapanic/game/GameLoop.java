@@ -1,6 +1,7 @@
 package group24.piazzapanic.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -56,7 +57,7 @@ public class GameLoop extends Stage {
      */
     public GameLoop() {
         GameData.gameTime = 0f;
-        GameData.sinceLastSpawn = 0f;
+        GameData.sinceLastSpawn = 13f;
         GameData.customers = new ArrayList<Customer>();
         totalCustomers = 0;
         this.rows = new ArrayList<Group>();
@@ -214,6 +215,12 @@ public class GameLoop extends Stage {
         GameData.gameTime += delta;
         Player.maxSpeed = Player.setSpeed();
 
+        /** Instant complete customer order for debugging
+        if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            GameData.customers.get(0).fulfillOrder();
+        }
+        */
+
         if (!StageFactory.endlessModeEnabled) {
             if (this.totalCustomers < this.maxCustomers) {
                 GameData.sinceLastSpawn += delta;
@@ -221,14 +228,26 @@ public class GameLoop extends Stage {
         } else {
             GameData.sinceLastSpawn += delta;
         }
-        if (GameData.sinceLastSpawn >= 6) {
-            //Create new customer offset location.
-            Customer customer = new Customer();
-            customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
-            GameData.customers.add(customer);
-            this.addActor(customer);
+        if (GameData.sinceLastSpawn >= 15) {
+            // Creates 1 extra customer each time for every minute that has passed if in endless mode
+            if (StageFactory.endlessModeEnabled) {
+                for (int i = 0; i <= Math.floor(GameData.gameTime / 60); i++) {
+                    //Create new customer offset location.
+                    Customer customer = new Customer();
+                    customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
+                    GameData.customers.add(customer);
+                    this.addActor(customer);
+                    this.totalCustomers++;
+                }
+            } else {
+                //Create new customer offset location.
+                Customer customer = new Customer();
+                customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
+                GameData.customers.add(customer);
+                this.addActor(customer);
+                this.totalCustomers++;
+            }
             GameData.sinceLastSpawn = 0;
-            this.totalCustomers++;
         }
 
         if (Gdx.input.isKeyJustPressed(Base.SWAP_KEY)) {
