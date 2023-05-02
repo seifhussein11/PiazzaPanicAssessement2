@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="group24.piazzapanic.tests.GameDataTests" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-05-02T22:55:46" hostname="nas-10-240-145-222.york.ac.uk" time="0.097">
+  <properties/>
+  <testcase name="TestGameDataSetMoney" classname="group24.piazzapanic.tests.GameDataTests" time="0.001"/>
+  <testcase name="TestGameDataSetScore" classname="group24.piazzapanic.tests.GameDataTests" time="0.0"/>
+  <testcase name="TestGameDataAddMoney" classname="group24.piazzapanic.tests.GameDataTests" time="0.002"/>
+  <testcase name="TestGameDataAddScore" classname="group24.piazzapanic.tests.GameDataTests" time="0.004"/>
+  <testcase name="TestAddReputation" classname="group24.piazzapanic.tests.GameDataTests" time="0.001"/>
+  <testcase name="TestSetReputation" classname="group24.piazzapanic.tests.GameDataTests" time="0.0"/>
+  <testcase name="TestLoseReputation" classname="group24.piazzapanic.tests.GameDataTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

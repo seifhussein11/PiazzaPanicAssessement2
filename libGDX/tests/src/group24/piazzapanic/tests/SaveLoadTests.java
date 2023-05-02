@@ -69,17 +69,7 @@ public class SaveLoadTests {
         customer2.timeLimit = 40;
         customer3.timeLimit = 60;
 
-//        customer.order = new Dish();
-//        customer1.order = Mockito.mock(Dish.class);
-//        customer2.order = Mockito.mock(Dish.class);
-//        customer3.order = Mockito.mock(Dish.class);
 
-//        Mockito.when(customer1.getOrderString()).thenReturn("burger");
-//        Mockito.when(customer2.getOrderString()).thenReturn("pizza");
-//        Mockito.when(customer3.getOrderString()).thenReturn("salad");
-//        Mockito.when(customer1.remainingTime()).thenReturn(20F);
-//        Mockito.when(customer2.remainingTime()).thenReturn(30F);
-//        Mockito.when(customer3.remainingTime()).thenReturn(40F);
         gameData.customers.add(customer);
         gameData.customers.add(customer1);
         gameData.customers.add(customer2);

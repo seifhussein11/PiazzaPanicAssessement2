@@ -37,7 +37,7 @@ public class Dish extends ImageMovable {
             Arrays.asList(BURGER, SALAD, PIZZA, JACKET_POTATO));
     public ArrayList<Ingredient> Ingredients = new ArrayList<>();
     /** Stores the dish's recipe. */
-    private  ArrayList<Ingredient> recipe;
+    public ArrayList<Ingredient> recipe;
     /** Stores the dish's current progress towards completion. */
     public boolean complete;
 
@@ -154,7 +154,7 @@ public class Dish extends ImageMovable {
      * in players inventory alongside the dish.
      * @return True if the recipe is complete, false otherwise.
      */
-    private boolean checkComplete() {
+    public boolean checkComplete() {
         if (this.Ingredients.size() != 0 && this.recipe.size() != 0) {
             for (Ingredient i : recipe) {
                 if (!this.Ingredients.contains(i)) {

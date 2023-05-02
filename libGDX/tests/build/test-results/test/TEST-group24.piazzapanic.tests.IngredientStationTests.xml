@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="group24.piazzapanic.tests.IngredientStationTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-05-02T22:55:46" hostname="nas-10-240-145-222.york.ac.uk" time="0.131">
+  <properties/>
+  <testcase name="TestPlaceItem" classname="group24.piazzapanic.tests.IngredientStationTests" time="0.002"/>
+  <testcase name="TestIsEqual" classname="group24.piazzapanic.tests.IngredientStationTests" time="0.075"/>
+  <testcase name="getIngredientStationAsset" classname="group24.piazzapanic.tests.IngredientStationTests" time="0.001"/>
+  <testcase name="TestTakeItem" classname="group24.piazzapanic.tests.IngredientStationTests" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

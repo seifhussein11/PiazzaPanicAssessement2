@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="group24.piazzapanic.tests.AssetTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-04-15T16:48:08" hostname="DESKTOP-SLAQSD4" time="0.037">
+<testsuite name="group24.piazzapanic.tests.AssetTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-05-02T22:55:45" hostname="nas-10-240-145-222.york.ac.uk" time="0.032">
   <properties/>
-  <testcase name="testCustomersAssetsExists" classname="group24.piazzapanic.tests.AssetTests" time="0.003"/>
-  <testcase name="testFloorAssetExists" classname="group24.piazzapanic.tests.AssetTests" time="0.001"/>
-  <testcase name="testIngredientsAssetsExists" classname="group24.piazzapanic.tests.AssetTests" time="0.003"/>
+  <testcase name="testCustomersAssetsExists" classname="group24.piazzapanic.tests.AssetTests" time="0.004"/>
+  <testcase name="testFloorAssetExists" classname="group24.piazzapanic.tests.AssetTests" time="0.0"/>
+  <testcase name="testIngredientsAssetsExists" classname="group24.piazzapanic.tests.AssetTests" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

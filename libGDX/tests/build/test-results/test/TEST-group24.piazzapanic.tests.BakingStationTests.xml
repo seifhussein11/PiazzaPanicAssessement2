@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="group24.piazzapanic.tests.BakingStationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-02T22:55:45" hostname="nas-10-240-145-222.york.ac.uk" time="0.473">
+  <properties/>
+  <testcase name="TestBakingStationInteract" classname="group24.piazzapanic.tests.BakingStationTests" time="0.473"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

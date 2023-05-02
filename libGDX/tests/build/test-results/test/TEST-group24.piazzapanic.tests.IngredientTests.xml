@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="group24.piazzapanic.tests.IngredientTests" tests="10" skipped="0" failures="0" errors="0" timestamp="2023-05-02T22:55:47" hostname="nas-10-240-145-222.york.ac.uk" time="0.232">
+  <properties/>
+  <testcase name="TestIngredientGetBakingProgress" classname="group24.piazzapanic.tests.IngredientTests" time="0.001"/>
+  <testcase name="TestIngredientCut" classname="group24.piazzapanic.tests.IngredientTests" time="0.002"/>
+  <testcase name="TestIngredientFry" classname="group24.piazzapanic.tests.IngredientTests" time="0.002"/>
+  <testcase name="TestIngredientEquals" classname="group24.piazzapanic.tests.IngredientTests" time="0.001"/>
+  <testcase name="TestIngredientIdenticalTo" classname="group24.piazzapanic.tests.IngredientTests" time="0.002"/>
+  <testcase name="TestIngredientBake" classname="group24.piazzapanic.tests.IngredientTests" time="0.003"/>
+  <testcase name="TestIngredientBurn" classname="group24.piazzapanic.tests.IngredientTests" time="0.001"/>
+  <testcase name="TestIngredientGetFryingProgress" classname="group24.piazzapanic.tests.IngredientTests" time="0.0"/>
+  <testcase name="TestIngredientConstructer" classname="group24.piazzapanic.tests.IngredientTests" time="0.079"/>
+  <testcase name="TestIngredientGetCuttingProgress" classname="group24.piazzapanic.tests.IngredientTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

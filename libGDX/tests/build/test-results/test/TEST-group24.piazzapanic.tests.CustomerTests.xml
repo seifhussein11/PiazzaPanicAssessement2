@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="group24.piazzapanic.tests.CustomerTests" tests="8" skipped="0" failures="0" errors="0" timestamp="2023-05-02T22:55:46" hostname="nas-10-240-145-222.york.ac.uk" time="0.141">
+  <properties/>
+  <testcase name="TestFulfillOrder2" classname="group24.piazzapanic.tests.CustomerTests" time="0.021"/>
+  <testcase name="TestOutOfTime" classname="group24.piazzapanic.tests.CustomerTests" time="0.003"/>
+  <testcase name="TestCustomerConstructer" classname="group24.piazzapanic.tests.CustomerTests" time="0.01"/>
+  <testcase name="TestCustomerFulfillOrder" classname="group24.piazzapanic.tests.CustomerTests" time="0.006"/>
+  <testcase name="TestAct" classname="group24.piazzapanic.tests.CustomerTests" time="0.002"/>
+  <testcase name="TestCustomerGetOrder" classname="group24.piazzapanic.tests.CustomerTests" time="0.002"/>
+  <testcase name="TestGetOrderString" classname="group24.piazzapanic.tests.CustomerTests" time="0.005"/>
+  <testcase name="TestSetTimeLimit" classname="group24.piazzapanic.tests.CustomerTests" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

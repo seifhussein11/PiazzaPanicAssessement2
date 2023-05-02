@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="group24.piazzapanic.tests.PowerTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-02T22:55:47" hostname="nas-10-240-145-222.york.ac.uk" time="0.033">
+  <properties/>
+  <testcase name="TestPowerUp" classname="group24.piazzapanic.tests.PowerTests" time="0.033"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="group24.piazzapanic.tests.Vector2Tests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-05-02T22:55:48" hostname="nas-10-240-145-222.york.ac.uk" time="0.051">
+  <properties/>
+  <testcase name="TestGetAbsoluteX" classname="group24.piazzapanic.tests.Vector2Tests" time="0.0"/>
+  <testcase name="TestGetAbsoluteY" classname="group24.piazzapanic.tests.Vector2Tests" time="0.0"/>
+  <testcase name="TestGridUnitTranslateDouble" classname="group24.piazzapanic.tests.Vector2Tests" time="0.0"/>
+  <testcase name="TestGridUnitTranslate" classname="group24.piazzapanic.tests.Vector2Tests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

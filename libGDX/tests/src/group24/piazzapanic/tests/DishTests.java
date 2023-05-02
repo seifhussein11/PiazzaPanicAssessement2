@@ -33,6 +33,15 @@ public class DishTests {
         Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);
         IngredientType ingredientType5 = new IngredientType("bread");
         Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);
+        IngredientType ingredientType6 = new IngredientType("dough");
+        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);
+        IngredientType ingredientType7 = new IngredientType("cheese");
+        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);
+        IngredientType ingredientType8 = new IngredientType("sauce");
+        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);
+        IngredientType ingredientType9 = new IngredientType("potato");
+        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);
+
 
         Dish dish = new Dish();
         ingredientLettuce.cut();
@@ -67,6 +76,14 @@ public class DishTests {
         assertFalse(dish2.addIngredient(ingredientTomato));
         assertFalse(dish2.addIngredient(ingredientOnion));
         assertTrue(dish2.addIngredient(ingredientBread));
+        dish2.addIngredient(ingredientBread);
+        assertFalse(dish2.addIngredient(ingredientBread));
+
+
+
+
+
+
     }
 
     @Test
@@ -93,7 +110,7 @@ public class DishTests {
         IngredientType ingredientType8 = new IngredientType("sauce");
         Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);
         IngredientType ingredientType9 = new IngredientType("potato");
-        Ingredient ingredientPotato = new Ingredient(ingredientType8,-1,0,-1);
+        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);
 
         Dish dish1 = new Dish();
         dish1.Ingredients = new ArrayList<Ingredient>();
@@ -142,6 +159,10 @@ public class DishTests {
         assertFalse(dish4.isComplete());
         dish4.addIngredient(ingredientPotato);
         assertTrue(dish4.isComplete());
+
+
+
+
     }
 
     @Test
@@ -167,7 +188,7 @@ public class DishTests {
         IngredientType ingredientType8 = new IngredientType("sauce");
         Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);
         IngredientType ingredientType9 = new IngredientType("potato");
-        Ingredient ingredientPotato = new Ingredient(ingredientType8,-1,0,-1);
+        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);
 
 
 
@@ -231,7 +252,7 @@ public class DishTests {
         IngredientType ingredientType8 = new IngredientType("sauce");
         Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);
         IngredientType ingredientType9 = new IngredientType("potato");
-        Ingredient ingredientPotato = new Ingredient(ingredientType8,-1,0,-1);
+        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);
 
 
 
@@ -258,8 +279,213 @@ public class DishTests {
 
         assertEquals("Error",dish5.getRecipe());
 
+    }
+
+    @Test
+    public void TestCheckComplete(){
+        GameData gameData = Mockito.mock(GameData.class);
+        Texture texture = Mockito.mock(Texture.class);
+        gameData.errorTexture = texture;
+        gameData.dishTexture = texture;
+        IngredientType ingredientType1 = new IngredientType("lettuce");
+        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);
+        IngredientType ingredientType2 = new IngredientType("tomato");
+        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);
+        IngredientType ingredientType3 = new IngredientType("onion");
+        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);
+        IngredientType ingredientType4 = new IngredientType("meat");
+        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);
+        IngredientType ingredientType5 = new IngredientType("bread");
+        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);
+        IngredientType ingredientType6 = new IngredientType("dough");
+        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);
+        IngredientType ingredientType7 = new IngredientType("cheese");
+        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);
+        IngredientType ingredientType8 = new IngredientType("sauce");
+        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);
+        IngredientType ingredientType9 = new IngredientType("potato");
+        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);
+
+        Dish dish1 = new Dish();
+        dish1.Ingredients = new ArrayList<Ingredient>();
+        dish1.SALAD_RECIPE.set(0,ingredientOnion);
+        dish1.SALAD_RECIPE.set(1,ingredientLettuce);
+        dish1.SALAD_RECIPE.set(2,ingredientTomato);
+
+        dish1.Ingredients.add(ingredientLettuce);
+        dish1.Ingredients.add(ingredientOnion);
+        dish1.Ingredients.add(ingredientTomato);
+        dish1.recipe = new ArrayList<Ingredient>();
+        dish1.recipe.add(ingredientLettuce);
+        dish1.recipe.add(ingredientOnion);
+        dish1.recipe.add(ingredientTomato);
+        assertTrue(dish1.checkComplete());
+        assertTrue(dish1.Ingredients.size()==0);
+
+        Dish dish2 = new Dish();
+        dish2.Ingredients = new ArrayList<Ingredient>();
+        dish2.BURGER_RECIPE.set(0,ingredientBread);
+        dish2.BURGER_RECIPE.set(1,ingredientBurger);
+        dish2.BURGER_RECIPE.set(2,ingredientLettuce);
+
+        dish2.Ingredients.add(ingredientBread);
+        dish2.Ingredients.add(ingredientBurger);
+        dish2.Ingredients.add(ingredientLettuce);
+        dish2.recipe = new ArrayList<Ingredient>();
+        assertFalse(dish2.checkComplete());
+        dish2.recipe.add(ingredientLettuce);
+        dish2.recipe.add(ingredientBread);
+        dish2.recipe.add(ingredientBurger);
+        assertTrue(dish2.checkComplete());
+        assertTrue(dish2.Ingredients.size()==0);
+
+        Dish dish3 = new Dish();
+        dish3.Ingredients = new ArrayList<Ingredient>();
+        dish3.PIZZA_RECIPE.set(0,ingredientDough);
+        dish3.PIZZA_RECIPE.set(1,ingredientSauce);
+        dish3.PIZZA_RECIPE.set(2,ingredientCheese);
+
+        dish3.recipe = new ArrayList<Ingredient>();
+        dish3.recipe.add(ingredientDough);
+        dish3.recipe.add(ingredientSauce);
+        dish3.recipe.add(ingredientCheese);
+        assertFalse(dish3.checkComplete());
+        dish3.Ingredients.add(ingredientDough);
+        dish3.Ingredients.add(ingredientSauce);
+        dish3.Ingredients.add(ingredientCheese);
+
+
+
+        assertTrue(dish3.checkComplete());
+        assertTrue(dish3.Ingredients.size()==0);
+
+        Dish dish4 = new Dish();
+        dish4.Ingredients = new ArrayList<Ingredient>();
+        dish4.JACKET_POTATO_RECIPE.set(0,ingredientPotato);
+        dish4.JACKET_POTATO_RECIPE.set(1,ingredientCheese);
+
+
+        dish4.Ingredients.add(ingredientPotato);
+        dish4.Ingredients.add(ingredientCheese);
+
+        dish4.recipe = new ArrayList<Ingredient>();
+        dish4.recipe.add(ingredientCheese);
+        dish4.recipe.add(ingredientPotato);
+        assertTrue(dish4.checkComplete());
+        assertTrue(dish4.Ingredients.size()==0);
+
+
 
     }
+
+
+//    @Test
+//    public void TestSetRecipe(){
+//        GameData gameData1 = Mockito.mock(GameData.class);
+//        Texture texture11 = Mockito.mock(Texture.class);
+//        gameData1.errorTexture = texture11;
+//        gameData1.dishTexture = texture11;
+//        IngredientType ingredientType1 = new IngredientType("lettuce");
+//        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);
+//        IngredientType ingredientType2 = new IngredientType("tomato");
+//        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);
+//        IngredientType ingredientType3 = new IngredientType("onion");
+//        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);
+//        IngredientType ingredientType4 = new IngredientType("meat");
+//        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);
+//        IngredientType ingredientType5 = new IngredientType("bread");
+//        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);
+//        IngredientType ingredientType6 = new IngredientType("dough");
+//        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);
+//        IngredientType ingredientType7 = new IngredientType("cheese");
+//        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);
+//        IngredientType ingredientType8 = new IngredientType("sauce");
+//        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);
+//        IngredientType ingredientType9 = new IngredientType("potato");
+//        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);
+//
+//        gameData1.BURGER_BUN=ingredientBread;
+//        gameData1.BURGER=ingredientBurger;
+//        gameData1.CHOPPED_LETTUCE=ingredientLettuce;
+//        gameData1.CHOPPED_ONION=ingredientOnion;
+//        gameData1.CHOPPED_TOMATO=ingredientTomato;
+//        gameData1.BAKED_DOUGH=ingredientDough;
+//        gameData1.PIZZA_SAUCE=ingredientSauce;
+//        gameData1.CHEESE = ingredientCheese;
+//        gameData1.BAKED_POTATO=ingredientPotato;
+//
+//
+//        ArrayList<Ingredient> currentIngredientsB = new ArrayList<Ingredient>();
+//        currentIngredientsB.add(gameData1.CHOPPED_LETTUCE);
+//        currentIngredientsB.add(gameData1.BURGER_BUN);
+//        currentIngredientsB.add(gameData1.BURGER);
+//
+//        ArrayList<Ingredient> currentIngredientsS = new ArrayList<Ingredient>();
+//        currentIngredientsS.add(gameData1.CHOPPED_LETTUCE);
+//        currentIngredientsS.add(gameData1.CHOPPED_TOMATO);
+//        currentIngredientsS.add(gameData1.CHOPPED_ONION);
+//
+//        ArrayList<Ingredient> currentIngredientsP = new ArrayList<Ingredient>();
+//        currentIngredientsP.add(gameData1.PIZZA_SAUCE);
+//        currentIngredientsP.add(gameData1.CHEESE);
+//        currentIngredientsP.add(gameData1.BAKED_DOUGH);
+//
+//        ArrayList<Ingredient> currentIngredientsJ = new ArrayList<Ingredient>();
+//        currentIngredientsJ.add(gameData1.BAKED_POTATO);
+//        currentIngredientsJ.add(gameData1.CHEESE);
+//
+//        ArrayList<Ingredient> currentIngredientsPJ = new ArrayList<Ingredient>();
+//        currentIngredientsPJ.add(gameData1.CHEESE);
+//
+//        ArrayList<Ingredient> currentIngredientsBS = new ArrayList<Ingredient>();
+//        currentIngredientsBS.add(gameData1.CHOPPED_LETTUCE);
+//
+//        ArrayList<Ingredient> currentIngredientsErr = new ArrayList<Ingredient>();
+//        currentIngredientsErr.add(gameData1.PIZZA_SAUCE);
+//        currentIngredientsErr.add(gameData1.CHEESE);
+//        currentIngredientsErr.add(gameData1.BAKED_POTATO);
+//
+//        Dish dish8 = new Dish();
+//        assertTrue(dish8.setRecipe(currentIngredientsB));
+//        dish8.setRecipe(currentIngredientsB);
+//        assertEquals(dish8.BURGER_RECIPE,dish8.recipe);
+//
+//        Dish dish9 = new Dish();
+//        assertTrue(dish9.setRecipe(currentIngredientsS));
+//        dish9.setRecipe(currentIngredientsS);
+//        assertEquals(dish9.SALAD_RECIPE,dish9.recipe);
+//
+//        Dish dish10 = new Dish();
+//        assertTrue(dish10.setRecipe(currentIngredientsP));
+//        dish10.setRecipe(currentIngredientsP);
+//        assertEquals(dish10.PIZZA_RECIPE,dish10.recipe);
+//
+//        Dish dish11 = new Dish();
+//        assertTrue(dish11.setRecipe(currentIngredientsJ));
+//        dish11.setRecipe(currentIngredientsJ);
+//        assertEquals(dish11.JACKET_POTATO_RECIPE,dish11.recipe);
+//
+//        Dish dish12 = new Dish();
+//        assertFalse(dish12.setRecipe(currentIngredientsErr));
+//
+//        Dish dish13 = new Dish();
+//        dish13.recipe=null;
+//        assertTrue(dish13.setRecipe(currentIngredientsBS));
+//        dish13.setRecipe(currentIngredientsBS);
+//        assertEquals(null,dish13.recipe);
+//
+//        Dish dish14 = new Dish();
+//        dish14.recipe=null;
+//        assertTrue(dish14.setRecipe(currentIngredientsPJ));
+//        dish14.setRecipe(currentIngredientsPJ);
+//        assertEquals(null,dish14.recipe);
+//
+//
+//    }
+//
+
+
+
 
 
 
