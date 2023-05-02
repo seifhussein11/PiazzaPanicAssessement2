@@ -37,17 +37,17 @@ public class ImageMovable extends Image implements Movable {
 
 
     /** Not implemented. */
-    @Override
-    public void actItem(float delta) {
-
-    }
+//    @Override
+//    public void actItem(float delta) {
+//
+//    }
 
     /** Draw the image. */
-    @Override
-    public void drawItem(int x, int y) {
-        Base.batch.draw(texture, x, y);
-
-    }
+//    @Override
+//    public void drawItem(int x, int y) {
+//        Base.batch.draw(texture, x, y);
+//
+//    }
 
     /** Return the {@link Ingredient} that this image represents. */
     @Override
