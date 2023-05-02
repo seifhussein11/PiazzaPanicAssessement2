@@ -60,7 +60,7 @@ public class FryingStation extends Station {
             System.out.println("the item is burnt..."); //new
             return; // The item is already fried, don't go any further.
         }
-        if (super.item.getIngredient().getFryingProgress() == 2) { // The item is already fried.
+        if (super.item.getIngredient().getFryingProgress() == 1) { // The item is already fried.
             System.out.println("the item is already fried..."); //new
             return; // The item is already fried, don't go any further.
         }

@@ -195,11 +195,7 @@ public class Ingredient extends ImageMovable {
                 break;
             case "meat":
                 this.bakingProgress = -1;
-                if (this.fryingProgress == 1) {
-                    this.texture = GameData.halfFriedMeatTexture;
-                } else {
-                    this.texture = GameData.friedMeatTexture;
-                }
+                this.texture = GameData.friedMeatTexture;
                 break;
             case "sauce":
                 this.texture = GameData.rawSauceTexture;

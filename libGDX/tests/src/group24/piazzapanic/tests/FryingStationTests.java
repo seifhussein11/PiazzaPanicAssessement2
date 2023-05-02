@@ -82,7 +82,7 @@ public class FryingStationTests {
         assertEquals(3,gameData.money,0.00001);
 
         // available and money more than cost and super item frying process is 2
-        Ingredient ingredient2= new Ingredient(ingredientType,-1,-1,2);
+        Ingredient ingredient2= new Ingredient(ingredientType,-1,-1,1);
         fryingStation.item = ingredient2;
         ByteArrayOutputStream output5 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output5));
@@ -215,15 +215,13 @@ public class FryingStationTests {
         fryingStation.done=true;
         fryingStation.timeKeyHeld=2;
         fryingStation.interact(1);
-        assertEquals("frying is done..."+System.lineSeparator(), output13.toString());
-        assertEquals(2,ingredient0.getFryingProgress(),0.00001);
+        assertEquals("the item is already fried..."+System.lineSeparator(), output13.toString());
+        assertEquals(1,ingredient0.getFryingProgress(),0.00001);
         assertEquals(-1,ingredient0.getBakingProgress(),0.00001);
-        assertFalse(fryingStation.done);
-        assertFalse(fryingStation.act);
-        assertEquals(0,fryingStation.timeKeyHeld,0.00001);
+        assertEquals(2,fryingStation.timeKeyHeld,0.00001);
         assertNotEquals("item has been burnt whilst frying..."+System.lineSeparator(), output13.toString());
         assertNotEquals("the item is burnt..."+System.lineSeparator(), output13.toString());
-        assertNotEquals("the item is already fried..."+System.lineSeparator(), output13.toString());
+        assertNotEquals("the frying is done..."+System.lineSeparator(), output13.toString());
         assertNotEquals("no item to fry..."+System.lineSeparator(), output13.toString());
         // available and money less and super item frying process is 0 and time held key > 3 and act is not pressed and done is true and act is false
         ByteArrayOutputStream output14 = new ByteArrayOutputStream();
@@ -232,7 +230,7 @@ public class FryingStationTests {
         fryingStation.act = false;
         fryingStation.done=true;
         fryingStation.timeKeyHeld=3;
-        Ingredient ingredient1 = new Ingredient(ingredientType,-1,-1,1);
+        Ingredient ingredient1 = new Ingredient(ingredientType,-1,-1,0);
         fryingStation.item = ingredient1;
         fryingStation.interact(1);
         assertEquals("item has been burnt whilst frying"+System.lineSeparator(), output14.toString());
