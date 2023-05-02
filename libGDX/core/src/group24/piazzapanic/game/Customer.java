@@ -122,6 +122,7 @@ public class Customer extends StageAnimation {
         GameData.customers.remove(this);
         this.remove();
         GameData.gameLoop.resortCustomers();
+        GameLoop.served_customers += 1;
     }
 
     public void outOfTime() {

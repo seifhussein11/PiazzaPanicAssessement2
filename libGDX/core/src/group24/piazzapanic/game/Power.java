@@ -7,17 +7,17 @@ public class Power {
     public static void up(int x){
         switch (x){
             case 1:
-                GameData.addScore(1);
+                GameData.addScore(1); //adds score
             case 2:
-                GameData.addMoney(5);
+                GameData.addMoney(5); //adds money
             case 3:
-                GameData.addReputation(1);
+                GameData.addReputation(1); //adds reputation
             case 4:
-                Player.acceleration = 50;
+                GameData.sinceLastSpawn = 0; // slows down customer spawn
             case 5:
                 if(!GameData.customers.isEmpty()) {
                     Customer c = GameData.customers.get(0);
-                    c.fulfillOrder();
+                    c.fulfillOrder(); //fulfills the current order
                 }
         }
     }

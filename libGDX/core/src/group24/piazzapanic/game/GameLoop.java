@@ -50,7 +50,8 @@ public class GameLoop extends Stage {
 
     public int maxCustomers = StageFactory.scenarioCustomerAmount; //maximum number of customers to appear
     public int totalCustomers; //number of customers spawned so far
-
+    /** counter of customers for power ups */
+    public static int served_customers = 0;
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
      */
@@ -275,8 +276,12 @@ public class GameLoop extends Stage {
             }
         }
         if (Gdx.input.isKeyJustPressed(Base.POWERUP_KEY)) {
-            Power.up(ThreadLocalRandom.current().nextInt(1, 6));
-            System.out.println(ThreadLocalRandom.current().nextInt(1, 6));
+            if(served_customers >= 3){
+                served_customers = 0;
+                Power.up(ThreadLocalRandom.current().nextInt(1, 6));
+                System.out.println(ThreadLocalRandom.current().nextInt(1, 6));
+            }
+
         }
         if (GameData.score == this.maxCustomers && maxCustomers != 0 && !StageFactory.endlessModeEnabled) {
             StageManager.setActiveStage("GameWin");
@@ -400,5 +405,6 @@ public class GameLoop extends Stage {
                         Base.tile_pixel_width / 2);
             }
         }
+
     }
 }
