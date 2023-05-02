@@ -1,17 +1,9 @@
 package group24.piazzapanic;
 
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import group24.piazzapanic.game.Player;
-import group24.piazzapanic.levelElements.Ingredient;
-import group24.piazzapanic.levelElements.IngredientType;
-import group24.piazzapanic.ui.StageAnimation;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Scanner;
 
 /** Core values like screen size, that will need to access, but nothing will need to modify.
@@ -21,7 +13,7 @@ public class Base {
 
     public static final boolean DEBUG = false;
     /** The path to the config file. */
-    public static String CONFIG_PATH = "config.txt";
+    public static String CONFIG_PATH = "/Users/seifarram/Documents/GitHub/PiazzaPanicAssessement2/libGDX/core/src/group24/piazzapanic/config.txt";
     /** The window width */
     public static int WINDOW_WIDTH = 100;
     /** The window height */
@@ -62,9 +54,9 @@ public class Base {
     /** The pause keybind. */
     public static final int PAUSE_KEY = Keys.ESCAPE;
     /** The save keybind. */
-    public static final int SAVE_KEY = Keys.F6;
+    public static final int SAVE_KEY = Keys.NUM_6;
     /** The load keybind. */
-    public static final int LOAD_KEY = Keys.F7;
+    public static final int LOAD_KEY = Keys.NUM_7;
 
     /** The powerup keybind. */
     public static final int POWERUP_KEY = Keys.X;

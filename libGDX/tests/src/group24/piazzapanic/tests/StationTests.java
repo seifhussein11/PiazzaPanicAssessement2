@@ -1,7 +1,9 @@
 package group24.piazzapanic.tests;
 
 import com.badlogic.gdx.graphics.Texture;
+import group24.piazzapanic.Physics.Movable;
 import group24.piazzapanic.game.GameData;
+import group24.piazzapanic.game.Player;
 import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.levelElements.Ingredient;
 import group24.piazzapanic.levelElements.stations.Station;
@@ -71,6 +73,42 @@ public class StationTests {
         assertNull(station.item);
         station.item=null;
         assertNull(station.takeItem());
+    }
+
+    @Test
+    public void TestStationIsEquals(){
+        Texture texture1 = Mockito.mock(Texture.class);
+        Texture texture2 = Mockito.mock(Texture.class);
+        Movable item1 = Mockito.mock(Movable.class);
+        Movable item2 = Mockito.mock(Movable.class);
+        Station station1 = new Station(texture1);
+        Station station2 = new Station(texture1);
+        Station station3 = new Station(texture2);
+        Player player = new Player(0,0,null);
+        station3.item=item1;
+        station3.available=1;
+        station1.item = item1;
+        station2.item = item1;
+        station1.available=1;
+        station2.available=1;
+        assertTrue(station1.isEqual(station2));
+        station2.item = item2;
+        assertFalse(station1.isEqual(station2));
+        assertFalse(station1.isEqual(station3));
+        station2.available=0;
+        station2.item = item1;
+        assertFalse((station1.isEqual(station2)));
+        assertFalse(station1.isEqual(player));
+
+
+    }
+
+    @Test
+    public void TestStationConstructerGridXY(){
+        Station station = new Station(7,5);
+        assertEquals(7,station.getGridX());
+        assertEquals(5,station.getGridY());
+
     }
 
 

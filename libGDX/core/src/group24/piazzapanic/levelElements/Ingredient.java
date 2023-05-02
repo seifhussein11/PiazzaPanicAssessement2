@@ -276,16 +276,16 @@ public class Ingredient extends ImageMovable {
      * Get the ingredient's baking progress.
      * @return an Integer of the baking progress
      */
-    public void SetCuttingProgress(Integer progress) { // new
-        this.cuttingProgress = progress;
-    }
+//    public void SetCuttingProgress(Integer progress) { // new
+//        this.cuttingProgress = progress;
+//    }
     public Integer getBakingProgress() {
         return this.bakingProgress;
     }
 
-    public void SetBakingProgress(Integer progress) { // new
-        this.bakingProgress = progress;
-    }
+//    public void SetBakingProgress(Integer progress) { // new
+//        this.bakingProgress = progress;
+//    }
 
     /**
      * Get the ingredient's frying progress.
@@ -295,9 +295,9 @@ public class Ingredient extends ImageMovable {
         return this.fryingProgress;
     }
 
-    public void SetFryingProgress(Integer progress) { // new
-        this.fryingProgress = progress;
-    }
+//    public void SetFryingProgress(Integer progress) { // new
+//        this.fryingProgress = progress;
+//    }
 
     /**
      * Check if Ingredients have identical types and cutting/baking/frying progresses

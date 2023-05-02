@@ -8,6 +8,7 @@ import group24.piazzapanic.Base;
 import group24.piazzapanic.levelElements.Dish;
 import group24.piazzapanic.ui.FontHandler;
 import group24.piazzapanic.ui.StageAnimation;
+import group24.piazzapanic.ui.StageFactory;
 
 /**
  * The customer class represents a customer in the game.
@@ -30,7 +31,7 @@ public class Customer extends StageAnimation {
     /**
      * The order for the customer, a {@link Dish}
      */
-    private Dish order;
+    public Dish order;
     /**
      * The text for the customer's order
      */
@@ -38,12 +39,12 @@ public class Customer extends StageAnimation {
     /**
      * The texture for the customer's order
      */
-    private Texture orderTexture; //temporary
+    public Texture orderTexture; //temporary
 
     /**
      * The time limit for the customer's order to be filled.
      */
-    private float timeLimit;
+    public float timeLimit;
 
     /**
      * The text bubble for the customer
@@ -57,7 +58,7 @@ public class Customer extends StageAnimation {
         super(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size())), 6, 6, 1,
                 20, 20, entityWidth, entityHeight);
         //        timeLimit = 30f;
-        this.timeLimit = 60;
+        this.timeLimit = setTimeLimit();
         LabelStyle style = new LabelStyle();
         style.font = FontHandler.subtitleFormat;
         style.fontColor = Color.WHITE;
@@ -170,9 +171,22 @@ public class Customer extends StageAnimation {
         return this.order;
     }
 
-    protected String getOrderString() { return this.order.getRecipe();}
+    public String getOrderString() { return this.order.getRecipe();}
 
-    protected float remainingTime() { return this.timeLimit; }
+    public float remainingTime() { return this.timeLimit; }
+
+    public static float setTimeLimit() {
+        float difficulty = StageFactory.difficultyVal;
+        switch ((int) difficulty) {
+            case 0:
+                return 100;
+            case 1:
+                return 80;
+            case 2:
+                return 60;
+        }
+        return 80;
+    }
 
     @Override
     public void act(float delta) {

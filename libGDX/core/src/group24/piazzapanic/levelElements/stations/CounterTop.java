@@ -2,7 +2,6 @@ package group24.piazzapanic.levelElements.stations;
 
 import com.badlogic.gdx.graphics.Texture;
 import group24.piazzapanic.Physics.Movable;
-import group24.piazzapanic.game.GameData;
 
 import java.util.ArrayList;
 
@@ -26,9 +25,9 @@ public class CounterTop extends Station {
      * Creates a new counter top with an Item.
      * @param item A {@link Movable} to be placed on the counter top
      */
-    public CounterTop(Movable item) {
-        super(GameData.counterTopTexture);
-        this.items.add(item);
-    }
+//    public CounterTop(Movable item) {
+//        super(GameData.counterTopTexture);
+//        this.items.add(item);
+//    }
 
 }

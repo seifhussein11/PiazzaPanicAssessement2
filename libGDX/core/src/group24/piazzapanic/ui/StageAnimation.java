@@ -14,7 +14,7 @@ import group24.piazzapanic.maths.Vector2;
  */
 public class StageAnimation extends Actor {
     /** An object taking frames from animationSheet then animating them (render from this).*/
-    Animation<TextureRegion> animation;
+    public Animation<TextureRegion> animation;
     /** The picture with frames layed out from a PNG. */
     Texture animationSheet;
     /** Time progress through the animation, in seconds. */

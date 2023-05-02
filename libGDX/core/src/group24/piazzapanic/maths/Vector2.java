@@ -1,7 +1,6 @@
 package group24.piazzapanic.maths;
 
 import group24.piazzapanic.Base;
-import group24.piazzapanic.game.GameData;
 
 /**
  * This class is a simple 2D vector class. It uses doubles so can store non-integers. Do not use
@@ -96,10 +95,10 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
      * @param gridX The x position of a given cell in the grid.
      * @param gridY The y position of a given cell in the grid.
      */
-    public void gridUnitTranslateInplace(float gridX, float gridY) {
-        this.x = (gridX * Base.TILE_GRID_UNIT);
-        this.y = (gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
-    }
+//    public void gridUnitTranslateInplace(float gridX, float gridY) {
+//        this.x = (gridX * Base.TILE_GRID_UNIT);
+//        this.y = (gridY * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
+//    }
 
     /**
      * Convert grid units to on screen positions inlcuding offset.
@@ -107,12 +106,12 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
      * @param gridY the grid Y coordinates
      * @return The on-screen position including offset
      */
-    public static Vector2 worldUnitTranslate(float gridX, float gridY) {
-        Vector2 pos = gridUnitTranslate(gridX, gridY);
-        pos.x += GameData.offsetX;
-        pos.y += GameData.offsetY;
-        return pos;
-    }
+//    public static Vector2 worldUnitTranslate(float gridX, float gridY) {
+//        Vector2 pos = gridUnitTranslate(gridX, gridY);
+//        pos.x += GameData.offsetX;
+//        pos.y += GameData.offsetY;
+//        return pos;
+//    }
 
     /**
      * Convert grid units to on screen positions inlcuding offset.
@@ -120,10 +119,10 @@ public class Vector2 extends com.badlogic.gdx.math.Vector2 {
      * @param gridY The grid Y coordinates
      * @return The on-screen position including offset
      */
-    public static Vector2 worldUnitTranslate(Double gridX, Double gridY) {
-        Vector2 pos = gridUnitTranslate(gridX, gridY);
-        pos.x += GameData.offsetX / (double) Base.WINDOW_WIDTH;
-        pos.y += GameData.offsetY / (double) Base.WINDOW_HEIGHT;
-        return pos;
-    }
+//    public static Vector2 worldUnitTranslate(Double gridX, Double gridY) {
+//        Vector2 pos = gridUnitTranslate(gridX, gridY);
+//        pos.x += GameData.offsetX / (double) Base.WINDOW_WIDTH;
+//        pos.y += GameData.offsetY / (double) Base.WINDOW_HEIGHT;
+//        return pos;
+//    }
 }

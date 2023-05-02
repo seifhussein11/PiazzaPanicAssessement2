@@ -5,7 +5,6 @@ import group24.piazzapanic.Physics.ImageMovable;
 import group24.piazzapanic.game.GameData;
 import group24.piazzapanic.levelElements.stations.Station;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -38,9 +37,9 @@ public class Dish extends ImageMovable {
             Arrays.asList(BURGER, SALAD, PIZZA, JACKET_POTATO));
     public ArrayList<Ingredient> Ingredients = new ArrayList<>();
     /** Stores the dish's recipe. */
-    private ArrayList<Ingredient> recipe;
+    private  ArrayList<Ingredient> recipe;
     /** Stores the dish's current progress towards completion. */
-    private boolean complete;
+    public boolean complete;
 
     /**
      * Initialise the Dish. Set its texture, size, completeness, and recipe.

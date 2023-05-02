@@ -167,12 +167,14 @@ public class Station extends Image {
 
     }
 
-    public void setGridX(int x){
-        this.gridX = x;
+    public int getGridX(){
+        return this.gridX;
     }
 
-    public void setGridY(int y){
-        this.gridY = y;
+    public int getGridY(){
+        return this.gridY;
     }
+
+
 
 }
