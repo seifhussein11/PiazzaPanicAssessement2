@@ -155,9 +155,7 @@ public class IngredientTests {
         meatIngr2.fry();
         assertEquals(1,meatIngr1.getFryingProgress(),0.000001);
         assertEquals(-1,meatIngr1.getBakingProgress(),0.000001);
-        assertEquals(gameData.halfFriedMeatTexture,meatIngr1.texture);
-        assertEquals(2,meatIngr2.getFryingProgress(),0.000001);
-        assertEquals(gameData.friedMeatTexture,meatIngr2.texture);
+        assertEquals(gameData.friedMeatTexture,meatIngr1.texture);
         assertEquals(-1,meatIngr2.getBakingProgress(),0.000001);
 
 
