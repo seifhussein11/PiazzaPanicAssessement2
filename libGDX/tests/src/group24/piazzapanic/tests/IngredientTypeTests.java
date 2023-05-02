@@ -32,9 +32,8 @@ public class IngredientTypeTests {
         assertFalse(ingredientType1.equals(tomato));
         assertFalse(ingredientType3.equals(player));
 
-        
-
     }
+
 
 
 
