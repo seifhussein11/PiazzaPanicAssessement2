@@ -91,7 +91,7 @@ public class SaveLoadTests {
         saveLoad.save();
         File file = new File("piazzaSave.txt");
         assertTrue(file.exists());
-        assertEquals("File already exists." +"\n"+
+        assertEquals("File already exists." +System.lineSeparator()+
                 "Successfully wrote to the file."+System.lineSeparator(), output1.toString());
         List<String> lines = Files.readAllLines(Paths.get("piazzaSave.txt"));
         assertEquals(lines.get(0),"// Chef data:");
