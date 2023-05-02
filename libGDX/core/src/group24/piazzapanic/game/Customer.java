@@ -116,6 +116,7 @@ public class Customer extends StageAnimation {
         GameData.gameLoop.resortCustomers();
         GameData.addScore(1);
         GameData.addMoney(5);
+        GameLoop.served_customers += 1;
     }
 
     public void fulfillOrder2() {

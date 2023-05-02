@@ -52,6 +52,10 @@ public class GameLoop extends Stage {
     public int totalCustomers; //number of customers spawned so far
     /** counter of customers for power ups */
     public static int served_customers = 0;
+    /** Powerup Label */
+    public Label activePowerup;
+    /** Powerup Notification Timer */
+    public float notificationTime = 0f;
     /**
      * GameLoop constructor, adds a score counter and sets up level data.
      */
@@ -122,6 +126,11 @@ public class GameLoop extends Stage {
         pos = new Vector2(0.05, 0.9); // Timer position.
         gameTimer.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomRight);
         this.addActor(gameTimer);
+
+        // Create powerup label
+        activePowerup = new Label("Error", style);
+        pos = new Vector2(0.15, 0.5);
+        activePowerup.setPosition(pos.getAbsoluteX(), pos.getAbsoluteY(), Align.bottomRight);
 
         //Create reputation counter
         LabelStyle reputation = new LabelStyle();
@@ -213,6 +222,7 @@ public class GameLoop extends Stage {
     @Override
     public void act(float delta) {
         GameData.gameTime += delta;
+        notificationTime += delta;
         Player.maxSpeed = Player.setSpeed();
 
         /** Instant complete customer order for debugging
@@ -231,7 +241,7 @@ public class GameLoop extends Stage {
         if (GameData.sinceLastSpawn >= 15) {
             // Creates 1 extra customer each time for every minute that has passed if in endless mode
             if (StageFactory.endlessModeEnabled) {
-                for (int i = 0; i <= Math.floor(GameData.gameTime / 60); i++) {
+                for (int i = 0; i <= Math.floor(GameData.gameTime / 120); i++) {
                     //Create new customer offset location.
                     Customer customer = new Customer();
                     customer.setX(GameData.customers.size() * (Customer.entityWidth + 30));
@@ -278,10 +288,15 @@ public class GameLoop extends Stage {
         if (Gdx.input.isKeyJustPressed(Base.POWERUP_KEY)) {
             if(served_customers >= 3){
                 served_customers = 0;
-                Power.up(ThreadLocalRandom.current().nextInt(1, 6));
-                System.out.println(ThreadLocalRandom.current().nextInt(1, 6));
+                notificationTime = 0;
+                Power.up(GameData.rand.nextInt(5));
+                System.out.println(GameData.rand.nextInt(5));
             }
 
+        }
+        if (notificationTime >= 3) {
+            this.activePowerup.remove();
+            notificationTime = 0;
         }
         if (GameData.score == this.maxCustomers && maxCustomers != 0 && !StageFactory.endlessModeEnabled) {
             StageManager.setActiveStage("GameWin");
