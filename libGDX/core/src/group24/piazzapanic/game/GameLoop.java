@@ -36,7 +36,6 @@ public class GameLoop extends Stage {
     public Label reputationCounter;
     /** Price labels */
     public Label fryingStationPrice;
-    /** Price labels */
     public Label cuttingStationPrice;
     public Label bakingStationPrice;
     private final Label gameTimer;
