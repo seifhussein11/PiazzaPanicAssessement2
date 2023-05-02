@@ -279,7 +279,7 @@ public class GameLoop extends Stage {
             Power.up(ThreadLocalRandom.current().nextInt(1, 6));
             System.out.println(ThreadLocalRandom.current().nextInt(1, 6));
         }
-        if (GameData.score == this.maxCustomers && maxCustomers != 0) {
+        if (GameData.score == this.maxCustomers && maxCustomers != 0 && !StageFactory.endlessModeEnabled) {
             StageManager.setActiveStage("GameWin");
         }
         if (GameData.reputation <= 0) {
