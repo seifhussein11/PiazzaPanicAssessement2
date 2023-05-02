@@ -323,7 +323,7 @@ public class Player extends Actor {
         return this.DrawBar;
     }
 
-    protected static double setSpeed() {
+    public static double setSpeed() {
         float difficulty = StageFactory.difficultyVal;
         switch ((int) difficulty) {
             case 0:

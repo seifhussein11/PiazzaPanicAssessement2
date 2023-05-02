@@ -10,6 +10,7 @@ import group24.piazzapanic.game.Level;
 import group24.piazzapanic.game.Player;
 import group24.piazzapanic.levelElements.stations.Station;
 import group24.piazzapanic.ui.StageAnimation;
+import group24.piazzapanic.ui.StageFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -310,19 +311,40 @@ public class PlayerTests {
         assertNotEquals(((player.y - Player.GRID_WIDTH / 2)* Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT),player.getPlayerPosition().y,0.000001);
         assertNotEquals((player.getPlayerPosition().getAbsoluteX()+GameData.offsetX),player.getPlayerBar().getX(),0.000001);
         assertNotEquals((player.getPlayerPosition().getAbsoluteY()+GameData.offsetY+Player.TEXTURE_HEIGHT+5),player.getPlayerBar().getY(),0.000001);
+    }
 
 
+    @Test
+    public void TestPlayerSetSpeed(){
+        Player player = new Player(0,0,null);
+        StageFactory stageFactory = Mockito.mock(StageFactory.class);
+        stageFactory.difficultyVal = 0;
+        assertEquals(3.6,player.setSpeed(),0.00001);
+        assertNotEquals(3,player.setSpeed(),0.00001);
+        assertNotEquals(2.5,player.setSpeed(),0.00001);
 
+        stageFactory.difficultyVal = 1;
+        assertNotEquals(3.6,player.setSpeed(),0.00001);
+        assertEquals(3,player.setSpeed(),0.00001);
+        assertNotEquals(2.5,player.setSpeed(),0.00001);
 
+        stageFactory.difficultyVal = 2;
+        assertNotEquals(3.6,player.setSpeed(),0.00001);
+        assertNotEquals(3,player.setSpeed(),0.00001);
+        assertEquals(2.5,player.setSpeed(),0.00001);
 
-
-
-
-
-
-
+        stageFactory.difficultyVal = 4;
+        assertNotEquals(3.6,player.setSpeed(),0.00001);
+        assertEquals(3,player.setSpeed(),0.00001);
+        assertNotEquals(2.5,player.setSpeed(),0.00001);
 
     }
+
+
+
+
+
+
 
 
 
