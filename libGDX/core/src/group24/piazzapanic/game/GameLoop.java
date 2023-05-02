@@ -280,6 +280,7 @@ public class GameLoop extends Stage {
 
     /**
      * Resorts the actors in the game loop to avoid Z-level drawing issues.
+     * 
      */
     private void resortActors() {
         int ylevel = 0;
