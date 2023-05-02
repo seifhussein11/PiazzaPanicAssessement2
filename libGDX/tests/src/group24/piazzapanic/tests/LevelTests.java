@@ -73,7 +73,7 @@ public class LevelTests {
         String[] initial_layout=
                 {"c.3.r.sD...1",
                         "..lC.....2..",
-                        "........b...",
+                        "x.......b...",
                         "F..oW....d..",
                         ".B....Sg....",
                         "f...th..p..m"};
@@ -86,6 +86,7 @@ public class LevelTests {
         for(String line:level.initial_layout){
             assertTrue(line.length() == level.getWidth());
         }
+
         int y =0;
         for (int j = level.getHeight()-1;j>=0;j--){
 
@@ -175,6 +176,7 @@ public class LevelTests {
 
                     default:
                         assertTrue( level.grid[i][y].isEqual(errorStation));
+
                 }
                 System.out.println(level.initial_layout[j].charAt(i));
                 System.out.println(level.grid[i][y]);
