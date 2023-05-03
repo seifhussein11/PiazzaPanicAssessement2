@@ -27,7 +27,7 @@ public class GameData {
     /** The player's reputation points */
     public static Integer reputation = 3;
     /** The cost of a new station or chef */
-    public static Integer stationCost = 2;
+    public static Integer stationCost = 5;
     /** The customers waiting to be served */
     public static ArrayList<Customer> customers;
     /** The in-game timer, updated every frame */

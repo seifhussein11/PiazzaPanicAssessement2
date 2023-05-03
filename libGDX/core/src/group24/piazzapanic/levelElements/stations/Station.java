@@ -23,7 +23,7 @@ public class Station extends Image {
      */
     public float timeKeyHeld;
     public int available = 1;
-    public int cost = 2;
+    public int cost = 5;
 
     public Texture texture;
 
