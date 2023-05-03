@@ -115,7 +115,7 @@ public class Customer extends StageAnimation {
         this.remove();
         GameData.gameLoop.resortCustomers();
         GameData.addScore(1);
-        GameData.addMoney(5);
+        GameData.addMoney(2);
         GameLoop.served_customers += 1;
     }
 

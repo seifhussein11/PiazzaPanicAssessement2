@@ -10,7 +10,7 @@ public class Power {
             GameData.gameLoop.activePowerup.setText("Added " + System.lineSeparator() + "1 score");
             GameData.gameLoop.addActor(GameData.gameLoop.activePowerup);
         } else if (x == 1) {
-            GameData.addMoney(5); //adds money
+            GameData.addMoney(3); //adds money
             GameData.gameLoop.activePowerup.setText("Added " + System.lineSeparator() + "5 money");
             GameData.gameLoop.addActor(GameData.gameLoop.activePowerup);
         } else if (x == 2) {
