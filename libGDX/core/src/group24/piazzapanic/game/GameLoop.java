@@ -239,7 +239,7 @@ public class GameLoop extends Stage {
             GameData.sinceLastSpawn += delta;
         }
         if (GameData.sinceLastSpawn >= 15) {
-            // Creates 1 extra customer each time for every minute that has passed if in endless mode
+            // Creates 1 extra customer each time for every 2 minutes that have passed if in endless mode
             if (StageFactory.endlessModeEnabled) {
                 for (int i = 0; i <= Math.floor(GameData.gameTime / 120); i++) {
                     //Create new customer offset location.
