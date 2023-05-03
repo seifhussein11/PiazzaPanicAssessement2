@@ -1,0 +1,224 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > IngredientStation</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.levelElements.stations</a>
+</div>
+
+<h1>Coverage Summary for Class: IngredientStation (group24.piazzapanic.levelElements.stations)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">IngredientStation</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80.8%
+  </span>
+  <span class="absValue">
+    (42/52)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (31/31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.levelElements.stations;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import group24.piazzapanic.Physics.Movable;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.levelElements.Dish;
+&nbsp;import group24.piazzapanic.levelElements.Ingredient;
+&nbsp;import group24.piazzapanic.levelElements.IngredientType;
+&nbsp;
+&nbsp;/**
+&nbsp; * IngredientStations provide the player with a supply of ingredients.
+&nbsp; * Their Item is always the Ingredient specified in IngredientType
+&nbsp; * allowing players to pick up the Ingredient.
+&nbsp; */
+&nbsp;public class IngredientStation extends Station {
+&nbsp;    private final IngredientType ingredientType; // The type of ingredient the IngredientStation serves.
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find and return the correct texture for the given ingredient type
+&nbsp;     *
+&nbsp;     * @param type The IngredientType we want the texture for.
+&nbsp;     * @return a Texture for the ingredientStation
+&nbsp;     */
+&nbsp;    public static Texture getIngredientStationAsset(IngredientType type) {
+<b class="fc">&nbsp;        Texture texture = GameData.ingredientStationTexture;</b>
+<b class="pc">&nbsp;        switch (type.getName()) {</b>
+&nbsp;            case &quot;tomato&quot;:
+<b class="fc">&nbsp;                return GameData.tomatoStationTexture;</b>
+&nbsp;            case &quot;onion&quot;:
+<b class="fc">&nbsp;                return GameData.onionStationTexture;</b>
+&nbsp;            case &quot;lettuce&quot;:
+<b class="fc">&nbsp;                return GameData.lettuceStationTexture;</b>
+&nbsp;            case &quot;bread&quot;:
+<b class="fc">&nbsp;                return GameData.breadStationTexture;</b>
+&nbsp;            case &quot;meat&quot;:
+<b class="fc">&nbsp;                return GameData.meatStationTexture;</b>
+&nbsp;            case &quot;dish&quot;:
+<b class="fc">&nbsp;                return GameData.dishStationTexture;</b>
+&nbsp;            case &quot;dough&quot;:
+<b class="fc">&nbsp;                return GameData.doughStationTexture;</b>
+&nbsp;            case &quot;sauce&quot;:
+<b class="fc">&nbsp;                return GameData.sauceStationTexture;</b>
+&nbsp;            case &quot;cheese&quot;:
+<b class="fc">&nbsp;                return GameData.cheeseStationTexture;</b>
+&nbsp;            case &quot;potato&quot;:
+<b class="fc">&nbsp;                return GameData.potatoStationTexture;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return texture;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Construct the IngredientStation class
+&nbsp;     *
+&nbsp;     * @param gridX          the X grid coordinates of the station
+&nbsp;     * @param gridY          the Y grid coordinates of the station
+&nbsp;     * @param ingredientType the IngredientType that the station serves.
+&nbsp;     */
+&nbsp;    public IngredientStation(int gridX, int gridY, IngredientType ingredientType) {
+<b class="fc">&nbsp;        super(getIngredientStationAsset(ingredientType));</b>
+<b class="fc">&nbsp;        this.ingredientType = ingredientType;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * A stub to stop players putting items down on the IngredientStation
+&nbsp;     *
+&nbsp;     * @param item the Movable the player is trying to put down (but this is pointless!)
+&nbsp;     * @return false. always.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public boolean placeItem(Movable item) {
+<b class="fc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Pick up the Ingredient or Dish from the station.
+&nbsp;     *
+&nbsp;     * @return An Ingredient or Dish. The type returned is specified in the constructor {@link #IngredientStation}
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Movable takeItem() {
+<b class="fc">&nbsp;        if (ingredientType.getName() == &quot;dish&quot;) {</b>
+<b class="fc">&nbsp;            return new Dish();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return new Ingredient(ingredientType);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean isEqual(Object obj){
+<b class="fc">&nbsp;        if(!(obj instanceof Station)){</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        IngredientStation station = (IngredientStation) obj;</b>
+<b class="fc">&nbsp;        if (this.ingredientType.equals(station.ingredientType) == false){</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if(this.item!=station.item){</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if(this.texture != station.texture){</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if(this.available != station.available){</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return true;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

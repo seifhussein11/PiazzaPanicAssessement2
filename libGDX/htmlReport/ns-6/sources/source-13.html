@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ServingStationTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: ServingStationTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ServingStationTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (40/40)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import group24.piazzapanic.Physics.Movable;
+&nbsp;import group24.piazzapanic.game.Customer;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.levelElements.Dish;
+&nbsp;import group24.piazzapanic.levelElements.Ingredient;
+&nbsp;import group24.piazzapanic.levelElements.stations.ServingStation;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import java.lang.reflect.InvocationTargetException;
+&nbsp;import java.lang.reflect.Method;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class ServingStationTests {</b>
+&nbsp;    @Test
+&nbsp;    public void TestServingStationServeOrder() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        ServingStation servingStation = new ServingStation(texture);</b>
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        Dish dish1 = Mockito.mock(Dish.class);</b>
+<b class="fc">&nbsp;        Dish dish2 = Mockito.mock(Dish.class);</b>
+<b class="fc">&nbsp;        Customer customer = Mockito.mock(Customer.class);</b>
+<b class="fc">&nbsp;        gameData.customers = new ArrayList&lt;Customer&gt;();</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer);</b>
+<b class="fc">&nbsp;        Mockito.when(customer.getOrder()).thenReturn(dish1);</b>
+<b class="fc">&nbsp;        Method serveMethod = ServingStation.class.getDeclaredMethod(&quot;serveOrder&quot;, Movable.class);</b>
+<b class="fc">&nbsp;        serveMethod.setAccessible(true);</b>
+<b class="fc">&nbsp;        boolean result = (boolean) serveMethod.invoke(servingStation,dish1);</b>
+<b class="fc">&nbsp;        assertEquals(true,result);</b>
+<b class="fc">&nbsp;        Mockito.when(customer.getOrder()).thenReturn(dish2);</b>
+<b class="fc">&nbsp;        boolean result2 = (boolean) serveMethod.invoke(servingStation,dish1);</b>
+<b class="fc">&nbsp;        assertFalse(result2);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestServingStationPlaceItem(){
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        ServingStation station = new ServingStation(texture);</b>
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        Dish dish = Mockito.mock(Dish.class);</b>
+<b class="fc">&nbsp;        Ingredient ingredient = Mockito.mock(Ingredient.class);</b>
+<b class="fc">&nbsp;        Customer customer = Mockito.mock(Customer.class);</b>
+<b class="fc">&nbsp;        Mockito.when(customer.getOrder()).thenReturn(dish);</b>
+<b class="fc">&nbsp;        gameData.customers = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer);</b>
+<b class="fc">&nbsp;        assertTrue(station.placeItem(dish));</b>
+<b class="fc">&nbsp;        assertFalse(station.placeItem(ingredient));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestServingStationTakeItem(){
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        ServingStation station = new ServingStation(texture);</b>
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        station.item = Mockito.mock(Dish.class);</b>
+<b class="fc">&nbsp;        station.takeItem();</b>
+<b class="fc">&nbsp;        assertNull(station.item);</b>
+<b class="fc">&nbsp;        station.item = null;</b>
+<b class="fc">&nbsp;        station.takeItem();</b>
+<b class="fc">&nbsp;        assertNull(station.item);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

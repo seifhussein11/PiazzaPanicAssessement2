@@ -1,0 +1,467 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PlayerTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: PlayerTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PlayerTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (249/249)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import com.badlogic.gdx.graphics.g2d.Animation;
+&nbsp;import com.badlogic.gdx.graphics.g2d.TextureRegion;
+&nbsp;import group24.piazzapanic.Base;
+&nbsp;import group24.piazzapanic.Physics.Movable;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.game.Level;
+&nbsp;import group24.piazzapanic.game.Player;
+&nbsp;import group24.piazzapanic.levelElements.stations.Station;
+&nbsp;import group24.piazzapanic.ui.StageAnimation;
+&nbsp;import group24.piazzapanic.ui.StageFactory;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class PlayerTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testPlayerPuttingDownItems() {
+<b class="fc">&nbsp;        Player player = new Player(0,0,null);</b>
+<b class="fc">&nbsp;        Station station = Mockito.mock(Station.class);</b>
+<b class="fc">&nbsp;        Movable movable = Mockito.mock(Movable.class);</b>
+<b class="fc">&nbsp;        GameData gamedata = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Level level = Mockito.mock(Level.class);</b>
+<b class="fc">&nbsp;        gamedata.level = level;</b>
+<b class="fc">&nbsp;        gamedata.player = player;</b>
+<b class="fc">&nbsp;        player.holding = movable;</b>
+<b class="fc">&nbsp;        Movable playerHolding = player.holding;</b>
+<b class="fc">&nbsp;        station.item=null;</b>
+<b class="fc">&nbsp;        Mockito.when(player.getFacingStation()).thenReturn(station);</b>
+&nbsp;
+<b class="fc">&nbsp;        Mockito.when(station.placeItem(player.holding)).thenReturn(true);</b>
+<b class="fc">&nbsp;        assertTrue(player.putDown());</b>
+<b class="fc">&nbsp;        player.putDown();</b>
+<b class="fc">&nbsp;        assertNotEquals(playerHolding,player.holding);</b>
+<b class="fc">&nbsp;        assertNull(player.holding);</b>
+<b class="fc">&nbsp;        player.holding = movable;</b>
+<b class="fc">&nbsp;        Mockito.when(station.placeItem(player.holding)).thenReturn(false);</b>
+<b class="fc">&nbsp;        assertFalse(player.putDown());</b>
+<b class="fc">&nbsp;        player.putDown();</b>
+<b class="fc">&nbsp;        assertEquals(movable,player.holding);</b>
+<b class="fc">&nbsp;        Mockito.when(player.getFacingStation()).thenReturn(null);</b>
+<b class="fc">&nbsp;        assertFalse(player.putDown());</b>
+<b class="fc">&nbsp;        player.putDown();</b>
+<b class="fc">&nbsp;        assertEquals(movable,player.holding);</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testPlayerMovement() {
+&nbsp;        // create a player object with some initial position and velocity
+<b class="fc">&nbsp;        Player player = new Player(0, 0, null);</b>
+&nbsp;
+&nbsp;        // simulate a game loop with a fixed time step and update the player&#39;s position
+<b class="fc">&nbsp;        double dt = 0.1; // time step</b>
+<b class="fc">&nbsp;        double x0 = player.x; // initial x position</b>
+<b class="fc">&nbsp;        double y0 = player.y; // initial y position</b>
+<b class="fc">&nbsp;        double vx0 = player.x_vel; // initial x velocity</b>
+<b class="fc">&nbsp;        double vy0 = player.y_vel; // initial y velocity</b>
+<b class="fc">&nbsp;        double ax = Player.acceleration; // acceleration</b>
+&nbsp;
+<b class="fc">&nbsp;        player.x_vel += ax * dt;</b>
+<b class="fc">&nbsp;        player.y_vel += ax * dt;</b>
+&nbsp;
+<b class="fc">&nbsp;        player.x += player.x_vel * dt;</b>
+<b class="fc">&nbsp;        player.y += player.y_vel * dt;</b>
+&nbsp;
+&nbsp;        // check if the player&#39;s position has changed
+<b class="fc">&nbsp;        assertNotEquals(x0, player.x);</b>
+<b class="fc">&nbsp;        assertNotEquals(y0, player.y);</b>
+&nbsp;
+&nbsp;        // check if the player&#39;s velocity has changed
+<b class="fc">&nbsp;        assertNotEquals(vx0, player.x_vel);</b>
+<b class="fc">&nbsp;        assertNotEquals(vy0, player.y_vel);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestPlayerPickUp() {
+<b class="fc">&nbsp;        Player player = new Player(0,0,null);</b>
+<b class="fc">&nbsp;        Station station = new Station(Mockito.mock(Texture.class));</b>
+<b class="fc">&nbsp;        Movable movable = Mockito.mock(Movable.class);</b>
+<b class="fc">&nbsp;        Level level = Mockito.mock(Level.class);</b>
+<b class="fc">&nbsp;        station.item = movable;</b>
+<b class="fc">&nbsp;        player.holding=null;</b>
+<b class="fc">&nbsp;        Movable onStation = station.item;</b>
+<b class="fc">&nbsp;        GameData gamedata = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gamedata.level = level;</b>
+<b class="fc">&nbsp;        Mockito.when(player.getFacingStation()).thenReturn(station);</b>
+<b class="fc">&nbsp;        player.pickUp();</b>
+<b class="fc">&nbsp;        assertEquals(onStation,player.holding);</b>
+<b class="fc">&nbsp;        assertEquals(true,player.pickUp());</b>
+<b class="fc">&nbsp;        assertNull(station.item);</b>
+<b class="fc">&nbsp;        station.item = movable;</b>
+<b class="fc">&nbsp;        player.holding=null;</b>
+<b class="fc">&nbsp;        Mockito.when(player.getFacingStation()).thenReturn(null);</b>
+<b class="fc">&nbsp;        player.pickUp();</b>
+<b class="fc">&nbsp;        assertEquals(true,player.pickUp());</b>
+<b class="fc">&nbsp;        assertEquals(onStation,station.item);</b>
+<b class="fc">&nbsp;        assertNull(player.holding);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestPlayerFacingStation(){
+<b class="fc">&nbsp;        Player player = new Player(1.5,1.5,null);  //1,1</b>
+<b class="fc">&nbsp;        Station station1 = Mockito.mock(Station.class);</b>
+<b class="fc">&nbsp;        Station station2 = Mockito.mock(Station.class);</b>
+<b class="fc">&nbsp;        Station station3 = Mockito.mock(Station.class);</b>
+<b class="fc">&nbsp;        Station station4 = Mockito.mock(Station.class);</b>
+<b class="fc">&nbsp;        GameData gamedata = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Level level = Mockito.mock(Level.class);</b>
+<b class="fc">&nbsp;        gamedata.level = level;</b>
+<b class="fc">&nbsp;        Mockito.when(level.getStation(1, 2)).thenReturn(station1); //UP</b>
+<b class="fc">&nbsp;        Mockito.when(level.getStation(1, 0)).thenReturn(station2); //DOWN</b>
+<b class="fc">&nbsp;        Mockito.when(level.getStation(0, 1)).thenReturn(station3); //LEFT</b>
+<b class="fc">&nbsp;        Mockito.when(level.getStation(2, 1)).thenReturn(station4); //RIGHT</b>
+<b class="fc">&nbsp;        player.direction = Player.facing.UP;</b>
+<b class="fc">&nbsp;        assertEquals(station1,player.getFacingStation());</b>
+<b class="fc">&nbsp;        player.direction = Player.facing.DOWN;</b>
+<b class="fc">&nbsp;        assertEquals(station2, player.getFacingStation());</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.LEFT;</b>
+<b class="fc">&nbsp;        assertEquals(station3, player.getFacingStation());</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.RIGHT;</b>
+<b class="fc">&nbsp;        assertEquals(station4, player.getFacingStation());</b>
+<b class="fc">&nbsp;        player.x=0;</b>
+<b class="fc">&nbsp;        player.y=0;</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.LEFT;</b>
+<b class="fc">&nbsp;        assertNull(player.getFacingStation());</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.DOWN;</b>
+<b class="fc">&nbsp;        assertNull(player.getFacingStation());</b>
+<b class="fc">&nbsp;        player.direction =Player.facing.SOMEOTHERDIRECTION;</b>
+<b class="fc">&nbsp;        assertNull(player.getFacingStation());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestPlayerTop(){
+<b class="fc">&nbsp;        Player player = new Player(5,5,null);</b>
+<b class="fc">&nbsp;        double result = player.y + player.GRID_WIDTH/2;</b>
+<b class="fc">&nbsp;        double delta = 0.000001;</b>
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(result,player.top(),delta);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestPlayerBottom(){
+<b class="fc">&nbsp;        Player player = new Player(5,5,null);</b>
+<b class="fc">&nbsp;        double result = player.y - player.GRID_WIDTH/2;</b>
+<b class="fc">&nbsp;        double delta = 0.000001;</b>
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(result,player.bottom(),delta);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestPlayerRight(){
+<b class="fc">&nbsp;        Player player = new Player(5,5,null);</b>
+<b class="fc">&nbsp;        double result = player.x + player.GRID_WIDTH/2;</b>
+<b class="fc">&nbsp;        double delta = 0.000001;</b>
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(result,player.right(),delta);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestPlayerLeft(){
+<b class="fc">&nbsp;        Player player = new Player(5,5,null);</b>
+<b class="fc">&nbsp;        double result = player.x - player.GRID_WIDTH/2;</b>
+<b class="fc">&nbsp;        double delta = 0.000001;</b>
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(result,player.left(),delta);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestPlayerAct(){
+<b class="fc">&nbsp;        HashMap&lt;String, Animation&lt;TextureRegion&gt;&gt; mockedMap = new HashMap&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        Animation&lt;TextureRegion&gt; mockAnimation = Mockito.mock(Animation.class);</b>
+<b class="fc">&nbsp;        mockedMap.put(&quot;IdleFrontSelected&quot;,mockAnimation);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.level = Mockito.mock(Level.class);</b>
+<b class="fc">&nbsp;        Player player = new Player(7,2,Mockito.mock(StageAnimation.class),mockedMap);</b>
+<b class="fc">&nbsp;        gameData.player = player;</b>
+<b class="fc">&nbsp;        player.direction = Player.facing.DOWN;</b>
+<b class="fc">&nbsp;        player.BasePickUpKey = true;</b>
+<b class="fc">&nbsp;        player.BaseActKey=true;</b>
+<b class="fc">&nbsp;        Station station = new Station(Mockito.mock(Texture.class));</b>
+<b class="fc">&nbsp;        station.item = Mockito.mock(Movable.class);</b>
+<b class="fc">&nbsp;        Movable item = station.item;</b>
+<b class="fc">&nbsp;        Mockito.when(player.getFacingStation()).thenReturn(station);</b>
+<b class="fc">&nbsp;        station.timeKeyHeld= (float) 0.3;</b>
+<b class="fc">&nbsp;        player.act((float) 0.1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleFrontSelected&quot;,player.getKey());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleFrontSelected&quot;,player.getCurrentKey());</b>
+<b class="fc">&nbsp;        assertEquals(item,player.holding);</b>
+<b class="fc">&nbsp;        assertTrue(player.playerInteracting);</b>
+<b class="fc">&nbsp;        assertEquals(player.x,player.playerInteractX,0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(player.y,player.playerInteractY,0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(station,player.interactingStation);</b>
+<b class="fc">&nbsp;        assertEquals(((player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2)* Base.TILE_GRID_UNIT),player.getPlayerPosition().x,0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(((player.y - Player.GRID_WIDTH / 2)* Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT),player.getPlayerPosition().y,0.000001);</b>
+<b class="fc">&nbsp;        assertEquals((player.getPlayerPosition().getAbsoluteX()+GameData.offsetX),player.getPlayerBar().getX(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals((player.getPlayerPosition().getAbsoluteY()+GameData.offsetY+Player.TEXTURE_HEIGHT+5),player.getPlayerBar().getY(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(station.timeKeyHeld,player.getPlayerBar().getValue(),0.000001);</b>
+<b class="fc">&nbsp;        assertTrue(player.getPlayerDrawBar());</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.UP;</b>
+<b class="fc">&nbsp;        player.act((float) 0.1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleBackSelected&quot;,player.getKey());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleBackSelected&quot;,player.getCurrentKey());</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleBackSelected&quot;,player.getCurrentKey());</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.LEFT;</b>
+<b class="fc">&nbsp;        player.act((float) 0.1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleLeftSelected&quot;,player.getKey());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleLeftSelected&quot;,player.getCurrentKey());</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.RIGHT;</b>
+<b class="fc">&nbsp;        player.act((float) 0.1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleRightSelected&quot;,player.getKey());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleRightSelected&quot;,player.getCurrentKey());</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.SOMEOTHERDIRECTION;</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleFrontSelected&quot;,player.getKey());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleFrontSelected&quot;,player.getCurrentKey());</b>
+<b class="fc">&nbsp;        gameData.player = new Player(3,2,Mockito.mock(StageAnimation.class),mockedMap);</b>
+<b class="fc">&nbsp;        player.holding=null;</b>
+<b class="fc">&nbsp;        player.playerInteractX=0;</b>
+<b class="fc">&nbsp;        player.playerInteractY=0;</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.SOMEOTHERDIRECTION;</b>
+<b class="fc">&nbsp;        player.act((float) 0.1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleFront&quot;,player.getKey());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;IdleFront&quot;,player.getCurrentKey());</b>
+<b class="fc">&nbsp;        player.direction= Player.facing.UP;</b>
+<b class="fc">&nbsp;        Mockito.when(player.getFacingStation()).thenReturn(station);</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertNull(player.holding);</b>
+<b class="fc">&nbsp;        assertFalse(player.playerInteracting);</b>
+<b class="fc">&nbsp;        assertNotEquals(player.x,player.playerInteractX,0.000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(player.y,player.playerInteractY,0.000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(station,player.interactingStation);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData.player = player;</b>
+<b class="fc">&nbsp;        player.direction = Player.facing.LEFT;</b>
+<b class="fc">&nbsp;        player.x_vel = 2;</b>
+<b class="fc">&nbsp;        player.y_vel = 1;</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Left&quot;,player.getKey());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Left&quot;,player.getCurrentKey());</b>
+<b class="fc">&nbsp;        player.x_vel=0;</b>
+<b class="fc">&nbsp;        player.y_vel=0;</b>
+<b class="fc">&nbsp;        player.holding=item;</b>
+<b class="fc">&nbsp;        station.item=null;</b>
+<b class="fc">&nbsp;        Mockito.when(player.getFacingStation()).thenReturn(station);</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertNull(player.holding);</b>
+<b class="fc">&nbsp;        assertEquals(item,station.item);</b>
+<b class="fc">&nbsp;        Mockito.when(player.getFacingStation()).thenReturn(null);</b>
+<b class="fc">&nbsp;        player.playerInteracting = false;</b>
+<b class="fc">&nbsp;        player.playerInteractX=0;</b>
+<b class="fc">&nbsp;        player.playerInteractY=0;</b>
+<b class="fc">&nbsp;        player.interactingStation=null;</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertFalse(player.playerInteracting);</b>
+<b class="fc">&nbsp;        assertNotEquals(player.x,player.playerInteractX,0.000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(player.y,player.playerInteractY,0.000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(station,player.interactingStation);</b>
+<b class="fc">&nbsp;        player.BasePickUpKey = false;</b>
+<b class="fc">&nbsp;        player.holding=null;</b>
+<b class="fc">&nbsp;        station.item=item;</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertNull(player.holding);</b>
+<b class="fc">&nbsp;        assertNotNull(station.item);</b>
+<b class="fc">&nbsp;        player.holding = item;</b>
+<b class="fc">&nbsp;        station.item=null;</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertNotNull(player.holding);</b>
+<b class="fc">&nbsp;        assertNull(station.item);</b>
+<b class="fc">&nbsp;        player.BaseActKey=false;</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertFalse(player.playerInteracting);</b>
+<b class="fc">&nbsp;        assertNotEquals(player.x,player.playerInteractX,0.000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(player.y,player.playerInteractY,0.000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(station,player.interactingStation);</b>
+<b class="fc">&nbsp;        assertFalse(player.getPlayerDrawBar());</b>
+<b class="fc">&nbsp;        Mockito.when(player.getFacingStation()).thenReturn(station);</b>
+<b class="fc">&nbsp;        player.playerInteracting = true;</b>
+<b class="fc">&nbsp;        player.interactingStation = station;</b>
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertFalse(player.playerInteracting);</b>
+<b class="fc">&nbsp;        assertFalse(player.getPlayerDrawBar());</b>
+<b class="fc">&nbsp;        assertNull(player.interactingStation);</b>
+<b class="fc">&nbsp;        player.BaseActKey=true;</b>
+<b class="fc">&nbsp;        station.timeKeyHeld= (float) 0.08;</b>
+<b class="fc">&nbsp;        player.getPlayerPosition().x=0;</b>
+<b class="fc">&nbsp;        player.getPlayerPosition().y=0;</b>
+<b class="fc">&nbsp;        player.getPlayerBar().setX(0);</b>
+<b class="fc">&nbsp;        player.getPlayerBar().setY(0);</b>
+&nbsp;
+<b class="fc">&nbsp;        player.act((float)0.1);</b>
+<b class="fc">&nbsp;        assertFalse(player.getPlayerDrawBar());</b>
+<b class="fc">&nbsp;        assertNotEquals(((player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2)* Base.TILE_GRID_UNIT),player.getPlayerPosition().x,0.000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(((player.y - Player.GRID_WIDTH / 2)* Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT),player.getPlayerPosition().y,0.000001);</b>
+<b class="fc">&nbsp;        assertNotEquals((player.getPlayerPosition().getAbsoluteX()+GameData.offsetX),player.getPlayerBar().getX(),0.000001);</b>
+<b class="fc">&nbsp;        assertNotEquals((player.getPlayerPosition().getAbsoluteY()+GameData.offsetY+Player.TEXTURE_HEIGHT+5),player.getPlayerBar().getY(),0.000001);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestPlayerSetSpeed(){
+<b class="fc">&nbsp;        Player player = new Player(0,0,null);</b>
+<b class="fc">&nbsp;        StageFactory stageFactory = Mockito.mock(StageFactory.class);</b>
+<b class="fc">&nbsp;        stageFactory.difficultyVal = 0;</b>
+<b class="fc">&nbsp;        assertEquals(3.6,player.setSpeed(),0.00001);</b>
+<b class="fc">&nbsp;        assertNotEquals(3,player.setSpeed(),0.00001);</b>
+<b class="fc">&nbsp;        assertNotEquals(2.5,player.setSpeed(),0.00001);</b>
+&nbsp;
+<b class="fc">&nbsp;        stageFactory.difficultyVal = 1;</b>
+<b class="fc">&nbsp;        assertNotEquals(3.6,player.setSpeed(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(3,player.setSpeed(),0.00001);</b>
+<b class="fc">&nbsp;        assertNotEquals(2.5,player.setSpeed(),0.00001);</b>
+&nbsp;
+<b class="fc">&nbsp;        stageFactory.difficultyVal = 2;</b>
+<b class="fc">&nbsp;        assertNotEquals(3.6,player.setSpeed(),0.00001);</b>
+<b class="fc">&nbsp;        assertNotEquals(3,player.setSpeed(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(2.5,player.setSpeed(),0.00001);</b>
+&nbsp;
+<b class="fc">&nbsp;        stageFactory.difficultyVal = 4;</b>
+<b class="fc">&nbsp;        assertNotEquals(3.6,player.setSpeed(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(3,player.setSpeed(),0.00001);</b>
+<b class="fc">&nbsp;        assertNotEquals(2.5,player.setSpeed(),0.00001);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

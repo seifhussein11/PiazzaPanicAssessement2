@@ -1,0 +1,457 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LevelTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: LevelTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LevelTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    38.6%
+  </span>
+  <span class="absValue">
+    (32/83)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (230/230)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.game.Level;
+&nbsp;import group24.piazzapanic.levelElements.IngredientType;
+&nbsp;import group24.piazzapanic.levelElements.stations.*;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class LevelTests {</b>
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestLevelConstructor(){
+<b class="fc">&nbsp;        GameData gameData = new GameData();</b>
+<b class="fc">&nbsp;        Texture texture = new Texture( &quot;stations/sourceerr.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.counterEndTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightCornerTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterTopTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.servingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.bakingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.fryingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.cuttingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.binTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.ingredientStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.obstacleTexture =texture;</b>
+<b class="fc">&nbsp;        gameData.tomatoStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.onionStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lettuceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.breadStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.meatStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.dishStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.doughStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.sauceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.cheeseStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.potatoStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedBakingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedFryingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedCuttingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        FryingStation fryingStation = new FryingStation(texture);</b>
+<b class="fc">&nbsp;        FryingStation lockedFryingStation = new FryingStation(texture);</b>
+<b class="fc">&nbsp;        lockedFryingStation.available=0;</b>
+<b class="fc">&nbsp;        BakingStation bakingStation = new BakingStation(texture);</b>
+<b class="fc">&nbsp;        BakingStation lockedBakingStation = new BakingStation(texture);</b>
+<b class="fc">&nbsp;        lockedBakingStation.available=0;</b>
+<b class="fc">&nbsp;        CounterTop counterTop = new CounterTop(texture);</b>
+<b class="fc">&nbsp;        CuttingStation cuttingStation = new CuttingStation(texture);</b>
+<b class="fc">&nbsp;        CuttingStation lockedCuttingStation = new CuttingStation(texture);</b>
+<b class="fc">&nbsp;        lockedCuttingStation.available=0;</b>
+<b class="fc">&nbsp;        ErrorStation errorStation = new ErrorStation();</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation1= new IngredientStation(4,0,new IngredientType(&quot;tomato&quot;));</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientStation ingredientStation2= new IngredientStation(4,0,new IngredientType(&quot;meat&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation3= new IngredientStation(4,0,new IngredientType(&quot;lettuce&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation4= new IngredientStation(4,0,new IngredientType(&quot;onion&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation5= new IngredientStation(4,0,new IngredientType(&quot;bread&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation6= new IngredientStation(4,0,new IngredientType(&quot;cheese&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation7= new IngredientStation(4,0,new IngredientType(&quot;sauce&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation8= new IngredientStation(4,0,new IngredientType(&quot;dough&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation9= new IngredientStation(4,0,new IngredientType(&quot;potato&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation10= new IngredientStation(4,0,new IngredientType(&quot;dish&quot;));</b>
+<b class="fc">&nbsp;        Obstacle obstacle = new Obstacle();</b>
+<b class="fc">&nbsp;        ServingStation servingStation = new ServingStation(texture);</b>
+<b class="fc">&nbsp;        Bin bin = new Bin();</b>
+<b class="fc">&nbsp;        String name = &quot;levels/Level 3&quot;;</b>
+<b class="fc">&nbsp;        String[] initial_layout=</b>
+&nbsp;                {&quot;c.3.r.sD...1&quot;,
+&nbsp;                        &quot;..lC.....2..&quot;,
+&nbsp;                        &quot;x.......b...&quot;,
+&nbsp;                        &quot;F..oW....d..&quot;,
+&nbsp;                        &quot;.B....Sg....&quot;,
+&nbsp;                        &quot;f...th..p..m&quot;};
+<b class="fc">&nbsp;        Level level = new Level(&quot;levels/Level 3&quot;,initial_layout);</b>
+&nbsp;
+&nbsp;//
+<b class="fc">&nbsp;        assertEquals(name,level.getLevelName());</b>
+<b class="fc">&nbsp;        assertEquals(12,level.getWidth());</b>
+<b class="fc">&nbsp;        assertEquals(6,level.getHeight());</b>
+<b class="fc">&nbsp;        for(String line:level.initial_layout){</b>
+<b class="pc">&nbsp;            assertTrue(line.length() == level.getWidth());</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        int y =0;</b>
+<b class="fc">&nbsp;        for (int j = level.getHeight()-1;j&gt;=0;j--){</b>
+&nbsp;
+<b class="fc">&nbsp;            for(int i = 0; i &lt; level.getWidth();i++){</b>
+&nbsp;
+<b class="pc">&nbsp;                switch(level.initial_layout[j].charAt(i)){</b>
+&nbsp;                    case &#39;.&#39;:
+<b class="fc">&nbsp;                        assertEquals(null,level.grid[i][y]);</b>
+<b class="fc">&nbsp;                        continue;</b>
+&nbsp;
+&nbsp;                    case &#39;B&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(bakingStation));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;b&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(lockedBakingStation));</b>
+<b class="fc">&nbsp;                        assertEquals(0,level.grid[i][y].available);</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;1&#39;:
+&nbsp;                    case &#39;2&#39;:
+&nbsp;                    case &#39;3&#39;:
+&nbsp;                    case &#39;4&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(counterTop));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;C&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual((cuttingStation)));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;c&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(lockedCuttingStation));</b>
+<b class="fc">&nbsp;                        assertEquals(0,level.grid[i][y].available);</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;F&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(fryingStation));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;f&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(lockedFryingStation));</b>
+<b class="fc">&nbsp;                        assertEquals(0,level.grid[i][y].available);</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;t&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(ingredientStation1));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;                    case &#39;o&#39;:
+<b class="fc">&nbsp;                        assertTrue( level.grid[i][y].isEqual(ingredientStation4));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;                    case &#39;l&#39;:
+<b class="fc">&nbsp;                        assertTrue( level.grid[i][y].isEqual(ingredientStation3));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;                    case &#39;r&#39;:
+<b class="fc">&nbsp;                        assertTrue( level.grid[i][y].isEqual(ingredientStation5));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;                    case &#39;m&#39;:
+<b class="fc">&nbsp;                        assertTrue( level.grid[i][y].isEqual(ingredientStation2));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;                    case &#39;h&#39;:
+<b class="fc">&nbsp;                        assertTrue( level.grid[i][y].isEqual(ingredientStation6));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;                    case &#39;S&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(ingredientStation7 ));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;                    case &#39;D&#39;:
+<b class="fc">&nbsp;                        assertTrue( level.grid[i][y].isEqual(ingredientStation8));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;                    case &#39;p&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(ingredientStation9 ));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;                    case &#39;d&#39;:
+<b class="fc">&nbsp;                        assertTrue( level.grid[i][y].isEqual(ingredientStation10));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;W&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(obstacle ));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;g&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(bin ));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    case &#39;s&#39;:
+<b class="fc">&nbsp;                        assertTrue(level.grid[i][y].isEqual(servingStation ));</b>
+<b class="fc">&nbsp;                        break;</b>
+&nbsp;
+&nbsp;                    default:
+<b class="fc">&nbsp;                        assertTrue( level.grid[i][y].isEqual(errorStation));</b>
+&nbsp;
+&nbsp;                }
+<b class="fc">&nbsp;                System.out.println(level.initial_layout[j].charAt(i));</b>
+<b class="fc">&nbsp;                System.out.println(level.grid[i][y]);</b>
+&nbsp;
+&nbsp;            }
+<b class="fc">&nbsp;            y++;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGetLevelName(){
+<b class="fc">&nbsp;        GameData gameData = new GameData();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.counterEndTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightCornerTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterTopTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.servingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.bakingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.fryingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.cuttingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.binTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.ingredientStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.obstacleTexture =texture;</b>
+<b class="fc">&nbsp;        gameData.tomatoStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.onionStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lettuceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.breadStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.meatStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.dishStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.doughStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.sauceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.cheeseStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.potatoStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedBakingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedFryingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedCuttingStationTexture=texture;</b>
+<b class="fc">&nbsp;        String name = &quot;levels/Level 3&quot;;</b>
+<b class="fc">&nbsp;        Level level = new Level(&quot;levels/Level 3&quot;);</b>
+<b class="fc">&nbsp;        Level level2 = new Level(&quot;levels/Level 3&quot;);</b>
+<b class="fc">&nbsp;        Level level3 = new Level(&quot;levels/Level 4&quot;);</b>
+<b class="fc">&nbsp;        assertEquals(name,level.getLevelName());</b>
+<b class="pc">&nbsp;        assertTrue(level.getLevelName()==level2.getLevelName());</b>
+<b class="pc">&nbsp;        assertFalse(level2.getLevelName()==level3.getLevelName());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGetStation(){
+<b class="fc">&nbsp;        GameData gameData = new GameData();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.counterEndTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightCornerTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterTopTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.servingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.bakingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.fryingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.cuttingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.binTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.ingredientStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.obstacleTexture =texture;</b>
+<b class="fc">&nbsp;        gameData.tomatoStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.onionStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lettuceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.breadStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.meatStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.dishStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.doughStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.sauceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.cheeseStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.potatoStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedBakingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedFryingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedCuttingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture=texture;</b>
+<b class="fc">&nbsp;        String[] initial_layout=</b>
+&nbsp;                {&quot;c.3.r.sD...1&quot;,
+&nbsp;                        &quot;..lC.....2..&quot;,
+&nbsp;                        &quot;........b...&quot;,
+&nbsp;                        &quot;F..oW....d..&quot;,
+&nbsp;                        &quot;.B....Sg....&quot;,
+&nbsp;                        &quot;f...th..p..m&quot;};
+<b class="fc">&nbsp;        Level level = new Level(&quot;levels/Level 3&quot;,initial_layout);</b>
+<b class="fc">&nbsp;        gameData.level = level;</b>
+<b class="fc">&nbsp;        FryingStation fryingStation = new FryingStation(texture);</b>
+<b class="fc">&nbsp;        FryingStation lockedFryingStation = new FryingStation(texture);</b>
+<b class="fc">&nbsp;        lockedFryingStation.available=0;</b>
+<b class="fc">&nbsp;        BakingStation bakingStation = new BakingStation(texture);</b>
+<b class="fc">&nbsp;        BakingStation lockedBakingStation = new BakingStation(texture);</b>
+<b class="fc">&nbsp;        lockedBakingStation.available=0;</b>
+<b class="fc">&nbsp;        CounterTop counterTop = new CounterTop(texture);</b>
+<b class="fc">&nbsp;        CuttingStation cuttingStation = new CuttingStation(texture);</b>
+<b class="fc">&nbsp;        CuttingStation lockedCuttingStation = new CuttingStation(texture);</b>
+<b class="fc">&nbsp;        lockedCuttingStation.available=0;</b>
+<b class="fc">&nbsp;        ErrorStation errorStation = new ErrorStation();</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation1= new IngredientStation(4,0,new IngredientType(&quot;tomato&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation2= new IngredientStation(4,0,new IngredientType(&quot;meat&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation3= new IngredientStation(4,0,new IngredientType(&quot;lettuce&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation4= new IngredientStation(4,0,new IngredientType(&quot;onion&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation5= new IngredientStation(4,0,new IngredientType(&quot;bread&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation6= new IngredientStation(4,0,new IngredientType(&quot;cheese&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation7= new IngredientStation(4,0,new IngredientType(&quot;sauce&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation8= new IngredientStation(4,0,new IngredientType(&quot;dough&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation9= new IngredientStation(4,0,new IngredientType(&quot;potato&quot;));</b>
+<b class="fc">&nbsp;        IngredientStation ingredientStation10= new IngredientStation(4,0,new IngredientType(&quot;dish&quot;));</b>
+<b class="fc">&nbsp;        Obstacle obstacle = new Obstacle();</b>
+<b class="fc">&nbsp;        ServingStation servingStation = new ServingStation(texture);</b>
+<b class="fc">&nbsp;        Bin bin = new Bin();</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(0,2).isEqual(fryingStation));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(1,1).isEqual(fryingStation));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(2,5).isEqual(counterTop));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(3,4).isEqual(cuttingStation));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(4,0).isEqual(ingredientStation1));</b>
+<b class="fc">&nbsp;        assertFalse(level.getStation(4,0).isEqual(ingredientStation2));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(4,2).isEqual(obstacle));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(6,5).isEqual(servingStation));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(7,1).isEqual(bin));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(2,4).isEqual(ingredientStation3));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(8,3).isEqual(lockedBakingStation));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(3,2).isEqual(ingredientStation4));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(4,5).isEqual(ingredientStation5));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(5,0).isEqual(ingredientStation6));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(6,1).isEqual(ingredientStation7));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(7,5).isEqual(ingredientStation8));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(8,0).isEqual(ingredientStation9));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(9,2).isEqual(ingredientStation10));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(9,4).isEqual(counterTop));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(11,0).isEqual(ingredientStation2));</b>
+<b class="fc">&nbsp;        assertFalse(level.getStation(11,0).isEqual(ingredientStation1));</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(level.getStation(11,5).isEqual(counterTop));</b>
+<b class="fc">&nbsp;        assertTrue(level.getStation(0,5).isEqual(lockedCuttingStation));</b>
+&nbsp;       
+<b class="fc">&nbsp;        assertNull(level.getStation(12,6));</b>
+<b class="fc">&nbsp;        assertNull(level.getStation(12,5));</b>
+<b class="fc">&nbsp;        assertNull(level.getStation(5,6));</b>
+<b class="fc">&nbsp;        assertNull(level.getStation(-1,-4));</b>
+<b class="fc">&nbsp;        assertNull(level.getStation(2,-4));</b>
+<b class="fc">&nbsp;        assertNull(level.getStation(-1,4));</b>
+<b class="fc">&nbsp;        assertNull(level.getStation(14,-4));</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

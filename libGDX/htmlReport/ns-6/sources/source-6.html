@@ -1,0 +1,810 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DishTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: DishTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DishTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (4/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (504/504)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.levelElements.Dish;
+&nbsp;import group24.piazzapanic.levelElements.Ingredient;
+&nbsp;import group24.piazzapanic.levelElements.IngredientType;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class DishTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestAddIngredient(){
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Dish dish = new Dish();</b>
+<b class="fc">&nbsp;        ingredientLettuce.cut();</b>
+<b class="fc">&nbsp;        ingredientOnion.cut();</b>
+<b class="fc">&nbsp;        ingredientTomato.cut();</b>
+<b class="fc">&nbsp;        ingredientBread.cut();</b>
+<b class="fc">&nbsp;        ingredientBurger.cut();</b>
+<b class="fc">&nbsp;        ingredientBurger.fry();</b>
+<b class="fc">&nbsp;        dish.SALAD_RECIPE.set(0,ingredientOnion);</b>
+<b class="fc">&nbsp;        dish.SALAD_RECIPE.set(1,ingredientLettuce);</b>
+<b class="fc">&nbsp;        dish.SALAD_RECIPE.set(2,ingredientTomato);</b>
+<b class="fc">&nbsp;        dish.BURGER_RECIPE.set(0,ingredientBread);</b>
+<b class="fc">&nbsp;        dish.BURGER_RECIPE.set(1,ingredientBurger);</b>
+<b class="fc">&nbsp;        dish.BURGER_RECIPE.set(2,ingredientLettuce);</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(dish.addIngredient(ingredientLettuce));</b>
+<b class="fc">&nbsp;        assertTrue(dish.addIngredient(ingredientTomato));</b>
+<b class="fc">&nbsp;        assertFalse(dish.addIngredient(ingredientBurger));</b>
+<b class="fc">&nbsp;        assertFalse(dish.addIngredient(ingredientBread));</b>
+<b class="fc">&nbsp;        assertTrue(dish.addIngredient(ingredientOnion));</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish2 = new Dish();</b>
+<b class="fc">&nbsp;        dish2.SALAD_RECIPE.set(0,ingredientOnion);</b>
+<b class="fc">&nbsp;        dish2.SALAD_RECIPE.set(1,ingredientLettuce);</b>
+<b class="fc">&nbsp;        dish2.SALAD_RECIPE.set(2,ingredientTomato);</b>
+<b class="fc">&nbsp;        dish2.BURGER_RECIPE.set(0,ingredientBread);</b>
+<b class="fc">&nbsp;        dish2.BURGER_RECIPE.set(1,ingredientBurger);</b>
+<b class="fc">&nbsp;        dish2.BURGER_RECIPE.set(2,ingredientLettuce);</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(dish2.addIngredient(ingredientLettuce));</b>
+<b class="fc">&nbsp;        assertTrue(dish2.addIngredient(ingredientBurger));</b>
+<b class="fc">&nbsp;        assertFalse(dish2.addIngredient(ingredientTomato));</b>
+<b class="fc">&nbsp;        assertFalse(dish2.addIngredient(ingredientOnion));</b>
+<b class="fc">&nbsp;        assertTrue(dish2.addIngredient(ingredientBread));</b>
+<b class="fc">&nbsp;        dish2.addIngredient(ingredientBread);</b>
+<b class="fc">&nbsp;        assertFalse(dish2.addIngredient(ingredientBread));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIsComplete(){
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish1 = new Dish();</b>
+<b class="fc">&nbsp;        dish1.Ingredients = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish1.SALAD_RECIPE.set(0,ingredientOnion);</b>
+<b class="fc">&nbsp;        dish1.SALAD_RECIPE.set(1,ingredientLettuce);</b>
+<b class="fc">&nbsp;        dish1.SALAD_RECIPE.set(2,ingredientTomato);</b>
+&nbsp;
+<b class="fc">&nbsp;        dish1.addIngredient(ingredientLettuce);</b>
+<b class="fc">&nbsp;        dish1.addIngredient(ingredientOnion);</b>
+<b class="fc">&nbsp;        dish1.addIngredient(ingredientTomato);</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(dish1.isComplete());</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish2 = new Dish();</b>
+<b class="fc">&nbsp;        dish2.Ingredients = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish2.BURGER_RECIPE.set(0,ingredientBread);</b>
+<b class="fc">&nbsp;        dish2.BURGER_RECIPE.set(1,ingredientBurger);</b>
+<b class="fc">&nbsp;        dish2.BURGER_RECIPE.set(2,ingredientLettuce);</b>
+&nbsp;
+<b class="fc">&nbsp;        dish2.addIngredient(ingredientBread);</b>
+<b class="fc">&nbsp;        dish2.addIngredient(ingredientBurger);</b>
+<b class="fc">&nbsp;        assertFalse(dish2.isComplete());</b>
+<b class="fc">&nbsp;        dish2.addIngredient(ingredientLettuce);</b>
+<b class="fc">&nbsp;        assertTrue(dish2.isComplete());</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish3 = new Dish();</b>
+<b class="fc">&nbsp;        dish3.Ingredients = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish3.PIZZA_RECIPE.set(0,ingredientDough);</b>
+<b class="fc">&nbsp;        dish3.PIZZA_RECIPE.set(1,ingredientSauce);</b>
+<b class="fc">&nbsp;        dish3.PIZZA_RECIPE.set(2,ingredientCheese);</b>
+&nbsp;
+<b class="fc">&nbsp;        dish3.addIngredient(ingredientCheese);</b>
+<b class="fc">&nbsp;        dish3.addIngredient(ingredientDough);</b>
+<b class="fc">&nbsp;        assertFalse(dish3.isComplete());</b>
+<b class="fc">&nbsp;        dish3.addIngredient(ingredientSauce);</b>
+<b class="fc">&nbsp;        assertTrue(dish3.isComplete());</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish4 = new Dish();</b>
+<b class="fc">&nbsp;        dish4.Ingredients = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish4.JACKET_POTATO_RECIPE.set(0,ingredientPotato);</b>
+<b class="fc">&nbsp;        dish4.JACKET_POTATO_RECIPE.set(1,ingredientCheese);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        dish4.addIngredient(ingredientCheese);</b>
+&nbsp;
+<b class="fc">&nbsp;        assertFalse(dish4.isComplete());</b>
+<b class="fc">&nbsp;        dish4.addIngredient(ingredientPotato);</b>
+<b class="fc">&nbsp;        assertTrue(dish4.isComplete());</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIsEquals(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredients1 = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredients1.add(ingredientCheese);</b>
+<b class="fc">&nbsp;        currentIngredients1.add(ingredientSauce);</b>
+<b class="fc">&nbsp;        currentIngredients1.add(ingredientDough);</b>
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredients2 = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredients2.add(ingredientPotato);</b>
+<b class="fc">&nbsp;        currentIngredients2.add(ingredientCheese);</b>
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredients3 = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredients3.add(ingredientLettuce);</b>
+<b class="fc">&nbsp;        currentIngredients3.add(ingredientBread);</b>
+<b class="fc">&nbsp;        currentIngredients3.add(ingredientBurger);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Dish dish1 = new Dish(currentIngredients1);</b>
+<b class="fc">&nbsp;        dish1.complete = true;</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish2 = new Dish(currentIngredients1);</b>
+<b class="fc">&nbsp;        dish2.complete = true;</b>
+<b class="fc">&nbsp;        assertTrue(dish1.equals(dish2));</b>
+<b class="fc">&nbsp;        Dish dish3 = new Dish(currentIngredients2);</b>
+<b class="fc">&nbsp;        dish3.complete = true;</b>
+<b class="fc">&nbsp;        assertFalse(dish2.equals(dish3));</b>
+<b class="fc">&nbsp;        Dish dish4 = new Dish(currentIngredients1);</b>
+<b class="fc">&nbsp;        dish4.complete=false;</b>
+<b class="fc">&nbsp;        assertFalse(dish1.equals(dish4));</b>
+<b class="fc">&nbsp;        Dish dish5 = new Dish(currentIngredients3);</b>
+<b class="fc">&nbsp;        dish2.complete = false;</b>
+<b class="fc">&nbsp;        assertFalse(dish3.equals(dish5));</b>
+&nbsp;
+<b class="fc">&nbsp;        assertFalse(dish1.equals(ingredientCheese));</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGetRecipe(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredients1 = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredients1.add(ingredientCheese);</b>
+<b class="fc">&nbsp;        currentIngredients1.add(ingredientSauce);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Dish dish1 = Dish.BURGER;</b>
+<b class="fc">&nbsp;        Dish dish2 = Dish.SALAD;</b>
+<b class="fc">&nbsp;        Dish dish3 = Dish.PIZZA;</b>
+<b class="fc">&nbsp;        Dish dish4 = Dish.JACKET_POTATO;</b>
+<b class="fc">&nbsp;        Dish dish5 = new Dish(currentIngredients1);</b>
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(&quot;Burger&quot;,dish1.getRecipe());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Salad&quot;,dish2.getRecipe());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Pizza&quot;,dish3.getRecipe());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Jacket Potato&quot;,dish4.getRecipe());</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(&quot;Error&quot;,dish5.getRecipe());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestCheckComplete(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish1 = new Dish();</b>
+<b class="fc">&nbsp;        dish1.Ingredients = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish1.SALAD_RECIPE.set(0,ingredientOnion);</b>
+<b class="fc">&nbsp;        dish1.SALAD_RECIPE.set(1,ingredientLettuce);</b>
+<b class="fc">&nbsp;        dish1.SALAD_RECIPE.set(2,ingredientTomato);</b>
+&nbsp;
+<b class="fc">&nbsp;        dish1.Ingredients.add(ingredientLettuce);</b>
+<b class="fc">&nbsp;        dish1.Ingredients.add(ingredientOnion);</b>
+<b class="fc">&nbsp;        dish1.Ingredients.add(ingredientTomato);</b>
+<b class="fc">&nbsp;        dish1.recipe = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish1.recipe.add(ingredientLettuce);</b>
+<b class="fc">&nbsp;        dish1.recipe.add(ingredientOnion);</b>
+<b class="fc">&nbsp;        dish1.recipe.add(ingredientTomato);</b>
+<b class="fc">&nbsp;        assertTrue(dish1.checkComplete());</b>
+<b class="pc">&nbsp;        assertTrue(dish1.Ingredients.size()==0);</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish2 = new Dish();</b>
+<b class="fc">&nbsp;        dish2.Ingredients = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish2.BURGER_RECIPE.set(0,ingredientBread);</b>
+<b class="fc">&nbsp;        dish2.BURGER_RECIPE.set(1,ingredientBurger);</b>
+<b class="fc">&nbsp;        dish2.BURGER_RECIPE.set(2,ingredientLettuce);</b>
+&nbsp;
+<b class="fc">&nbsp;        dish2.Ingredients.add(ingredientBread);</b>
+<b class="fc">&nbsp;        dish2.Ingredients.add(ingredientBurger);</b>
+<b class="fc">&nbsp;        dish2.Ingredients.add(ingredientLettuce);</b>
+<b class="fc">&nbsp;        dish2.recipe = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        assertFalse(dish2.checkComplete());</b>
+<b class="fc">&nbsp;        dish2.recipe.add(ingredientLettuce);</b>
+<b class="fc">&nbsp;        dish2.recipe.add(ingredientBread);</b>
+<b class="fc">&nbsp;        dish2.recipe.add(ingredientBurger);</b>
+<b class="fc">&nbsp;        assertTrue(dish2.checkComplete());</b>
+<b class="pc">&nbsp;        assertTrue(dish2.Ingredients.size()==0);</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish3 = new Dish();</b>
+<b class="fc">&nbsp;        dish3.Ingredients = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish3.PIZZA_RECIPE.set(0,ingredientDough);</b>
+<b class="fc">&nbsp;        dish3.PIZZA_RECIPE.set(1,ingredientSauce);</b>
+<b class="fc">&nbsp;        dish3.PIZZA_RECIPE.set(2,ingredientCheese);</b>
+&nbsp;
+<b class="fc">&nbsp;        dish3.recipe = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish3.recipe.add(ingredientDough);</b>
+<b class="fc">&nbsp;        dish3.recipe.add(ingredientSauce);</b>
+<b class="fc">&nbsp;        dish3.recipe.add(ingredientCheese);</b>
+<b class="fc">&nbsp;        assertFalse(dish3.checkComplete());</b>
+<b class="fc">&nbsp;        dish3.Ingredients.add(ingredientDough);</b>
+<b class="fc">&nbsp;        dish3.Ingredients.add(ingredientSauce);</b>
+<b class="fc">&nbsp;        dish3.Ingredients.add(ingredientCheese);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(dish3.checkComplete());</b>
+<b class="pc">&nbsp;        assertTrue(dish3.Ingredients.size()==0);</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish4 = new Dish();</b>
+<b class="fc">&nbsp;        dish4.Ingredients = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish4.JACKET_POTATO_RECIPE.set(0,ingredientPotato);</b>
+<b class="fc">&nbsp;        dish4.JACKET_POTATO_RECIPE.set(1,ingredientCheese);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        dish4.Ingredients.add(ingredientPotato);</b>
+<b class="fc">&nbsp;        dish4.Ingredients.add(ingredientCheese);</b>
+&nbsp;
+<b class="fc">&nbsp;        dish4.recipe = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        dish4.recipe.add(ingredientCheese);</b>
+<b class="fc">&nbsp;        dish4.recipe.add(ingredientPotato);</b>
+<b class="fc">&nbsp;        assertTrue(dish4.checkComplete());</b>
+<b class="pc">&nbsp;        assertTrue(dish4.Ingredients.size()==0);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSetRecipeBurger(){
+<b class="fc">&nbsp;        GameData gameData1 = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture11 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData1.errorTexture = texture11;</b>
+<b class="fc">&nbsp;        gameData1.dishTexture = texture11;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData1.BURGER_BUN=ingredientBread;</b>
+<b class="fc">&nbsp;        gameData1.BURGER=ingredientBurger;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_LETTUCE=ingredientLettuce;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_ONION=ingredientOnion;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_TOMATO=ingredientTomato;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_DOUGH=ingredientDough;</b>
+<b class="fc">&nbsp;        gameData1.PIZZA_SAUCE=ingredientSauce;</b>
+<b class="fc">&nbsp;        gameData1.CHEESE = ingredientCheese;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_POTATO=ingredientPotato;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredientsB = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredientsB.add(gameData1.CHOPPED_LETTUCE);</b>
+<b class="fc">&nbsp;        currentIngredientsB.add(gameData1.BURGER_BUN);</b>
+<b class="fc">&nbsp;        currentIngredientsB.add(gameData1.BURGER);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Dish dish8 = new Dish();</b>
+<b class="fc">&nbsp;        assertTrue(dish8.setRecipe(currentIngredientsB));</b>
+<b class="fc">&nbsp;        dish8.setRecipe(currentIngredientsB);</b>
+<b class="fc">&nbsp;        assertEquals(dish8.BURGER_RECIPE,dish8.recipe);</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSetRecipeSalad(){
+<b class="fc">&nbsp;        GameData gameData1 = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture11 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData1.errorTexture = texture11;</b>
+<b class="fc">&nbsp;        gameData1.dishTexture = texture11;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData1.BURGER_BUN=ingredientBread;</b>
+<b class="fc">&nbsp;        gameData1.BURGER=ingredientBurger;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_LETTUCE=ingredientLettuce;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_ONION=ingredientOnion;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_TOMATO=ingredientTomato;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_DOUGH=ingredientDough;</b>
+<b class="fc">&nbsp;        gameData1.PIZZA_SAUCE=ingredientSauce;</b>
+<b class="fc">&nbsp;        gameData1.CHEESE = ingredientCheese;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_POTATO=ingredientPotato;</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredientsS = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredientsS.add(gameData1.CHOPPED_LETTUCE);</b>
+<b class="fc">&nbsp;        currentIngredientsS.add(gameData1.CHOPPED_TOMATO);</b>
+<b class="fc">&nbsp;        currentIngredientsS.add(gameData1.CHOPPED_ONION);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Dish dish9 = new Dish();</b>
+<b class="fc">&nbsp;        assertTrue(dish9.setRecipe(currentIngredientsS));</b>
+<b class="fc">&nbsp;        dish9.setRecipe(currentIngredientsS);</b>
+<b class="fc">&nbsp;        assertEquals(dish9.SALAD_RECIPE,dish9.recipe);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSetRecipePizza(){
+<b class="fc">&nbsp;        GameData gameData1 = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture11 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData1.errorTexture = texture11;</b>
+<b class="fc">&nbsp;        gameData1.dishTexture = texture11;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData1.BURGER_BUN=ingredientBread;</b>
+<b class="fc">&nbsp;        gameData1.BURGER=ingredientBurger;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_LETTUCE=ingredientLettuce;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_ONION=ingredientOnion;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_TOMATO=ingredientTomato;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_DOUGH=ingredientDough;</b>
+<b class="fc">&nbsp;        gameData1.PIZZA_SAUCE=ingredientSauce;</b>
+<b class="fc">&nbsp;        gameData1.CHEESE = ingredientCheese;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_POTATO=ingredientPotato;</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredientsP = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredientsP.add(gameData1.PIZZA_SAUCE);</b>
+<b class="fc">&nbsp;        currentIngredientsP.add(gameData1.CHEESE);</b>
+<b class="fc">&nbsp;        currentIngredientsP.add(gameData1.BAKED_DOUGH);</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish10 = new Dish();</b>
+<b class="fc">&nbsp;        assertTrue(dish10.setRecipe(currentIngredientsP));</b>
+<b class="fc">&nbsp;        dish10.setRecipe(currentIngredientsP);</b>
+<b class="fc">&nbsp;        assertEquals(dish10.PIZZA_RECIPE,dish10.recipe);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSetRecipeJacket(){
+<b class="fc">&nbsp;        GameData gameData1 = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture11 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData1.errorTexture = texture11;</b>
+<b class="fc">&nbsp;        gameData1.dishTexture = texture11;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData1.BURGER_BUN=ingredientBread;</b>
+<b class="fc">&nbsp;        gameData1.BURGER=ingredientBurger;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_LETTUCE=ingredientLettuce;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_ONION=ingredientOnion;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_TOMATO=ingredientTomato;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_DOUGH=ingredientDough;</b>
+<b class="fc">&nbsp;        gameData1.PIZZA_SAUCE=ingredientSauce;</b>
+<b class="fc">&nbsp;        gameData1.CHEESE = ingredientCheese;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_POTATO=ingredientPotato;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredientsJ = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredientsJ.add(gameData1.BAKED_POTATO);</b>
+<b class="fc">&nbsp;        currentIngredientsJ.add(gameData1.CHEESE);</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish11 = new Dish();</b>
+<b class="fc">&nbsp;        assertTrue(dish11.setRecipe(currentIngredientsJ));</b>
+<b class="fc">&nbsp;        dish11.setRecipe(currentIngredientsJ);</b>
+<b class="fc">&nbsp;        assertEquals(dish11.JACKET_POTATO_RECIPE,dish11.recipe);</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSetRecipeCheese(){
+<b class="fc">&nbsp;        GameData gameData1 = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture11 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData1.errorTexture = texture11;</b>
+<b class="fc">&nbsp;        gameData1.dishTexture = texture11;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData1.BURGER_BUN=ingredientBread;</b>
+<b class="fc">&nbsp;        gameData1.BURGER=ingredientBurger;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_LETTUCE=ingredientLettuce;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_ONION=ingredientOnion;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_TOMATO=ingredientTomato;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_DOUGH=ingredientDough;</b>
+<b class="fc">&nbsp;        gameData1.PIZZA_SAUCE=ingredientSauce;</b>
+<b class="fc">&nbsp;        gameData1.CHEESE = ingredientCheese;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_POTATO=ingredientPotato;</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredientsPJ = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredientsPJ.add(gameData1.CHEESE);</b>
+&nbsp;
+<b class="fc">&nbsp;        Dish dish14 = new Dish();</b>
+<b class="fc">&nbsp;        dish14.recipe=null;</b>
+<b class="fc">&nbsp;        assertTrue(dish14.setRecipe(currentIngredientsPJ));</b>
+<b class="fc">&nbsp;        dish14.setRecipe(currentIngredientsPJ);</b>
+<b class="fc">&nbsp;        assertEquals(null,dish14.recipe);</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSetRecipeError(){
+<b class="fc">&nbsp;        GameData gameData1 = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture11 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData1.errorTexture = texture11;</b>
+<b class="fc">&nbsp;        gameData1.dishTexture = texture11;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType1 = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientLettuce = new Ingredient(ingredientType1,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType2 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientTomato= new Ingredient(ingredientType2,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType3 = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientOnion= new Ingredient(ingredientType3,0,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType4 = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBurger = new Ingredient(ingredientType4,0,-1,0);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType5 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientBread = new Ingredient(ingredientType5,0,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType6 = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientDough = new Ingredient(ingredientType6,-1,0,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType7 = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientCheese = new Ingredient(ingredientType7,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType8 = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientSauce = new Ingredient(ingredientType8,-1,-1,-1);</b>
+<b class="fc">&nbsp;        IngredientType ingredientType9 = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredientPotato = new Ingredient(ingredientType9,-1,0,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData1.BURGER_BUN=ingredientBread;</b>
+<b class="fc">&nbsp;        gameData1.BURGER=ingredientBurger;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_LETTUCE=ingredientLettuce;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_ONION=ingredientOnion;</b>
+<b class="fc">&nbsp;        gameData1.CHOPPED_TOMATO=ingredientTomato;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_DOUGH=ingredientDough;</b>
+<b class="fc">&nbsp;        gameData1.PIZZA_SAUCE=ingredientSauce;</b>
+<b class="fc">&nbsp;        gameData1.CHEESE = ingredientCheese;</b>
+<b class="fc">&nbsp;        gameData1.BAKED_POTATO=ingredientPotato;</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        ArrayList&lt;Ingredient&gt; currentIngredientsErr = new ArrayList&lt;Ingredient&gt;();</b>
+<b class="fc">&nbsp;        currentIngredientsErr.add(gameData1.PIZZA_SAUCE);</b>
+<b class="fc">&nbsp;        currentIngredientsErr.add(gameData1.CHEESE);</b>
+<b class="fc">&nbsp;        currentIngredientsErr.add(gameData1.BAKED_POTATO);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Dish dish12 = new Dish();</b>
+<b class="fc">&nbsp;        assertFalse(dish12.setRecipe(currentIngredientsErr));</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

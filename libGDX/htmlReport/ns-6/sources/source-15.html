@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Vector2Tests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: Vector2Tests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Vector2Tests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (25/25)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;
+&nbsp;import group24.piazzapanic.Base;
+&nbsp;import group24.piazzapanic.maths.Vector2;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;
+&nbsp;import static org.junit.Assert.assertEquals;
+&nbsp;import static org.junit.Assert.assertNotEquals;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class Vector2Tests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGetAbsoluteX(){
+<b class="fc">&nbsp;        Vector2 vector2 = new Vector2(2,3);</b>
+<b class="fc">&nbsp;        assertEquals(Math.toIntExact(Math.round(vector2.x * Base.WINDOW_WIDTH)),vector2.getAbsoluteX());</b>
+<b class="fc">&nbsp;        Vector2 vector3 = new Vector2(100,200);</b>
+<b class="fc">&nbsp;        assertEquals(Math.toIntExact(Math.round(vector3.x * Base.WINDOW_WIDTH)),vector3.getAbsoluteX());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGetAbsoluteY(){
+<b class="fc">&nbsp;        Vector2 vector2 = new Vector2(2,3);</b>
+<b class="fc">&nbsp;        assertEquals(Math.toIntExact(Math.round(vector2.y * Base.WINDOW_HEIGHT)),vector2.getAbsoluteY());</b>
+<b class="fc">&nbsp;        Vector2 vector3 = new Vector2(100,200);</b>
+<b class="fc">&nbsp;        assertEquals(Math.toIntExact(Math.round(vector3.y * Base.WINDOW_HEIGHT)),vector3.getAbsoluteY());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGridUnitTranslate(){
+<b class="fc">&nbsp;        Vector2 vector2 = new Vector2(2000,1050);</b>
+<b class="fc">&nbsp;        Vector2 vector3 = new Vector2(1000,950);</b>
+<b class="fc">&nbsp;        Vector2 newVector = new Vector2(vector2.x * Base.TILE_GRID_UNIT,</b>
+&nbsp;                vector2.y * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
+<b class="fc">&nbsp;        Vector2 wrongVector = new Vector2(vector3.x * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT,</b>
+&nbsp;                vector3.y * Base.TILE_GRID_UNIT);
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(newVector.x,vector2.gridUnitTranslate(vector2.x,vector2.y).x,0.00000000001);</b>
+<b class="fc">&nbsp;        assertEquals(newVector.y,vector2.gridUnitTranslate(vector2.x,vector2.y).y,0.00000000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(wrongVector.x,vector2.gridUnitTranslate(vector2.x,vector2.y).x,0.00000000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(wrongVector.y,vector2.gridUnitTranslate(vector2.x,vector2.y).y,0.00000000001);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGridUnitTranslateDouble() {
+<b class="fc">&nbsp;        Vector2 vector2 = new Vector2(11.7, 5.4);</b>
+<b class="fc">&nbsp;        Vector2 vector3 = new Vector2(2.9, 0.9);</b>
+<b class="fc">&nbsp;        Vector2 newVector = new Vector2(vector2.x * Base.TILE_GRID_UNIT,</b>
+&nbsp;                vector2.y * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT);
+<b class="fc">&nbsp;        Vector2 wrongVector = new Vector2(vector3.x * Base.TILE_GRID_UNIT * (double) Base.WINDOW_WIDTH / Base.WINDOW_HEIGHT,</b>
+&nbsp;                vector3.y * Base.TILE_GRID_UNIT);
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(newVector.x, vector2.gridUnitTranslate(vector2.x, vector2.y).x, 0.00000000001);</b>
+<b class="fc">&nbsp;        assertEquals(newVector.y, vector2.gridUnitTranslate(vector2.x, vector2.y).y, 0.00000000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(wrongVector.x, vector2.gridUnitTranslate(vector2.x, vector2.y).x, 0.00000000001);</b>
+<b class="fc">&nbsp;        assertNotEquals(wrongVector.y, vector2.gridUnitTranslate(vector2.x, vector2.y).y, 0.00000000001);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

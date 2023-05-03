@@ -1,0 +1,497 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Level</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.game</a>
+</div>
+
+<h1>Coverage Summary for Class: Level (group24.piazzapanic.game)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Level</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    41.7%
+  </span>
+  <span class="absValue">
+    (75/180)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.7%
+  </span>
+  <span class="absValue">
+    (127/150)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Level$MockitoMock$1258548748</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$1258548748$auxiliary$4littjp4</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$1258548748$auxiliary$aYDfQLi2</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$1258548748$auxiliary$gFgYfdla</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$1258548748$auxiliary$J71vhncX</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$1258548748$auxiliary$Jm2zSWze</td>
+  </tr>
+  <tr>
+    <td class="name">Level$MockitoMock$1258548748$auxiliary$uMVoPthz</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    41.7%
+  </span>
+  <span class="absValue">
+    (75/180)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.7%
+  </span>
+  <span class="absValue">
+    (127/150)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package group24.piazzapanic.game;
+&nbsp;
+&nbsp;import group24.piazzapanic.levelElements.IngredientType;
+&nbsp;import group24.piazzapanic.levelElements.stations.*;
+&nbsp;import group24.piazzapanic.maths.Vector2;
+&nbsp;
+&nbsp;/**
+&nbsp; * Reads level environment data from a file and stores it in a 2D array of
+&nbsp; * stations.
+&nbsp; * It stores a grid, integer positions refer to the top left corner of a
+&nbsp; * station/tile as shown on
+&nbsp; * screen to the player.
+&nbsp; */
+&nbsp;public class Level {
+&nbsp;    /**
+&nbsp;     * The name of the level file on disk.
+&nbsp;     */
+&nbsp;    private final String levelName;
+&nbsp;    /** The grid of stations */
+&nbsp;    public Station[][] grid;
+&nbsp;    /** The width of the level */
+&nbsp;    private int width;
+&nbsp;    /** The height of the level */
+&nbsp;    private int height;
+&nbsp;    /** The X starting position of the player */
+&nbsp;    public int startX;
+&nbsp;    /** The Y starting position of the player */
+&nbsp;    public int startY;
+&nbsp;    public static String[] level_string;
+<b class="fc">&nbsp;    public String[] initial_layout =</b>
+&nbsp;           {&quot;s11bcf111112&quot;,
+&nbsp;            &quot;...........3&quot;,
+&nbsp;            &quot;g.dBCF11...3&quot;,
+&nbsp;            &quot;....*......3&quot;,
+&nbsp;            &quot;o.t.l.r....3&quot;,
+&nbsp;            &quot;.h.p.D.m.S.4&quot;};
+&nbsp;
+<b class="fc">&nbsp;    public Level(String levelName,String [] layout){</b>
+<b class="fc">&nbsp;        this.initial_layout = layout;</b>
+<b class="fc">&nbsp;        this.levelName = levelName;</b>
+&nbsp;        // Read the level file from disk.
+&nbsp;        try {
+<b class="fc">&nbsp;            width = 12;</b>
+<b class="fc">&nbsp;            height = 6;</b>
+&nbsp;
+<b class="fc">&nbsp;            String[] level_string = initial_layout;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;            grid = new Station[width][height];</b>
+&nbsp;
+&nbsp;            // The x and y coordinates of the current station.
+&nbsp;            int x;
+&nbsp;            int y;
+&nbsp;
+&nbsp;            // Loop variables to interpret a level string array (i, the outer loop, refers to y coordinate).
+&nbsp;            int j;
+<b class="fc">&nbsp;            int i = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;            for (String line : level_string) {</b>
+<b class="pc">&nbsp;                if (line.length() != width) {</b>
+<b class="nc">&nbsp;                    throw new Exception(</b>
+<b class="nc">&nbsp;                            &quot;Expected &quot; + width + &quot; characters , but found &quot; + line.length() + &quot;.&quot;);</b>
+&nbsp;                }
+&nbsp;
+<b class="fc">&nbsp;                for (j = 0; j &lt; width; j++) {</b>
+<b class="fc">&nbsp;                    y = height - i - 1;</b>
+<b class="fc">&nbsp;                    x = j;</b>
+&nbsp;
+<b class="pc">&nbsp;                    switch (line.charAt(j)) {</b>
+&nbsp;                        case &#39;.&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = null;</b>
+<b class="fc">&nbsp;                            continue;</b>
+&nbsp;                        case &#39;*&#39;:
+<b class="nc">&nbsp;                            grid[x][y] = null;</b>
+<b class="nc">&nbsp;                            startX = j;</b>
+<b class="nc">&nbsp;                            startY = height - i - 1;</b>
+<b class="nc">&nbsp;                            continue;</b>
+&nbsp;                        case &#39;B&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new BakingStation(GameData.bakingStationTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;b&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new BakingStation(GameData.lockedBakingStationTexture);</b>
+<b class="fc">&nbsp;                            grid[x][y].available = 0;</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;1&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CounterTop(GameData.counterTopTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;2&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CounterTop(GameData.counterRightCornerTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;3&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CounterTop(GameData.counterRightTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;4&#39;:
+<b class="nc">&nbsp;                            grid[x][y] = new CounterTop(GameData.counterEndTexture);</b>
+<b class="nc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;C&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CuttingStation(GameData.cuttingStationTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;c&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CuttingStation(GameData.lockedCuttingStationTexture);</b>
+<b class="fc">&nbsp;                            grid[x][y].available = 0;</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;F&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new FryingStation(GameData.fryingStationTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;f&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new FryingStation(GameData.lockedFryingStationTexture);</b>
+<b class="fc">&nbsp;                            grid[x][y].available = 0;</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;t&#39;: // tomato
+&nbsp;                        case &#39;o&#39;: // onion
+&nbsp;                        case &#39;l&#39;: // lettuce
+&nbsp;                        case &#39;r&#39;: // bread
+&nbsp;                        case &#39;m&#39;: // meat
+&nbsp;                        case &#39;h&#39;: // cheese
+&nbsp;                        case &#39;S&#39;: // sauce
+&nbsp;                        case &#39;D&#39;: // dough
+&nbsp;                        case &#39;p&#39;: // potato
+&nbsp;                        case &#39;d&#39;: // dish (plate)
+<b class="fc">&nbsp;                            grid[x][y] = new IngredientStation(x, y,</b>
+<b class="fc">&nbsp;                                    extrapolateIngredient(line.charAt(j)));</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;W&#39;: //wall
+<b class="fc">&nbsp;                            grid[x][y] = new Obstacle();</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;g&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new Bin();</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;s&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new ServingStation(GameData.servingStationTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        default:
+<b class="fc">&nbsp;                            System.out.println(</b>
+<b class="fc">&nbsp;                                    &quot;Unknown character &#39;&quot; + line.charAt(j) + &quot;&#39; in level file &#39;&quot; + levelName + &quot;&#39;&#39;.&quot;);</b>
+<b class="fc">&nbsp;                            grid[x][y] = new ErrorStation();</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    Vector2 pos = Vector2.gridUnitTranslate(x, y);</b>
+<b class="fc">&nbsp;                    grid[x][y].setPosition(pos.getAbsoluteX() + GameData.offsetX,</b>
+<b class="fc">&nbsp;                            pos.getAbsoluteY() + GameData.offsetY);</b>
+&nbsp;                }
+&nbsp;
+<b class="fc">&nbsp;                i += 1;</b>
+&nbsp;            }
+&nbsp;            //levelScanner.close();
+<b class="nc">&nbsp;        } catch (Exception exception) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Error reading level, &#39;&quot; + levelName + &quot;&#39;.&quot;);</b>
+<b class="nc">&nbsp;            exception.printStackTrace();</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Level constructor, reads level data from file and stores it in a 2D array of {@link Station}s.
+&nbsp;     * @param levelName The name of the level file on disk.
+&nbsp;     */
+<b class="fc">&nbsp;    public Level(String levelName) {</b>
+<b class="fc">&nbsp;        this.levelName = levelName;</b>
+&nbsp;        // Read the level file from disk.
+&nbsp;        try {
+<b class="fc">&nbsp;            width = 12;</b>
+<b class="fc">&nbsp;            height = 6;</b>
+&nbsp;
+<b class="fc">&nbsp;            String[] level_string = initial_layout;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;            grid = new Station[width][height];</b>
+&nbsp;
+&nbsp;            // The x and y coordinates of the current station.
+&nbsp;            int x;
+&nbsp;            int y;
+&nbsp;
+&nbsp;            // Loop variables to interpret a level string array (i, the outer loop, refers to y coordinate).
+&nbsp;            int j;
+<b class="fc">&nbsp;            int i = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;            for (String line : level_string) {</b>
+<b class="pc">&nbsp;                if (line.length() != width) {</b>
+<b class="nc">&nbsp;                    throw new Exception(</b>
+<b class="nc">&nbsp;                            &quot;Expected &quot; + width + &quot; characters , but found &quot; + line.length() + &quot;.&quot;);</b>
+&nbsp;                }
+&nbsp;
+<b class="fc">&nbsp;                for (j = 0; j &lt; width; j++) {</b>
+<b class="fc">&nbsp;                    y = height - i - 1;</b>
+<b class="fc">&nbsp;                    x = j;</b>
+&nbsp;
+<b class="pc">&nbsp;                    switch (line.charAt(j)) {</b>
+&nbsp;                        case &#39;.&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = null;</b>
+<b class="fc">&nbsp;                            continue;</b>
+&nbsp;                        case &#39;*&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = null;</b>
+<b class="fc">&nbsp;                            startX = j;</b>
+<b class="fc">&nbsp;                            startY = height - i - 1;</b>
+<b class="fc">&nbsp;                            continue;</b>
+&nbsp;                        case &#39;B&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new BakingStation(GameData.bakingStationTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;b&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new BakingStation(GameData.lockedBakingStationTexture);</b>
+<b class="fc">&nbsp;                            grid[x][y].available = 0;</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;1&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CounterTop(GameData.counterTopTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;2&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CounterTop(GameData.counterRightCornerTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;3&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CounterTop(GameData.counterRightTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;4&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CounterTop(GameData.counterEndTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;C&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CuttingStation(GameData.cuttingStationTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;c&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new CuttingStation(GameData.lockedCuttingStationTexture);</b>
+<b class="fc">&nbsp;                            grid[x][y].available = 0;</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;F&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new FryingStation(GameData.fryingStationTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;f&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new FryingStation(GameData.lockedFryingStationTexture);</b>
+<b class="fc">&nbsp;                            grid[x][y].available = 0;</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;t&#39;: // tomato
+&nbsp;                        case &#39;o&#39;: // onion
+&nbsp;                        case &#39;l&#39;: // lettuce
+&nbsp;                        case &#39;r&#39;: // bread
+&nbsp;                        case &#39;m&#39;: // meat
+&nbsp;                        case &#39;h&#39;: // cheese
+&nbsp;                        case &#39;S&#39;: // sauce
+&nbsp;                        case &#39;D&#39;: // dough
+&nbsp;                        case &#39;p&#39;: // potato
+&nbsp;                        case &#39;d&#39;: // dish (plate)
+<b class="fc">&nbsp;                            grid[x][y] = new IngredientStation(x, y,</b>
+<b class="fc">&nbsp;                                    extrapolateIngredient(line.charAt(j)));</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;W&#39;: //wall
+<b class="nc">&nbsp;                            grid[x][y] = new Obstacle();</b>
+<b class="nc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;g&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new Bin();</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        case &#39;s&#39;:
+<b class="fc">&nbsp;                            grid[x][y] = new ServingStation(GameData.servingStationTexture);</b>
+<b class="fc">&nbsp;                            break;</b>
+&nbsp;                        default:
+<b class="nc">&nbsp;                            System.out.println(</b>
+<b class="nc">&nbsp;                                    &quot;Unknown character &#39;&quot; + line.charAt(j) + &quot;&#39; in level file &#39;&quot; + levelName + &quot;&#39;&#39;.&quot;);</b>
+<b class="nc">&nbsp;                            grid[x][y] = new ErrorStation();</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    Vector2 pos = Vector2.gridUnitTranslate(x, y);</b>
+<b class="fc">&nbsp;                    grid[x][y].setPosition(pos.getAbsoluteX() + GameData.offsetX,</b>
+<b class="fc">&nbsp;                            pos.getAbsoluteY() + GameData.offsetY);</b>
+&nbsp;                }
+&nbsp;
+<b class="fc">&nbsp;                i += 1;</b>
+&nbsp;            }
+&nbsp;            //levelScanner.close();
+<b class="nc">&nbsp;        } catch (Exception exception) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Error reading level, &#39;&quot; + levelName + &quot;&#39;.&quot;);</b>
+<b class="nc">&nbsp;            exception.printStackTrace();</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Extrapolates the ingredient from a single letter in the level file.
+&nbsp;     * e.g. the letter &quot;t&quot; represents tomatoes
+&nbsp;     * @param abbrevation The letter representing the ingredient
+&nbsp;     * @return An {@link IngredientType} object representing the ingredient. Null if the ingredient is unknown.
+&nbsp;     */
+&nbsp;    private static IngredientType extrapolateIngredient(char abbrevation) {
+<b class="pc">&nbsp;        switch (abbrevation) {</b>
+&nbsp;            case &#39;t&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;tomato&quot;);</b>
+&nbsp;            case &#39;o&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;onion&quot;);</b>
+&nbsp;            case &#39;l&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;lettuce&quot;);</b>
+&nbsp;            case &#39;m&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;meat&quot;);</b>
+&nbsp;            case &#39;r&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;bread&quot;);</b>
+&nbsp;            case &#39;d&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;dish&quot;);</b>
+&nbsp;            case &#39;h&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;cheese&quot;);</b>
+&nbsp;            case &#39;S&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;sauce&quot;);</b>
+&nbsp;            case &#39;D&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;dough&quot;);</b>
+&nbsp;            case &#39;p&#39;:
+<b class="fc">&nbsp;                return new IngredientType(&quot;potato&quot;);</b>
+&nbsp;            default:
+<b class="nc">&nbsp;                System.out.println(&quot;Unknown ingredient &#39;&quot; + abbrevation + &quot;&#39;.&quot;);</b>
+<b class="nc">&nbsp;                return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the name of the level file on disk.
+&nbsp;     * @return A String representing the name of the level file on disk.
+&nbsp;     */
+&nbsp;    public String getLevelName() {
+<b class="fc">&nbsp;        return levelName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the station at the given coordinates.
+&nbsp;     * @param x The integer x coordinate of the station.
+&nbsp;     * @param y The integer y coordinate of the station.
+&nbsp;     * @return The {@link Station} at the given coordinates. Null if the coordinates are out of bounds.
+&nbsp;     */
+&nbsp;    public Station getStation(int x, int y) {
+&nbsp;        // Bounds check
+<b class="fc">&nbsp;        if (x &lt; GameData.level.getWidth() &amp;&amp; y &lt; GameData.level.getHeight()) {</b>
+<b class="fc">&nbsp;            if (x &gt;= 0 &amp;&amp; y &gt;= 0) {</b>
+<b class="fc">&nbsp;                return grid[x][y];</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the width of the level in grid units.
+&nbsp;     * @return an integer representing the width of the level in grid units.
+&nbsp;     */
+&nbsp;    public int getWidth() {
+<b class="fc">&nbsp;        return width;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns the height of the level in grid units.
+&nbsp;     * @return an integer representing the height of the level in grid units.
+&nbsp;     */
+&nbsp;    public int getHeight() {
+<b class="fc">&nbsp;        return height;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

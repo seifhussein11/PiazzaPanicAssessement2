@@ -1,0 +1,178 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ImageMovable</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.Physics</a>
+</div>
+
+<h1>Coverage Summary for Class: ImageMovable (group24.piazzapanic.Physics)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ImageMovable</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (2/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.Physics;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import com.badlogic.gdx.scenes.scene2d.ui.Image;
+&nbsp;import group24.piazzapanic.Base;
+&nbsp;import group24.piazzapanic.levelElements.Ingredient;
+&nbsp;
+&nbsp;/**
+&nbsp; * A class that extends the Image class to allow for images that can be stored in inventory.
+&nbsp; * Implements the {@link Movable} interface.
+&nbsp; * Extends the {@link Image} class.
+&nbsp; */
+&nbsp;public class ImageMovable extends Image implements Movable {
+&nbsp;
+&nbsp;    /** The ingredient that this image represents. */
+&nbsp;    public Ingredient ingredient;
+&nbsp;    /** The texture of this image. */
+&nbsp;    public Texture texture;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create a new image that can be stored in inventory.
+&nbsp;     * @param texture The {@link Texture} of this image.
+&nbsp;     */
+&nbsp;    public ImageMovable(Texture texture) {
+<b class="fc">&nbsp;        super(texture);</b>
+<b class="fc">&nbsp;        this.texture = texture;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * A method stub for the act method.
+&nbsp;     * @param delta Time in seconds since the last frame.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void act(float delta) {
+<b class="nc">&nbsp;        super.act(delta);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /** Not implemented. */
+&nbsp;//    @Override
+&nbsp;//    public void actItem(float delta) {
+&nbsp;//
+&nbsp;//    }
+&nbsp;
+&nbsp;    /** Draw the image. */
+&nbsp;//    @Override
+&nbsp;//    public void drawItem(int x, int y) {
+&nbsp;//        Base.batch.draw(texture, x, y);
+&nbsp;//
+&nbsp;//    }
+&nbsp;
+&nbsp;    /** Return the {@link Ingredient} that this image represents. */
+&nbsp;    @Override
+&nbsp;    public Ingredient getIngredient() {
+<b class="fc">&nbsp;        return ingredient;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Draw the image at the given position and size.
+&nbsp;     * @param x The x position of the image.
+&nbsp;     * @param y The y position of the image.
+&nbsp;     * @param width The width of the image.
+&nbsp;     * @param height The height of the image.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void drawItem(int x, int y, int width, int height) {
+<b class="nc">&nbsp;        Base.batch.draw(texture, x, y, width, height);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawItemInventory(int x, int y, int width, int height) {
+<b class="nc">&nbsp;        drawItem(x, y, 50, 50);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

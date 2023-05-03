@@ -1,0 +1,374 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PhysicsTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: PhysicsTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PhysicsTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (222/222)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import group24.piazzapanic.game.*;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class PhysicsTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestPhysicsIsSolid(){
+<b class="fc">&nbsp;        Physics physics = new Physics();</b>
+<b class="fc">&nbsp;        GameData gameData = new GameData();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.counterEndTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightCornerTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterTopTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.servingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.bakingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.fryingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.cuttingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.binTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.ingredientStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.obstacleTexture =texture;</b>
+<b class="fc">&nbsp;        gameData.dishStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.tomatoStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.onionStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lettuceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.breadStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.meatStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.dishStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.doughStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.sauceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.cheeseStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.potatoStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedBakingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedFryingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedCuttingStationTexture=texture;</b>
+&nbsp;
+<b class="fc">&nbsp;        Level level = new Level(&quot;levels/Level 3&quot;);</b>
+<b class="fc">&nbsp;        gameData.level = level;</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        assertTrue(physics.isSolid(1.2,5.3)); //countertop</b>
+<b class="fc">&nbsp;        assertFalse(physics.isSolid(2.7,2));  // no station</b>
+<b class="fc">&nbsp;        assertTrue(physics.isSolid(13.5,5.3)); // more than the game data level width</b>
+<b class="fc">&nbsp;        assertTrue(physics.isSolid(3.5,7.3));//more than the game data level height</b>
+<b class="fc">&nbsp;        assertTrue(physics.isSolid(13.5,7.3)); // more than both level height and width</b>
+<b class="fc">&nbsp;        assertTrue(physics.isSolid(-1,7.3)); // less than height</b>
+<b class="fc">&nbsp;        assertTrue(physics.isSolid(1,-2.4)); // less than width</b>
+<b class="fc">&nbsp;        assertTrue(physics.isSolid(-1,-7.3)); // less than height and weight</b>
+<b class="fc">&nbsp;        assertTrue(physics.isSolid(2.4,3.9)); // ingredient station</b>
+<b class="fc">&nbsp;        assertFalse(physics.isSolid(10,4));  // no station</b>
+&nbsp;//(1,5) (2,1) (2,3) (0,1) (0,3) (0,5) (1,0)
+&nbsp;    }
+&nbsp;    @Test
+&nbsp;    public void TestPhysicsPlayerMovement() {
+<b class="fc">&nbsp;        Physics physics = new Physics();</b>
+<b class="fc">&nbsp;        GameData gameData = new GameData();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.counterEndTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterRightCornerTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.counterTopTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.servingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.bakingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.fryingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.cuttingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.binTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.ingredientStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.obstacleTexture =texture;</b>
+<b class="fc">&nbsp;        gameData.dishStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.tomatoStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.onionStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lettuceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.breadStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.meatStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.dishStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.doughStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.sauceStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.cheeseStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.potatoStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedBakingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedFryingStationTexture=texture;</b>
+<b class="fc">&nbsp;        gameData.lockedCuttingStationTexture=texture;</b>
+<b class="fc">&nbsp;        Level level = new Level(&quot;levels/Level 3&quot;);</b>
+<b class="fc">&nbsp;        gameData.level = level;</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        Player player = new Player(10,4,null);</b>
+<b class="fc">&nbsp;        float delta = (float) 0.1;</b>
+&nbsp;
+<b class="fc">&nbsp;        double acc = player.acceleration;</b>
+<b class="fc">&nbsp;        double deacc = player.deacceleration;</b>
+&nbsp;        // test player pressing up
+<b class="fc">&nbsp;        player.direction = Player.facing.DOWN;</b>
+<b class="fc">&nbsp;        physics.upPressed = true;</b>
+<b class="fc">&nbsp;        double expectedVelocityUp = player.y_vel + acc * delta;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityUp,player.y_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.UP,player.direction);</b>
+&nbsp;        // test player pressing down
+<b class="fc">&nbsp;        physics.upPressed = false;</b>
+<b class="fc">&nbsp;        physics.downPressed = true;</b>
+<b class="fc">&nbsp;        player.direction = Player.facing.UP;</b>
+<b class="fc">&nbsp;        double expectedVelocityDown = player.y_vel - acc * delta;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityDown,player.y_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.DOWN,player.direction);</b>
+&nbsp;        // test player not pressing up nor down and y velocity positive
+<b class="fc">&nbsp;        physics.upPressed = false;</b>
+<b class="fc">&nbsp;        physics.downPressed = false;</b>
+<b class="fc">&nbsp;        player.y_vel = 2.5;</b>
+<b class="fc">&nbsp;        double expectedVelocityNoPressUDPos = player.y_vel - deacc * delta;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityNoPressUDPos,player.y_vel,0.000000001);</b>
+&nbsp;        // y velocity is negative
+<b class="fc">&nbsp;        player.y_vel = -2.5;</b>
+<b class="fc">&nbsp;        double expectedVelocityNoPressUDNeg = player.y_vel + deacc * delta;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityNoPressUDNeg,player.y_vel,0.000000001);</b>
+&nbsp;        // test player deaccelated beyond a certain point in y
+<b class="fc">&nbsp;        player.y_vel = 2.2;</b>
+<b class="fc">&nbsp;        double expectedVelocityDeacclerationY = 0;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityDeacclerationY,player.y_vel,0.000000001);</b>
+&nbsp;        // test player pressing left
+<b class="fc">&nbsp;        physics.downPressed = false;</b>
+<b class="fc">&nbsp;        physics.leftPressed = true;</b>
+<b class="fc">&nbsp;        player.direction = Player.facing.UP;</b>
+<b class="fc">&nbsp;        double expectedVelocityLeft = player.x_vel - acc * delta;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityLeft,player.x_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.LEFT,player.direction);</b>
+&nbsp;        // test player press  right
+<b class="fc">&nbsp;        physics.leftPressed = false;</b>
+<b class="fc">&nbsp;        physics.rightPressed = true;</b>
+<b class="fc">&nbsp;        player.direction = Player.facing.UP;</b>
+<b class="fc">&nbsp;        double expectedVelocityRight = player.x_vel + acc * delta;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityRight,player.x_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.RIGHT,player.direction);</b>
+&nbsp;        // test player not pressing right nor left positive
+<b class="fc">&nbsp;        physics.leftPressed = false;</b>
+<b class="fc">&nbsp;        physics.rightPressed = false;</b>
+<b class="fc">&nbsp;        player.y_vel=0;</b>
+<b class="fc">&nbsp;        player.x_vel = 2.5;</b>
+<b class="fc">&nbsp;        double expectedVelocityNoPressLRPos = player.x_vel - deacc * delta;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityNoPressLRPos,player.x_vel,0.000000001);</b>
+&nbsp;        // x velocity is negative
+<b class="fc">&nbsp;        player.x_vel = -2.5;</b>
+<b class="fc">&nbsp;        double expectedVelocityNoPressLRNeg = player.x_vel + deacc * delta;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityNoPressLRNeg,player.x_vel,0.000000001);</b>
+&nbsp;        // test player deaccelrated beyond a certain point in x
+<b class="fc">&nbsp;        player.x_vel = 2.3;</b>
+<b class="fc">&nbsp;        double expectedVelocityDeacclerationX = 0;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityDeacclerationX,player.x_vel,0.000000001);</b>
+&nbsp;        // test player moving with more than max speed in y
+<b class="fc">&nbsp;        player.direction = Player.facing.DOWN;</b>
+<b class="fc">&nbsp;        physics.downPressed = false;</b>
+<b class="fc">&nbsp;        physics.rightPressed = false;</b>
+<b class="fc">&nbsp;        physics.leftPressed = false;</b>
+<b class="fc">&nbsp;        physics.upPressed = true;</b>
+<b class="fc">&nbsp;        player.y_vel=3;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        double expectedVelocityUpMax = 3;</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityUpMax,player.y_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.UP,player.direction);</b>
+&nbsp;        // player moving with less that min speed in y
+<b class="fc">&nbsp;        physics.upPressed = false;</b>
+<b class="fc">&nbsp;        physics.downPressed = true;</b>
+<b class="fc">&nbsp;        player.direction = Player.facing.UP;</b>
+<b class="fc">&nbsp;        player.y_vel=-3;</b>
+<b class="fc">&nbsp;        double expectedVelocityDownMin = -3;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityDownMin,player.y_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.DOWN,player.direction);</b>
+&nbsp;        // player moving with more than max speed in x
+<b class="fc">&nbsp;        player.direction = Player.facing.DOWN;</b>
+<b class="fc">&nbsp;        physics.downPressed = false;</b>
+<b class="fc">&nbsp;        physics.rightPressed = true;</b>
+<b class="fc">&nbsp;        physics.leftPressed = false;</b>
+<b class="fc">&nbsp;        physics.upPressed = false;</b>
+<b class="fc">&nbsp;        player.x_vel=3;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        double expectedVelocityRightMax = 3;</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityRightMax,player.x_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.RIGHT,player.direction);</b>
+&nbsp;        // player moving with less than min speed in x
+<b class="fc">&nbsp;        player.direction = Player.facing.DOWN;</b>
+<b class="fc">&nbsp;        physics.rightPressed = false;</b>
+<b class="fc">&nbsp;        physics.leftPressed = true;</b>
+<b class="fc">&nbsp;        player.x_vel=-3;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player,delta);</b>
+<b class="fc">&nbsp;        double expectedVelocityRightMin = -3;</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityRightMin,player.x_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.LEFT,player.direction);</b>
+&nbsp;        // test collision delta_x &lt; 0
+<b class="fc">&nbsp;        Player player2 = new Player(0.2,1.2,null);</b>
+<b class="fc">&nbsp;        physics.downPressed = false;</b>
+<b class="fc">&nbsp;        physics.leftPressed = true;</b>
+<b class="fc">&nbsp;        player2.direction = Player.facing.UP;</b>
+<b class="fc">&nbsp;        double realVelocityLeftObstacleXneg = player2.x_vel - acc * delta;</b>
+<b class="fc">&nbsp;        double expectedVelocityLeftObstacleXneg = 0;</b>
+<b class="fc">&nbsp;        double delta_xNeg = realVelocityLeftObstacleXneg * delta;</b>
+<b class="fc">&nbsp;        double expectedDeltaXneg = Math.min(Math.ceil(player.left() + delta_xNeg) - player.left() + Player.movementEpsilon, 0);</b>
+<b class="fc">&nbsp;        double expectedPlayerXneg= player2.x + expectedDeltaXneg;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player2,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityLeftObstacleXneg,player2.x_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(expectedPlayerXneg,player2.x,0.0000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.LEFT,player2.direction);</b>
+&nbsp;        // test collision delta_x &gt; 0
+<b class="fc">&nbsp;        physics.downPressed = false;</b>
+<b class="fc">&nbsp;        physics.leftPressed = false;</b>
+<b class="fc">&nbsp;        physics.rightPressed = true;</b>
+<b class="fc">&nbsp;        player2.direction = Player.facing.UP;</b>
+<b class="fc">&nbsp;        double realVelocityLeftObstacleXpos = player2.x_vel + acc * delta;</b>
+<b class="fc">&nbsp;        double expectedVelocityLeftObstacleXpos = 0;</b>
+<b class="fc">&nbsp;        double delta_xPos = realVelocityLeftObstacleXpos * delta;</b>
+<b class="fc">&nbsp;        double expectedDeltaXpos = Math.max(Math.floor(player.right() + delta_xPos) - player.right() - Player.movementEpsilon, 0);</b>
+<b class="fc">&nbsp;        double expectedPlayerXpos= player2.x + expectedDeltaXpos;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player2,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityLeftObstacleXpos,player2.x_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(expectedPlayerXpos,player2.x,0.0000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.RIGHT,player2.direction);</b>
+&nbsp;        // test collision delta_y &lt; 0
+<b class="fc">&nbsp;        physics.downPressed = true;</b>
+<b class="fc">&nbsp;        physics.leftPressed = false;</b>
+<b class="fc">&nbsp;        physics.rightPressed = false;</b>
+<b class="fc">&nbsp;        player2.direction = Player.facing.UP;</b>
+<b class="fc">&nbsp;        double realVelocityLeftObstacleYneg = player2.y_vel - acc * delta;</b>
+<b class="fc">&nbsp;        double expectedVelocityLeftObstacleYneg = 0;</b>
+<b class="fc">&nbsp;        double delta_yNeg = realVelocityLeftObstacleYneg * delta;</b>
+<b class="fc">&nbsp;        double expectedDeltaYneg = Math.min(Math.ceil(player.bottom() + delta_yNeg) - player.bottom() + Player.movementEpsilon, 0);;</b>
+<b class="fc">&nbsp;        double expectedPlayerYneg= player2.y + expectedDeltaYneg;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player2,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityLeftObstacleYneg,player2.y_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(expectedPlayerYneg,player2.y,0.0000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.DOWN,player2.direction);</b>
+&nbsp;        // test collision delta_y &gt; 0
+<b class="fc">&nbsp;        physics.downPressed = false;</b>
+<b class="fc">&nbsp;        physics.leftPressed = false;</b>
+<b class="fc">&nbsp;        physics.rightPressed = false;</b>
+<b class="fc">&nbsp;        physics.upPressed = true;</b>
+<b class="fc">&nbsp;        player2.direction = Player.facing.DOWN;</b>
+<b class="fc">&nbsp;        double realVelocityLeftObstacleYpos = player2.y_vel + acc * delta;</b>
+<b class="fc">&nbsp;        double expectedVelocityLeftObstacleYpos = 0;</b>
+<b class="fc">&nbsp;        double delta_yPos = realVelocityLeftObstacleYpos * delta;</b>
+<b class="fc">&nbsp;        double expectedDeltaYpos = Math.min(Math.ceil(player.bottom() + delta_yPos) - player.bottom() + Player.movementEpsilon, 0);;</b>
+<b class="fc">&nbsp;        double expectedPlayerYpos= player2.y + expectedDeltaYpos;</b>
+<b class="fc">&nbsp;        physics.playerMovement(player2,delta);</b>
+<b class="fc">&nbsp;        assertEquals(expectedVelocityLeftObstacleYpos,player2.y_vel,0.000000001);</b>
+<b class="fc">&nbsp;        assertEquals(expectedPlayerYpos,player2.y,0.0000001);</b>
+<b class="fc">&nbsp;        assertEquals(Player.facing.UP,player2.direction);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

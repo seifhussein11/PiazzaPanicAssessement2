@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > StageManager</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.ui</a>
+</div>
+
+<h1>Coverage Summary for Class: StageManager (group24.piazzapanic.ui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StageManager</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.ui;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;
+&nbsp;import com.badlogic.gdx.Gdx;
+&nbsp;import com.badlogic.gdx.scenes.scene2d.Stage;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.game.GameLoop;
+&nbsp;
+&nbsp;/**
+&nbsp; * Manages which stage is &quot;active&quot; (ie is displayed and is responding to user input).
+&nbsp; */
+<b class="nc">&nbsp;public class StageManager {</b>
+&nbsp;    /** A dictionary privataly noting a name and a corresponding stage. */
+&nbsp;    private static HashMap&lt;String, Stage&gt; stages;
+&nbsp;    /** A &quot;global&quot; value indicating the current active stage. */
+&nbsp;    private static Stage activeStage;
+&nbsp;    /** A &quot;global&quot; value indicating string whose corresponding stage is currently active. */
+&nbsp;    private static String activeStageName;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create the various stages.
+&nbsp;     */
+&nbsp;    public static void init() {
+<b class="nc">&nbsp;        stages = new HashMap&lt;String, Stage&gt;();</b>
+<b class="nc">&nbsp;        stages.put(&quot;MainMenu&quot;, StageFactory.createMainMenuStage());</b>
+<b class="nc">&nbsp;        stages.put(&quot;Options&quot;, StageFactory.createOptionsMenuStage());</b>
+<b class="nc">&nbsp;        stages.put(&quot;Configure&quot;,StageFactory.createScenarioAmountSelectionStage());</b>
+&nbsp;        //GameData.gameLoop = new GameLoop();
+&nbsp;        //stages.put(&quot;Game&quot;, GameData.gameLoop);
+<b class="nc">&nbsp;        stages.put(&quot;Pause&quot;, StageFactory.createPauseMenuStage());</b>
+<b class="nc">&nbsp;        stages.put(&quot;Instructions&quot;, StageFactory.createInstructionsStage());</b>
+<b class="nc">&nbsp;        stages.put(&quot;Instructions2&quot;, StageFactory.createInstructionsStageP2());</b>
+<b class="nc">&nbsp;        stages.put(&quot;GameWin&quot;, StageFactory.createGameWinStage());</b>
+<b class="nc">&nbsp;        stages.put(&quot;ScenarioGameOver&quot;, StageFactory.createScenarioGameOverStage());</b>
+<b class="nc">&nbsp;        stages.put(&quot;EndlessGameOver&quot;, StageFactory.createEndlessGameOverStage());</b>
+<b class="nc">&nbsp;        stages.put(&quot;Difficulty&quot;, StageFactory.createDifficultySelectionStage());</b>
+<b class="nc">&nbsp;        setActiveStage(&quot;MainMenu&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add a stage to the record of stages, supplying a string name for it.
+&nbsp;     * @param key The name to refer to the stage by.
+&nbsp;     * @param stage The stage itself.
+&nbsp;     */
+&nbsp;    public static void addStage(String key, Stage stage) {
+<b class="nc">&nbsp;        stages.put(key, stage);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set the active stage without supplying a string. Used for &quot;anonymous&quot; stages that aren&#39;t
+&nbsp;     * stored permanently.
+&nbsp;     * @param stage The stage object to use as the active stage.
+&nbsp;     */
+&nbsp;    public static void setActiveStage(Stage stage) {
+<b class="nc">&nbsp;        activeStage = stage;</b>
+<b class="nc">&nbsp;        Gdx.input.setInputProcessor(activeStage);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set the active stage by name (names of stages are as shown in the StageManager constructor).
+&nbsp;     * @param stage  The name of an already existing stage.
+&nbsp;     */
+&nbsp;    public static void setActiveStage(String stage) {
+<b class="nc">&nbsp;        activeStage = getStage(stage);</b>
+<b class="nc">&nbsp;        activeStageName = stage;</b>
+<b class="nc">&nbsp;        Gdx.input.setInputProcessor(activeStage);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** 
+&nbsp;     * Get the stage object of whichever stage is currently active.
+&nbsp;     * @return The stage object itself.
+&nbsp;     */
+&nbsp;    public static Stage getActiveStage() {
+<b class="nc">&nbsp;        return activeStage;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get the name of the active stage.
+&nbsp;     * @return The string/key referring to the active stage.
+&nbsp;     */
+&nbsp;    public static String getActiveStageName() {
+<b class="nc">&nbsp;        return activeStageName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Get a stage by name.
+&nbsp;     * @param name The name of the desired stage.
+&nbsp;     * @return The stage referred to by 
+&nbsp;     */
+&nbsp;    public static Stage getStage(String name) {
+<b class="nc">&nbsp;        return stages.get(name);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

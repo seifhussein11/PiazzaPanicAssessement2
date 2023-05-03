@@ -1,0 +1,294 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AssetTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: AssetTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AssetTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (155/155)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;import com.badlogic.gdx.Gdx;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class AssetTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testStationAssetsExists() {
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the floor asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\kitchen_floor.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the baking station closed asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\baking_station_closed.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the baking station open asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\baking_station_open.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the bin asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\bin.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the bread sack asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\bread_sack.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the cheese sack asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\cheese_sack.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the  asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the counter end asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\counterend.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the counter side asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\counterside.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the counter top asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\countertop.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the counter top right corner asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\countertop_rightcorner.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the customer station asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\customer_station.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the cutting station asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\cutting_station.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the dough sack asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\dough_sack.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the empty sack asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\empty_sack.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the frying station off asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\frying_station_off.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the frying station on asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\frying_station_on.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the meat station asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\ingredient_station_meat.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the plate station asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\ingredient_station_plate.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the lettuce_sack asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\lettuce_sack.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the locked baking station asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\locked_baking_station.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the locked cutting station asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\locked_cutting_station.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the locked frying station asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\locked_frying_station.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the onion sack asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\onion_sack.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the potato sack asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\potato_sack.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;This test will only pass if the tomato sack asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;stations\\tomato_sack.png&quot;).exists());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testCustomersAssetsExists(){
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the customer1 asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;customers\\customer_1_idle.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the customer2 asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;customers\\customer_2_idle.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the customer3 asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;customers\\customer_3_idle.png&quot;).exists());</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testIngredientsAssetsExists(){
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the assembled burger asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\assembled_burger.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the baked dough asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\baked_dough.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the baked potato asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\baked_potato.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the bread asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\bread.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the burnt burger asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\burnt_burger.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the cheese asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\cheese.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chopped lettuce asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\chopped_lettuce.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chopped onion asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\chopped_onion.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chopped tomato asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\chopped_tomato.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the cooked burger asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\cooked_burger.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the dough asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\dough.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the half cooked burger asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\half_cooked_burger.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the jacket potato asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\jacket_potato.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the lettuce asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\lettuce.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the onion asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\onion.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the pizza asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\pizza.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the plate asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\plate.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the potato asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\potato.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the raw burger asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\raw_burger.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the raw meat asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\raw_meat.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the salad asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\salad.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the sauce asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\sauce.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the sliced bread asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\sliced_bread.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the tomato asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;ingredients\\tomato.png&quot;).exists());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testChefAssetsExists(){
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef1 idle back asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_idle_back.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 idle back selected asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_idle_back_selected.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 idle front asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_idle_front.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 idle front selected asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_idle_front_selected.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 idle left asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_idle_left.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 idle left selected asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_idle_left_selected.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 idle right asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_idle_right.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 idle right selected asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_idle_right_selected.png&quot;).exists());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef idle back asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_idle_back.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef idle back selected asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_idle_back_selected.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef idle front asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_idle_front.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef idle front selected asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_idle_front_selected.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef idle left asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_idle_left.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef idle left selected asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_idle_left_selected.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef idle right asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_idle_right.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef idle right selected asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_idle_right_selected.png&quot;).exists());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 walk back asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_walk_back.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 walk front asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_walk_front.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 walk left asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_walk_left.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef 1 walk right asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_1_walk_right.png&quot;).exists());</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef walk back asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_walk_back.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef walk front asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_walk_front.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef walk left asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_walk_left.png&quot;).exists());</b>
+<b class="fc">&nbsp;        assertTrue(&quot;this test will only pass if the chef walk right asset exists&quot;,</b>
+<b class="fc">&nbsp;                Gdx.files.internal(&quot;chef\\chef_walk_right.png&quot;).exists());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

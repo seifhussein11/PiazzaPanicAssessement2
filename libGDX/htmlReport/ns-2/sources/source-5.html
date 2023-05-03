@@ -1,0 +1,308 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Physics</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.game</a>
+</div>
+
+<h1>Coverage Summary for Class: Physics (group24.piazzapanic.game)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Physics</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.1%
+  </span>
+  <span class="absValue">
+    (73/90)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.5%
+  </span>
+  <span class="absValue">
+    (66/67)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.game;
+&nbsp;
+&nbsp;import group24.piazzapanic.Base;
+&nbsp;
+&nbsp;import static com.badlogic.gdx.Gdx.input;
+&nbsp;
+&nbsp;/**
+&nbsp; * A class that contains static methods for checking collisions and other physics.
+&nbsp; */
+<b class="fc">&nbsp;public class Physics {</b>
+&nbsp;
+&nbsp;    public static boolean upPressed;
+&nbsp;    public static boolean downPressed;
+&nbsp;    public static boolean leftPressed;
+&nbsp;    public static boolean rightPressed;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks if the player is close to a station. 
+&nbsp;     * @param station The station which we want to check if it&#39;s near.
+&nbsp;     * @param player The player.
+&nbsp;     * @return True if player near the station, false otherwise.
+&nbsp;     */
+&nbsp;//    public static boolean isNear(Station station, Player player) {  not used now.
+&nbsp;//        Vector2 pos = Vector2.worldUnitTranslate(
+&nbsp;//                GameData.player.x - Player.GRID_WIDTH * Player.TEXTURE_SCALE / 2,
+&nbsp;//                GameData.player.y - Player.GRID_WIDTH / 2);
+&nbsp;//        double deltaX = pos.getAbsoluteX() - ((0.01 * Base.WINDOW_WIDTH) / 2) - station.getX();
+&nbsp;//        double deltaY = pos.getAbsoluteY() - ((0.01 * Base.WINDOW_WIDTH)) - station.getY(); //Magic numbers go BRRRR
+&nbsp;//        //Why do we have so many different ty pes of positions and offsets
+&nbsp;//
+&nbsp;//        double Threshhold = Base.tile_pixel_width * 1.2; // Station width in pixels divided by three
+&nbsp;//        if (Math.abs(deltaX) &lt;= Threshhold &amp;&amp; Math.abs(deltaY) &lt;= Threshhold) { // If closer than Threshold
+&nbsp;//            return (Gdx.input.isKeyPressed(Base.ACT_KEY) || Gdx.input.isKeyPressed(Base.PICKUP_KEY));
+&nbsp;//        }
+&nbsp;//        return false;
+&nbsp;//    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks if the given coordinates are solid (i.e. a station is there).
+&nbsp;     * @param x Decimal x position.
+&nbsp;     * @param y Decimal y position.
+&nbsp;     * @return Whether there is not a station at grid[floor(x)][floor(y)].
+&nbsp;     */
+&nbsp;    public static boolean isSolid(double x, double y) {
+<b class="fc">&nbsp;        x = Math.floor(x);</b>
+<b class="fc">&nbsp;        y = Math.floor(y);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (x &lt; 0 || y &lt; 0 || x &gt;= GameData.level.getWidth() || y &gt;= GameData.level.getHeight()) {</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+&nbsp;        //System.out.println(GameData.level.getStation((int) x, (int) y));
+<b class="fc">&nbsp;        return GameData.level.getStation((int) x, (int) y) != null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /** 
+&nbsp;     * @param player The {@link Player} that is moving 
+&nbsp;     * @param delta The time since the last frame in seconds. 
+&nbsp;     */
+&nbsp;    public static void playerMovement(Player player, float delta) {
+&nbsp;        /*
+&nbsp;        We know:
+&nbsp;        U (player&#39;s current velocity)
+&nbsp;        A (acceleration, this is a constant)
+&nbsp;        T (time since last frame)
+&nbsp;        
+&nbsp;        We don&#39;t know S and we&#39;re trying to find V.
+&nbsp;        
+&nbsp;        V = U + AT.
+&nbsp;        
+&nbsp;        (new vel)    (old vel)
+&nbsp;        player_vel = player_vel + acceleration * delta;
+&nbsp;        */
+<b class="pc">&nbsp;        if (input.isKeyPressed(Base.UP_KEY) || upPressed == true) { // new for testing</b>
+&nbsp;            // This is just the implementation of the formula above.
+<b class="fc">&nbsp;            player.y_vel += Player.acceleration * delta;</b>
+&nbsp;
+<b class="pc">&nbsp;            if (player.direction != Player.facing.UP) {</b>
+<b class="fc">&nbsp;                player.direction = Player.facing.UP;</b>
+&nbsp;                //player.animation.setAnimation(&quot;chef/chef_walk_back.png&quot;, 6, 1, 6);
+&nbsp;            }
+<b class="pc">&nbsp;        } else if (input.isKeyPressed(Base.DOWN_KEY) || downPressed == true) {</b>
+<b class="fc">&nbsp;            player.y_vel -= Player.acceleration * delta;</b>
+&nbsp;
+<b class="pc">&nbsp;            if (player.direction != Player.facing.DOWN) {</b>
+<b class="fc">&nbsp;                player.direction = Player.facing.DOWN;</b>
+&nbsp;                //player.animation.setAnimation(&quot;chef/chef_walk_front.png&quot;, 6, 1, 6);
+&nbsp;            }
+&nbsp;        } else {
+&nbsp;            // If the player is not pressing up or down, we need to deaccelerate in that direction.
+<b class="fc">&nbsp;            if (player.y_vel &gt; 0) {</b>
+<b class="fc">&nbsp;                player.y_vel -= Player.deacceleration * delta;</b>
+<b class="fc">&nbsp;            } else if (player.y_vel &lt; 0) {</b>
+<b class="fc">&nbsp;                player.y_vel += Player.deacceleration * delta;</b>
+&nbsp;            }
+&nbsp;
+&nbsp;            // If the player has decelerated past a certain point, stop them moving.
+<b class="fc">&nbsp;            if (Math.abs(player.y_vel) &lt; Player.minSpeed &amp;&amp; Math.abs(player.y_vel) != 0) {</b>
+<b class="fc">&nbsp;                player.y_vel = 0;</b>
+<b class="pc">&nbsp;                if (player.direction == Player.facing.UP) {</b>
+&nbsp;                    //player.animation.setAnimation(&quot;chef/chef_idle_back_selected.png&quot;, 6, 1, 6);
+<b class="pc">&nbsp;                } else if (player.direction == Player.facing.DOWN) {</b>
+&nbsp;                    //player.animation.setAnimation(&quot;chef/chef_idle_front_selected.png&quot;, 6, 1, 6);
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="pc">&nbsp;        if (input.isKeyPressed(Base.LEFT_KEY) || leftPressed == true) {</b>
+<b class="fc">&nbsp;            player.x_vel -= Player.acceleration * delta;</b>
+&nbsp;
+<b class="pc">&nbsp;            if (player.direction != Player.facing.LEFT) {</b>
+<b class="fc">&nbsp;                player.direction = Player.facing.LEFT;</b>
+&nbsp;                //player.animation.setAnimation(&quot;chef/chef_walk_left.png&quot;, 6, 1, 6);
+&nbsp;            }
+<b class="pc">&nbsp;        } else if (input.isKeyPressed(Base.RIGHT_KEY) || rightPressed == true) {</b>
+<b class="fc">&nbsp;            player.x_vel += Player.acceleration * delta;</b>
+&nbsp;
+<b class="pc">&nbsp;            if (player.direction != Player.facing.RIGHT) {</b>
+<b class="fc">&nbsp;                player.direction = Player.facing.RIGHT;</b>
+&nbsp;                //player.animation.setAnimation(&quot;chef/chef_walk_right.png&quot;, 6, 1, 6);
+&nbsp;            }
+&nbsp;        } else {
+&nbsp;            // If the player is not pressing left or right, we need to deaccelerate in that direction.
+<b class="fc">&nbsp;            if (player.x_vel &gt; 0) {</b>
+<b class="fc">&nbsp;                player.x_vel -= Player.deacceleration * delta;</b>
+<b class="fc">&nbsp;            } else if (player.x_vel &lt; 0) {</b>
+<b class="fc">&nbsp;                player.x_vel += Player.deacceleration * delta;</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            if (Math.abs(player.x_vel) &lt; Player.minSpeed &amp;&amp; Math.abs(player.x_vel) != 0) {</b>
+<b class="fc">&nbsp;                player.x_vel = 0;</b>
+<b class="pc">&nbsp;                if (player.direction == Player.facing.RIGHT) {</b>
+&nbsp;                    //player.animation.setAnimation(&quot;chef/chef_idle_right_selected.png&quot;, 6, 1, 6);
+<b class="nc">&nbsp;                } else if (player.direction == Player.facing.LEFT) {</b>
+&nbsp;                    //player.animation.setAnimation(&quot;chef/chef_idle_left_selected.png&quot;, 6, 1, 6);
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;        // Prevent the player from moving faster than the maximum speed.
+<b class="fc">&nbsp;        if (player.x_vel &gt; Player.maxSpeed) {</b>
+<b class="fc">&nbsp;            player.x_vel = Player.maxSpeed;</b>
+<b class="fc">&nbsp;        } else if (player.x_vel &lt; -Player.maxSpeed) {</b>
+<b class="fc">&nbsp;            player.x_vel = -Player.maxSpeed;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (player.y_vel &gt; Player.maxSpeed) {</b>
+<b class="fc">&nbsp;            player.y_vel = Player.maxSpeed;</b>
+<b class="fc">&nbsp;        } else if (player.y_vel &lt; -Player.maxSpeed) {</b>
+<b class="fc">&nbsp;            player.y_vel = -Player.maxSpeed;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // How far the player will move in this frame.
+<b class="fc">&nbsp;        double delta_x = player.x_vel * delta;</b>
+<b class="fc">&nbsp;        double delta_y = player.y_vel * delta;</b>
+&nbsp;
+&nbsp;        //System.out.println(player.x + &quot;, &quot; + player.y);
+&nbsp;
+&nbsp;        // Work out collisions with stations in the level.
+<b class="fc">&nbsp;        if (delta_x &gt; 0 &amp;&amp;</b>
+<b class="fc">&nbsp;                (isSolid(player.right() + delta_x + Player.movementEpsilon, player.top() + delta_y)</b>
+<b class="pc">&nbsp;                        || isSolid(player.right() + delta_x + Player.movementEpsilon, player.bottom() + delta_y))) {</b>
+&nbsp;            // If you are moving right, *and* there is something obstructing any of the two
+&nbsp;            // points on the right most edge, then decrease delta_x and set x_vel to 0 so
+&nbsp;            // that you stop just at the edge of the object.
+&nbsp;
+<b class="fc">&nbsp;            player.x_vel = 0;</b>
+<b class="fc">&nbsp;            delta_x = Math.max(Math.floor(player.right() + delta_x) - player.right() - Player.movementEpsilon, 0);</b>
+&nbsp;            //                 ^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^
+&nbsp;            // This is the x position of the obstacle&#39;s edge.
+&nbsp;        }
+<b class="fc">&nbsp;        if (delta_x &lt; 0 &amp;&amp; (isSolid(player.left() + delta_x - Player.movementEpsilon, player.top() + delta_y)</b>
+<b class="pc">&nbsp;                || isSolid(player.left() + delta_x - Player.movementEpsilon, player.bottom() + delta_y))) {</b>
+&nbsp;            // Left
+<b class="fc">&nbsp;            player.x_vel = 0;</b>
+<b class="fc">&nbsp;            delta_x = Math.min(Math.ceil(player.left() + delta_x) - player.left() + Player.movementEpsilon, 0);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (delta_y &gt; 0 &amp;&amp; (isSolid(player.left() + delta_x, player.top() + delta_y + Player.movementEpsilon)</b>
+<b class="pc">&nbsp;                || isSolid(player.right() + delta_x, player.top() + delta_y + Player.movementEpsilon))) {</b>
+&nbsp;            // Up
+<b class="fc">&nbsp;            player.y_vel = 0;</b>
+<b class="fc">&nbsp;            delta_y = Math.max(Math.floor(player.top() + delta_y) - player.top() - Player.movementEpsilon, 0);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (delta_y &lt; 0 &amp;&amp; (isSolid(player.left() + delta_x, player.bottom() + delta_y - Player.movementEpsilon)</b>
+<b class="pc">&nbsp;                || isSolid(player.right() + delta_x, player.bottom() + delta_y - Player.movementEpsilon))) {</b>
+&nbsp;            // Down
+<b class="fc">&nbsp;            player.y_vel = 0;</b>
+<b class="fc">&nbsp;            delta_y = Math.min(Math.ceil(player.bottom() + delta_y) - player.bottom() + Player.movementEpsilon, 0);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Actually modify the player&#39;s position.
+<b class="fc">&nbsp;        player.x += delta_x;</b>
+<b class="fc">&nbsp;        player.y += delta_y;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

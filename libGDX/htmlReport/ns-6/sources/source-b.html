@@ -1,0 +1,617 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > IngredientTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: IngredientTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">IngredientTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (376/376)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.levelElements.Dish;
+&nbsp;import group24.piazzapanic.levelElements.Ingredient;
+&nbsp;import group24.piazzapanic.levelElements.IngredientType;
+&nbsp;import group24.piazzapanic.maths.Vector2;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class IngredientTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientCut(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture2 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutTomatoTexture = texture2;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture1;</b>
+<b class="fc">&nbsp;        IngredientType tomato = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient tomatoIngr = new Ingredient(tomato,0,-1,-1);</b>
+<b class="fc">&nbsp;        tomatoIngr.cut();</b>
+<b class="fc">&nbsp;        assertEquals(1,tomatoIngr.getCuttingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture2,tomatoIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType onion = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient onionIngr = new Ingredient(onion,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture3 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutOnionTexture = texture3;</b>
+<b class="fc">&nbsp;        onionIngr.cut();</b>
+<b class="fc">&nbsp;        assertEquals(1,onionIngr.getCuttingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture3,onionIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType lettuce = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient lettuceIngr = new Ingredient(lettuce,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture4 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutLettuceTexture = texture4;</b>
+<b class="fc">&nbsp;        lettuceIngr.cut();</b>
+<b class="fc">&nbsp;        assertEquals(1,lettuceIngr.getCuttingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture4,lettuceIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient breadIngr = new Ingredient(bread,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture5 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutBreadTexture = texture5;</b>
+<b class="fc">&nbsp;        breadIngr.cut();</b>
+<b class="fc">&nbsp;        assertEquals(1,breadIngr.getCuttingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture5,breadIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType meat = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient meatIngr = new Ingredient(meat,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture6 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutMeatTexture = texture6;</b>
+<b class="fc">&nbsp;        meatIngr.cut();</b>
+<b class="fc">&nbsp;        assertEquals(1,meatIngr.getCuttingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture6,meatIngr.texture);</b>
+<b class="fc">&nbsp;        assertEquals(0,meatIngr.getFryingProgress(),0.000001);</b>
+&nbsp;
+<b class="fc">&nbsp;        Texture texture7 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture8 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture9 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture10 = Mockito.mock(Texture.class);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType doughType = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        IngredientType cheeseType = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        IngredientType sauceType = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        IngredientType potatoType = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        gameData.rawDoughTexture = texture7;</b>
+<b class="fc">&nbsp;        gameData.rawCheeseTexture = texture8;</b>
+<b class="fc">&nbsp;        gameData.rawSauceTexture = texture9;</b>
+<b class="fc">&nbsp;        gameData.rawPotatoTexture = texture10;</b>
+<b class="fc">&nbsp;        Ingredient dough = new Ingredient(doughType,-1,0,-1);</b>
+<b class="fc">&nbsp;        dough.cut();</b>
+<b class="fc">&nbsp;        assertEquals(1,dough.getCuttingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture7,dough.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture6,dough.texture);</b>
+<b class="fc">&nbsp;        assertEquals(0,dough.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        Ingredient cheese = new Ingredient(cheeseType,-1,-1,-1);</b>
+<b class="fc">&nbsp;        cheese.cut();</b>
+<b class="fc">&nbsp;        assertEquals(1,cheese.getCuttingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture8,cheese.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture7,cheese.texture);</b>
+<b class="fc">&nbsp;        assertEquals(-1,cheese.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        Ingredient sauce = new Ingredient(sauceType,-1,-1,-1);</b>
+<b class="fc">&nbsp;        sauce.cut();</b>
+<b class="fc">&nbsp;        assertEquals(1,sauce.getCuttingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture9,sauce.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture8,sauce.texture);</b>
+<b class="fc">&nbsp;        assertEquals(-1,sauce.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        Ingredient potato = new Ingredient(potatoType,-1,0,-1);</b>
+<b class="fc">&nbsp;        potato.cut();</b>
+<b class="fc">&nbsp;        assertEquals(1,potato.getCuttingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture10,potato.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture9,potato.texture);</b>
+<b class="fc">&nbsp;        assertEquals(0,dough.getBakingProgress(),0.00001);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientFry(){
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture2 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutTomatoTexture = texture2;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture1;</b>
+<b class="fc">&nbsp;        IngredientType tomato = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient tomatoIngr = new Ingredient(tomato,0,-1,-1);</b>
+<b class="fc">&nbsp;        tomatoIngr.fry();</b>
+<b class="fc">&nbsp;        assertEquals(0,tomatoIngr.getFryingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture2,tomatoIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType onion = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient onionIngr = new Ingredient(onion,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture3 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutOnionTexture = texture3;</b>
+<b class="fc">&nbsp;        onionIngr.fry();</b>
+<b class="fc">&nbsp;        assertEquals(0,onionIngr.getFryingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture3,onionIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType lettuce = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient lettuceIngr = new Ingredient(lettuce,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture4 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutLettuceTexture = texture4;</b>
+<b class="fc">&nbsp;        lettuceIngr.fry();</b>
+<b class="fc">&nbsp;        assertEquals(0,lettuceIngr.getFryingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture4,lettuceIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient breadIngr = new Ingredient(bread,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture5 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutBreadTexture = texture5;</b>
+<b class="fc">&nbsp;        breadIngr.fry();</b>
+<b class="fc">&nbsp;        assertEquals(0,breadIngr.getFryingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture5,breadIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType meat = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient meatIngr1 = new Ingredient(meat,0,-1,0);</b>
+<b class="fc">&nbsp;        Ingredient meatIngr2 = new Ingredient(meat,0,-1,1);</b>
+<b class="fc">&nbsp;        Texture texture6 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture62 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.halfFriedMeatTexture = texture6;</b>
+<b class="fc">&nbsp;        gameData.friedMeatTexture = texture62;</b>
+<b class="fc">&nbsp;        meatIngr1.fry();</b>
+<b class="fc">&nbsp;        meatIngr2.fry();</b>
+<b class="fc">&nbsp;        assertEquals(1,meatIngr1.getFryingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,meatIngr1.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(gameData.friedMeatTexture,meatIngr1.texture);</b>
+<b class="fc">&nbsp;        assertEquals(-1,meatIngr2.getBakingProgress(),0.000001);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Texture texture7 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture8 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture9 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture10 = Mockito.mock(Texture.class);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType doughType = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        IngredientType cheeseType = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        IngredientType sauceType = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        IngredientType potatoType = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        gameData.rawDoughTexture = texture7;</b>
+<b class="fc">&nbsp;        gameData.rawCheeseTexture = texture8;</b>
+<b class="fc">&nbsp;        gameData.rawSauceTexture = texture9;</b>
+<b class="fc">&nbsp;        gameData.rawPotatoTexture = texture10;</b>
+<b class="fc">&nbsp;        Ingredient dough = new Ingredient(doughType,-1,0,-1);</b>
+<b class="fc">&nbsp;        dough.fry();</b>
+<b class="fc">&nbsp;        assertEquals(0,dough.getFryingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture7,dough.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture6,dough.texture);</b>
+<b class="fc">&nbsp;        assertEquals(0,dough.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        Ingredient cheese = new Ingredient(cheeseType,-1,-1,-1);</b>
+<b class="fc">&nbsp;        cheese.fry();</b>
+<b class="fc">&nbsp;        assertEquals(0,cheese.getFryingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture8,cheese.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture7,cheese.texture);</b>
+<b class="fc">&nbsp;        assertEquals(-1,cheese.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        Ingredient sauce = new Ingredient(sauceType,-1,-1,-1);</b>
+<b class="fc">&nbsp;        sauce.fry();</b>
+<b class="fc">&nbsp;        assertEquals(0,sauce.getFryingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture9,sauce.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture8,sauce.texture);</b>
+<b class="fc">&nbsp;        assertEquals(-1,sauce.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        Ingredient potato = new Ingredient(potatoType,-1,0,-1);</b>
+<b class="fc">&nbsp;        potato.fry();</b>
+<b class="fc">&nbsp;        assertEquals(0,potato.getFryingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture10,potato.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture9,potato.texture);</b>
+<b class="fc">&nbsp;        assertEquals(0,dough.getBakingProgress(),0.00001);</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientBake(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture2 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutTomatoTexture = texture2;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture1;</b>
+<b class="fc">&nbsp;        IngredientType tomato = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient tomatoIngr = new Ingredient(tomato,0,-1,-1);</b>
+<b class="fc">&nbsp;        tomatoIngr.bake();</b>
+<b class="fc">&nbsp;        assertEquals(1,tomatoIngr.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture2,tomatoIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType onion = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        Ingredient onionIngr = new Ingredient(onion,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture3 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutOnionTexture = texture3;</b>
+<b class="fc">&nbsp;        onionIngr.bake();</b>
+<b class="fc">&nbsp;        assertEquals(1,onionIngr.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture3,onionIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType lettuce = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        Ingredient lettuceIngr = new Ingredient(lettuce,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture4 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutLettuceTexture = texture4;</b>
+<b class="fc">&nbsp;        lettuceIngr.bake();</b>
+<b class="fc">&nbsp;        assertEquals(1,lettuceIngr.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture4,lettuceIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient breadIngr = new Ingredient(bread,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture5 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cutBreadTexture = texture5;</b>
+<b class="fc">&nbsp;        breadIngr.bake();</b>
+<b class="fc">&nbsp;        assertEquals(1,breadIngr.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture5,breadIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType meat = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient meatIngr = new Ingredient(meat,0,-1,-1);</b>
+<b class="fc">&nbsp;        Texture texture6 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.friedMeatTexture = texture6;</b>
+<b class="fc">&nbsp;        meatIngr.bake();</b>
+<b class="fc">&nbsp;        assertEquals(1,meatIngr.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture6,meatIngr.texture);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        Texture texture7 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture8 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture9 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture10 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture11 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture12 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture13 = Mockito.mock(Texture.class);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        IngredientType doughType = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        IngredientType cheeseType = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        IngredientType sauceType = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        IngredientType potatoType = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        gameData.rawDoughTexture = texture11;</b>
+<b class="fc">&nbsp;        gameData.bakedDoughTexture = texture7;</b>
+<b class="fc">&nbsp;        gameData.rawCheeseTexture = texture8;</b>
+<b class="fc">&nbsp;        gameData.rawSauceTexture = texture9;</b>
+<b class="fc">&nbsp;        gameData.rawPotatoTexture = texture10;</b>
+<b class="fc">&nbsp;        gameData.bakedPotatoTexture = texture12;</b>
+<b class="fc">&nbsp;        Ingredient dough = new Ingredient(doughType,-1,0,-1);</b>
+<b class="fc">&nbsp;        dough.bake();</b>
+<b class="fc">&nbsp;        assertEquals(1,dough.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture7,dough.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture11,dough.texture);</b>
+<b class="fc">&nbsp;        assertEquals(-1,dough.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        Ingredient cheese = new Ingredient(cheeseType,-1,-1,-1);</b>
+<b class="fc">&nbsp;        cheese.bake();</b>
+<b class="fc">&nbsp;        assertEquals(1,cheese.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture8,cheese.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture7,cheese.texture);</b>
+<b class="fc">&nbsp;        assertEquals(-1,cheese.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        Ingredient sauce = new Ingredient(sauceType,-1,-1,-1);</b>
+<b class="fc">&nbsp;        sauce.bake();</b>
+<b class="fc">&nbsp;        assertEquals(1,sauce.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture9,sauce.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture8,sauce.texture);</b>
+<b class="fc">&nbsp;        assertEquals(-1,sauce.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        Ingredient potato = new Ingredient(potatoType,-1,0,-1);</b>
+<b class="fc">&nbsp;        potato.bake();</b>
+<b class="fc">&nbsp;        assertEquals(1,potato.getBakingProgress(),0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(texture12,potato.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(texture10,potato.texture);</b>
+<b class="fc">&nbsp;        assertEquals(-1,dough.getFryingProgress(),0.00001);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientGetCuttingProgress(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData.errorTexture = texture1;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient breadIngr = new Ingredient(bread,1,-1,-1);</b>
+<b class="fc">&nbsp;        assertEquals(1,breadIngr.getCuttingProgress(),0.000001);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientGetFryingProgress(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData.errorTexture = texture1;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        IngredientType meat = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient meatIngr = new Ingredient(meat,-1,-1,1);</b>
+<b class="fc">&nbsp;        assertEquals(1,meatIngr.getFryingProgress(),0.000001);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientGetBakingProgress(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData.errorTexture = texture1;</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient breadIngr = new Ingredient(bread,-1,1,-1);</b>
+<b class="fc">&nbsp;        assertEquals(1,breadIngr.getBakingProgress(),0.000001);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientIdenticalTo(){
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData.errorTexture = texture1;</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread1 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient bread1Ingr = new Ingredient(bread1,-1,1,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread2 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient bread2Ingr = new Ingredient(bread2,-1,1,-1);</b>
+<b class="fc">&nbsp;        assertTrue(bread1Ingr.identicalTo(bread2Ingr));</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread3 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient bread3Ingr = new Ingredient(bread2,0,1,-1);</b>
+<b class="fc">&nbsp;        assertFalse(bread1Ingr.identicalTo(bread3Ingr));</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType tomato1 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient tomato1Ingr = new Ingredient(tomato1,0,1,-1);</b>
+<b class="fc">&nbsp;        assertFalse(tomato1Ingr.identicalTo(bread3Ingr));</b>
+<b class="fc">&nbsp;        assertFalse(tomato1Ingr.identicalTo(bread2Ingr));</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientEquals(){
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData.errorTexture = texture1;</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread1 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient bread1Ingr = new Ingredient(bread1,-1,1,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType bread2 = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        Ingredient bread2Ingr = new Ingredient(bread2,-1,1,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(bread1Ingr.equals(bread2Ingr));</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType tomato1 = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient tomato1Ingr = new Ingredient(tomato1,0,1,-1);</b>
+&nbsp;
+<b class="fc">&nbsp;        assertFalse(tomato1Ingr.equals(bread2Ingr));</b>
+&nbsp;
+<b class="fc">&nbsp;        gameData.dishTexture = texture1;</b>
+<b class="fc">&nbsp;        Dish dish = new Dish();</b>
+<b class="fc">&nbsp;        assertFalse(tomato1Ingr.equals(bread2Ingr));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientConstructer(){
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawTomatoTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawLettuceTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawOnionTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawBreadTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawMeatTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawDoughTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawCheeseTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawSauceTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawPotatoTexture = texture;</b>
+<b class="fc">&nbsp;        IngredientType tomatoType = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        IngredientType lettuceType = new IngredientType(&quot;lettuce&quot;);</b>
+<b class="fc">&nbsp;        IngredientType onionType = new IngredientType(&quot;onion&quot;);</b>
+<b class="fc">&nbsp;        IngredientType breadType = new IngredientType(&quot;bread&quot;);</b>
+<b class="fc">&nbsp;        IngredientType meatType = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        IngredientType doughType = new IngredientType(&quot;dough&quot;);</b>
+<b class="fc">&nbsp;        IngredientType cheeseType = new IngredientType(&quot;cheese&quot;);</b>
+<b class="fc">&nbsp;        IngredientType sauceType = new IngredientType(&quot;sauce&quot;);</b>
+<b class="fc">&nbsp;        IngredientType potatoType = new IngredientType(&quot;potato&quot;);</b>
+<b class="fc">&nbsp;        Vector2 vector2 = Mockito.mock(Vector2.class);</b>
+&nbsp;
+<b class="fc">&nbsp;        Ingredient tomato = new Ingredient(tomatoType,vector2);</b>
+<b class="fc">&nbsp;        assertEquals(0,tomato.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,tomato.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,tomato.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(texture,tomato.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        Ingredient lettuce = new Ingredient(lettuceType,vector2);</b>
+<b class="fc">&nbsp;        assertEquals(0,lettuce.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,lettuce.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,lettuce.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(texture,lettuce.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        Ingredient onion = new Ingredient(onionType,vector2);</b>
+<b class="fc">&nbsp;        assertEquals(0,onion.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,onion.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,onion.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(texture,onion.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        Ingredient bread = new Ingredient(breadType,vector2);</b>
+<b class="fc">&nbsp;        assertEquals(0,bread.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,bread.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,bread.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(texture,bread.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        Ingredient meat = new Ingredient(meatType,vector2);</b>
+<b class="fc">&nbsp;        assertEquals(0,meat.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,meat.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,meat.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(texture,meat.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        Ingredient dough = new Ingredient(doughType,vector2);</b>
+<b class="fc">&nbsp;        assertEquals(-1,dough.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,dough.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(0,dough.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(texture,dough.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        Ingredient cheese = new Ingredient(cheeseType,vector2);</b>
+<b class="fc">&nbsp;        assertEquals(-1,cheese.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,cheese.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,cheese.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(texture,cheese.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        Ingredient sauce = new Ingredient(sauceType,vector2);</b>
+<b class="fc">&nbsp;        assertEquals(-1,sauce.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,sauce.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,sauce.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(texture,sauce.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        Ingredient potato = new Ingredient(potatoType,vector2);</b>
+<b class="fc">&nbsp;        assertEquals(-1,potato.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(-1,potato.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(0,potato.getBakingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(texture,potato.texture);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIngredientBurn(){
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture2 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture3 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture4 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture5 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.rawMeatTexture = texture1;</b>
+<b class="fc">&nbsp;        gameData.halfFriedMeatTexture = texture2;</b>
+<b class="fc">&nbsp;        gameData.friedMeatTexture = texture3;</b>
+<b class="fc">&nbsp;        gameData.burntMeatTexture = texture4;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.rawTomatoTexture=texture5;</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType meatType = new IngredientType(&quot;meat&quot;);</b>
+<b class="fc">&nbsp;        Ingredient meatIngr = new Ingredient(meatType,0,-1,0);</b>
+<b class="fc">&nbsp;        meatIngr.burn();</b>
+<b class="fc">&nbsp;        assertEquals(3,meatIngr.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(gameData.burntMeatTexture,meatIngr.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(gameData.friedMeatTexture,meatIngr.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(gameData.halfFriedMeatTexture,meatIngr.texture);</b>
+<b class="fc">&nbsp;        assertNotEquals(gameData.rawMeatTexture,meatIngr.texture);</b>
+&nbsp;
+<b class="fc">&nbsp;        IngredientType tomatoType = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient tomatoIngr = new Ingredient(tomatoType,0,-1,-1);</b>
+<b class="fc">&nbsp;        tomatoIngr.texture=texture5;</b>
+<b class="fc">&nbsp;        tomatoIngr.burn();</b>
+<b class="fc">&nbsp;        assertEquals(-1,tomatoIngr.getFryingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(gameData.rawTomatoTexture,tomatoIngr.texture);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

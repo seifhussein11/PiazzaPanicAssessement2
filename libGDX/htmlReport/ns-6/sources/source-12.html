@@ -1,0 +1,339 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SaveLoadTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: SaveLoadTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SaveLoadTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (191/191)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import group24.piazzapanic.game.*;
+&nbsp;import group24.piazzapanic.ui.StageFactory;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import java.io.ByteArrayOutputStream;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;import java.io.PrintStream;
+&nbsp;import java.nio.file.Files;
+&nbsp;import java.nio.file.Paths;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class SaveLoadTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSave() throws IOException {
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        GameLoop gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = gameLoop;</b>
+<b class="fc">&nbsp;        StageFactory stageFactory = Mockito.mock(StageFactory.class);</b>
+<b class="fc">&nbsp;        Player player1 = Mockito.mock(Player.class);</b>
+<b class="fc">&nbsp;        Player player2 = Mockito.mock(Player.class);</b>
+<b class="fc">&nbsp;        Player player3 = Mockito.mock(Player.class);</b>
+<b class="fc">&nbsp;        player1.x = 3;</b>
+<b class="fc">&nbsp;        player1.y = 4;</b>
+<b class="fc">&nbsp;        player2.x=1;</b>
+<b class="fc">&nbsp;        player2.y=0;</b>
+<b class="fc">&nbsp;        player3.x=9;</b>
+<b class="fc">&nbsp;        player3.y = 2;</b>
+<b class="fc">&nbsp;        gameData.player1 = player1;</b>
+<b class="fc">&nbsp;        gameData.player2 = player2;</b>
+<b class="fc">&nbsp;        gameData.player3 = player3;</b>
+<b class="fc">&nbsp;        gameData.reputation = 4;</b>
+<b class="fc">&nbsp;        gameData.gameTime = 10;</b>
+<b class="fc">&nbsp;        gameData.score = 3;</b>
+<b class="fc">&nbsp;        gameData.money = 7;</b>
+<b class="fc">&nbsp;        gameData.gameLoop.maxCustomers=12;</b>
+<b class="fc">&nbsp;        gameData.gameLoop.totalCustomers=7;</b>
+<b class="fc">&nbsp;        stageFactory.endlessModeEnabled = true;</b>
+<b class="fc">&nbsp;        gameData.customers = new ArrayList&lt;Customer&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+&nbsp;
+<b class="fc">&nbsp;        Customer customer = new Customer(0, 60);</b>
+<b class="fc">&nbsp;        Customer customer1 = new Customer(1, 60);</b>
+<b class="fc">&nbsp;        Customer customer2 = new Customer(2, 60);</b>
+<b class="fc">&nbsp;        Customer customer3 = new Customer(3, 60);</b>
+<b class="fc">&nbsp;        customer.timeLimit = 10;</b>
+<b class="fc">&nbsp;        customer1.timeLimit = 20;</b>
+<b class="fc">&nbsp;        customer2.timeLimit = 40;</b>
+<b class="fc">&nbsp;        customer3.timeLimit = 60;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        gameData.customers.add(customer);</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer1);</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer2);</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer3);</b>
+&nbsp;
+<b class="fc">&nbsp;        SaveLoad saveLoad = new SaveLoad();</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output1 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output1));</b>
+<b class="fc">&nbsp;        saveLoad.save();</b>
+<b class="fc">&nbsp;        File file = new File(&quot;piazzaSave.txt&quot;);</b>
+<b class="fc">&nbsp;        assertTrue(file.exists());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;File already exists.&quot; +System.lineSeparator()+</b>
+<b class="fc">&nbsp;                &quot;Successfully wrote to the file.&quot;+System.lineSeparator(), output1.toString());</b>
+<b class="fc">&nbsp;        List&lt;String&gt; lines = Files.readAllLines(Paths.get(&quot;piazzaSave.txt&quot;));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(0),&quot;// Chef data:&quot;);</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(1),Double.toString(player1.x));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(1),Double.toString(player2.x));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(1),Double.toString(player3.x));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(2),Double.toString(player1.y));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(2),Double.toString(player2.y));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(2),Double.toString(player3.y));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(3),Double.toString(player2.x));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(3),Double.toString(player1.x));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(3),Double.toString(player3.x));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(4),Double.toString(player2.y));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(4),Double.toString(player1.y));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(4),Double.toString(player3.y));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(5),Double.toString(player3.x));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(5),Double.toString(player2.x));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(5),Double.toString(player1.x));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(6),Double.toString(player3.y));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(6),Double.toString(player2.y));</b>
+<b class="fc">&nbsp;        assertNotEquals(lines.get(6),Double.toString(player1.y));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(7),&quot;// GameData data:&quot;);</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(8),Integer.toString(gameData.reputation));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(9),Double.toString(gameData.gameTime));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(10),Integer.toString(gameData.score));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(11),Integer.toString(gameData.money));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(12),Integer.toString(gameData.gameLoop.maxCustomers));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(13),Integer.toString(gameData.gameLoop.totalCustomers));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(14),Boolean.toString(stageFactory.endlessModeEnabled));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(15),&quot;// Customer data:&quot;);</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(16), customer.getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(17), Double.toString(customer.timeLimit));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(18), customer1.getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(19), Double.toString(customer1.timeLimit));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(20), customer2.getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(21), Double.toString(customer2.timeLimit));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(22), customer3.getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(23), Double.toString(customer3.timeLimit));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(24), &quot;###&quot;);</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestLoad() throws IOException {
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        StageFactory stageFactory = Mockito.mock(StageFactory.class);</b>
+<b class="fc">&nbsp;        stageFactory.endlessModeEnabled = true;</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        Player player1 = new Player(1, 1, null);</b>
+<b class="fc">&nbsp;        Player player2 = new Player(3, 4, null);</b>
+<b class="fc">&nbsp;        Player player3 = new Player(12, 5, null);</b>
+<b class="fc">&nbsp;        gameData.player1 = player1;</b>
+<b class="fc">&nbsp;        gameData.player2 = player2;</b>
+<b class="fc">&nbsp;        gameData.player3 = player3;</b>
+<b class="fc">&nbsp;        Customer customer = new Customer(0, 60);</b>
+<b class="fc">&nbsp;        Customer customer1 = new Customer(1, 60);</b>
+<b class="fc">&nbsp;        Customer customer2 = new Customer(2, 60);</b>
+<b class="fc">&nbsp;        Customer customer3 = new Customer(3, 60);</b>
+<b class="fc">&nbsp;        ArrayList&lt;Customer&gt; customers = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        customers.add(customer);</b>
+<b class="fc">&nbsp;        customers.add(customer1);</b>
+<b class="fc">&nbsp;        customers.add(customer2);</b>
+<b class="fc">&nbsp;        customers.add(customer3);</b>
+<b class="fc">&nbsp;        gameData.customers = customers;</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output1 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output1));</b>
+<b class="fc">&nbsp;        SaveLoad saveLoad = new SaveLoad();</b>
+<b class="fc">&nbsp;        List&lt;String&gt; lines = Files.readAllLines(Paths.get(&quot;piazzaSave.txt&quot;));</b>
+<b class="fc">&nbsp;        saveLoad.load();</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer));</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer1));</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer2));</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer3));</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(1)), gameData.player1.x, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(2)), gameData.player1.y, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(3)), gameData.player2.x, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(4)), gameData.player2.y, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(5)), gameData.player3.x, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(6)), gameData.player3.y, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Integer.parseInt(lines.get(8)), gameData.reputation, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Float.parseFloat(lines.get(9)), gameData.gameTime, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Integer.parseInt(lines.get(10)), gameData.score, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Integer.parseInt(lines.get(11)), gameData.money, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Integer.parseInt(lines.get(12)), gameData.gameLoop.maxCustomers, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Integer.parseInt(lines.get(13)), gameData.gameLoop.totalCustomers, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(Boolean.parseBoolean(lines.get(14)), stageFactory.endlessModeEnabled);</b>
+<b class="fc">&nbsp;        assertEquals(saveLoad.orderInt(lines.get(16)), saveLoad.orderInt(gameData.customers.get(0).getOrderString()));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(16), gameData.customers.get(0).getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(17)), gameData.customers.get(0).timeLimit, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(saveLoad.orderInt(lines.get(18)), saveLoad.orderInt(gameData.customers.get(1).getOrderString()));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(18), gameData.customers.get(1).getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(19)), gameData.customers.get(1).timeLimit, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(saveLoad.orderInt(lines.get(20)), saveLoad.orderInt(gameData.customers.get(2).getOrderString()));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(20), gameData.customers.get(2).getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(21)), gameData.customers.get(2).timeLimit, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(saveLoad.orderInt(lines.get(22)), saveLoad.orderInt(gameData.customers.get(3).getOrderString()));</b>
+<b class="fc">&nbsp;        assertEquals(lines.get(22), gameData.customers.get(3).getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(Double.parseDouble(lines.get(23)), gameData.customers.get(3).timeLimit, 0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(lines.toString() + System.lineSeparator(), output1.toString());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestOrderInt(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        Customer customer = new Customer(0, 60);</b>
+<b class="fc">&nbsp;        Customer customer1 = new Customer(1, 60);</b>
+<b class="fc">&nbsp;        Customer customer2 = new Customer(2, 60);</b>
+<b class="fc">&nbsp;        Customer customer3 = new Customer(3, 60);</b>
+<b class="fc">&nbsp;        SaveLoad saveLoad = new SaveLoad();</b>
+<b class="fc">&nbsp;        assertEquals(0,saveLoad.orderInt(customer.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(1,saveLoad.orderInt(customer.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(2,saveLoad.orderInt(customer.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(3,saveLoad.orderInt(customer.getOrderString()));</b>
+<b class="fc">&nbsp;        assertEquals(1,saveLoad.orderInt(customer1.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(0,saveLoad.orderInt(customer1.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(2,saveLoad.orderInt(customer1.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(3,saveLoad.orderInt(customer1.getOrderString()));</b>
+<b class="fc">&nbsp;        assertEquals(2,saveLoad.orderInt(customer2.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(1,saveLoad.orderInt(customer2.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(0,saveLoad.orderInt(customer2.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(3,saveLoad.orderInt(customer2.getOrderString()));</b>
+<b class="fc">&nbsp;        assertEquals(3,saveLoad.orderInt(customer3.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(1,saveLoad.orderInt(customer3.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(2,saveLoad.orderInt(customer3.getOrderString()));</b>
+<b class="fc">&nbsp;        assertNotEquals(0,saveLoad.orderInt(customer3.getOrderString()));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

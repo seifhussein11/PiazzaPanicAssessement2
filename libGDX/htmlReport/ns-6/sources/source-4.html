@@ -1,0 +1,467 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CustomerTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: CustomerTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CustomerTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (8/32)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.3%
+  </span>
+  <span class="absValue">
+    (239/259)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import group24.piazzapanic.game.Customer;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.game.GameLoop;
+&nbsp;import group24.piazzapanic.levelElements.Dish;
+&nbsp;import group24.piazzapanic.ui.StageFactory;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class CustomerTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestCustomerFulfillOrder(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+&nbsp;        //Mockito.when(GameData.customerSpriteSheets.get(GameData.rand.nextInt(GameData.customerSpriteSheets.size()))).thenReturn(gameData.customerSpriteSheets.get(0));
+<b class="fc">&nbsp;        Customer customer = new Customer(0, 60);</b>
+<b class="fc">&nbsp;        Customer customer1 = new Customer(1, 60);</b>
+<b class="fc">&nbsp;        Customer customer2 = new Customer(2, 60);</b>
+<b class="fc">&nbsp;        Customer customer3 = new Customer(3, 60);</b>
+<b class="fc">&nbsp;        Customer customer4 = new Customer(3, 60);</b>
+<b class="fc">&nbsp;        ArrayList&lt;Customer&gt; customers = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        customers.add(customer);</b>
+<b class="fc">&nbsp;        customers.add(customer1);</b>
+<b class="fc">&nbsp;        customers.add(customer2);</b>
+<b class="fc">&nbsp;        customers.add(customer3);</b>
+<b class="fc">&nbsp;        customers.add(customer4);</b>
+<b class="fc">&nbsp;        gameData.customers = customers;</b>
+<b class="fc">&nbsp;        System.out.println(&quot;Before fulfillment: \n&quot; + gameData.customers);</b>
+<b class="fc">&nbsp;        gameData.score = 0;</b>
+<b class="fc">&nbsp;        gameData.money=0;</b>
+<b class="fc">&nbsp;        customer.fulfillOrder();</b>
+<b class="fc">&nbsp;        assertEquals(gameData.score,1,0.0001);</b>
+<b class="fc">&nbsp;        assertEquals(gameData.money,2,0.0001);</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer));</b>
+<b class="fc">&nbsp;        customer1.fulfillOrder();</b>
+<b class="fc">&nbsp;        assertEquals(gameData.score,2,0.0001);</b>
+<b class="fc">&nbsp;        assertEquals(gameData.money,4,0.0001);</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer1));</b>
+<b class="fc">&nbsp;        customer2.fulfillOrder();</b>
+<b class="fc">&nbsp;        assertEquals(gameData.score,3,0.0001);</b>
+<b class="fc">&nbsp;        assertEquals(gameData.money,6,0.0001);</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer2));</b>
+<b class="fc">&nbsp;        customer3.fulfillOrder();</b>
+<b class="fc">&nbsp;        assertEquals(gameData.score,4,0.0001);</b>
+<b class="fc">&nbsp;        assertEquals(gameData.money,8,0.0001);</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer3));</b>
+<b class="fc">&nbsp;        System.out.println(&quot;After fulfillment: \n&quot; + gameData.customers);</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer));</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer1));</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer2));</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer3));</b>
+<b class="fc">&nbsp;        Integer expectedScore = 4;</b>
+<b class="fc">&nbsp;        assertEquals(expectedScore,gameData.score);</b>
+<b class="fc">&nbsp;        assertTrue(gameData.customers.contains(customer4));</b>
+<b class="fc">&nbsp;        assertEquals(1,gameData.customers.size());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestCustomerGetOrder(){
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        Customer customer = new Customer(0, 60);</b>
+<b class="fc">&nbsp;        Dish dish = new Dish(Dish.BURGER_RECIPE);</b>
+<b class="fc">&nbsp;        assertEquals(dish,customer.getOrder());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestCustomerConstructer(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture2 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture3 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture4 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture1;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture2;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture3;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture4;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        StageFactory stageFactory = Mockito.mock(StageFactory.class);</b>
+<b class="fc">&nbsp;        stageFactory.difficultyVal = 0;</b>
+<b class="fc">&nbsp;        Customer customer = new Customer();</b>
+<b class="fc">&nbsp;        assertEquals(100,customer.timeLimit,0.00001);</b>
+<b class="pc">&nbsp;        if (customer.order.equals(Dish.BURGER)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.burgerDishTexture,customer.orderTexture);</b>
+<b class="pc">&nbsp;        } else if (customer.order.equals(Dish.SALAD)) {</b>
+<b class="fc">&nbsp;            assertEquals(gameData.saladDishTexture,customer.orderTexture);</b>
+&nbsp;
+<b class="nc">&nbsp;        }else if (customer.order.equals(Dish.PIZZA)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.pizzaDishTexture,customer.orderTexture);</b>
+<b class="nc">&nbsp;        }else if (customer.order.equals(Dish.JACKET_POTATO)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.jacketPotatoDishTexture,customer.orderTexture);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        stageFactory.difficultyVal = 1;</b>
+<b class="fc">&nbsp;        Customer customer1 = new Customer();</b>
+<b class="fc">&nbsp;        assertEquals(80,customer1.timeLimit,0.00001);</b>
+<b class="pc">&nbsp;        if (customer1.order.equals(Dish.BURGER)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.burgerDishTexture,customer1.orderTexture);</b>
+<b class="pc">&nbsp;        } else if (customer1.order.equals(Dish.SALAD)) {</b>
+<b class="nc">&nbsp;            assertEquals(gameData.saladDishTexture,customer1.orderTexture);</b>
+&nbsp;
+<b class="pc">&nbsp;        }else if (customer1.order.equals(Dish.PIZZA)){</b>
+<b class="fc">&nbsp;            assertEquals(gameData.pizzaDishTexture,customer1.orderTexture);</b>
+<b class="nc">&nbsp;        }else if (customer1.order.equals(Dish.JACKET_POTATO)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.jacketPotatoDishTexture,customer1.orderTexture);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        stageFactory.difficultyVal = 2;</b>
+<b class="fc">&nbsp;        Customer customer2 = new Customer();</b>
+<b class="fc">&nbsp;        assertEquals(60,customer2.timeLimit,0.00001);</b>
+<b class="pc">&nbsp;        if (customer2.order.equals(Dish.BURGER)){</b>
+<b class="fc">&nbsp;            assertEquals(gameData.burgerDishTexture,customer2.orderTexture);</b>
+<b class="nc">&nbsp;        } else if (customer2.order.equals(Dish.SALAD)) {</b>
+<b class="nc">&nbsp;            assertEquals(gameData.saladDishTexture,customer2.orderTexture);</b>
+&nbsp;
+<b class="nc">&nbsp;        }else if (customer2.order.equals(Dish.PIZZA)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.pizzaDishTexture,customer2.orderTexture);</b>
+<b class="nc">&nbsp;        }else if (customer2.order.equals(Dish.JACKET_POTATO)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.jacketPotatoDishTexture,customer2.orderTexture);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        stageFactory.difficultyVal = 3;</b>
+<b class="fc">&nbsp;        Customer customer3 = new Customer();</b>
+<b class="fc">&nbsp;        assertEquals(80,customer3.timeLimit,0.00001);</b>
+<b class="pc">&nbsp;        if (customer3.order.equals(Dish.BURGER)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.burgerDishTexture,customer3.orderTexture);</b>
+<b class="pc">&nbsp;        } else if (customer3.order.equals(Dish.SALAD)) {</b>
+<b class="fc">&nbsp;            assertEquals(gameData.saladDishTexture,customer3.orderTexture);</b>
+&nbsp;
+<b class="nc">&nbsp;        }else if (customer3.order.equals(Dish.PIZZA)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.pizzaDishTexture,customer3.orderTexture);</b>
+<b class="nc">&nbsp;        }else if (customer3.order.equals(Dish.JACKET_POTATO)){</b>
+<b class="nc">&nbsp;            assertEquals(gameData.jacketPotatoDishTexture,customer3.orderTexture);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestFulfillOrder2(){
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+&nbsp;
+<b class="fc">&nbsp;        Customer customer = new Customer();</b>
+<b class="fc">&nbsp;        Customer customer1 = new Customer();</b>
+<b class="fc">&nbsp;        gameData.customers = new ArrayList&lt;Customer&gt;();</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer);</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer1);</b>
+<b class="fc">&nbsp;        customer.fulfillOrder2();</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer));</b>
+<b class="fc">&nbsp;        assertTrue(gameData.customers.contains(customer1));</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestOutOfTime(){
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.reputation = 3;</b>
+<b class="fc">&nbsp;        gameData.gameLoop.totalCustomers=3;</b>
+&nbsp;
+<b class="fc">&nbsp;        Customer customer = new Customer();</b>
+<b class="fc">&nbsp;        Customer customer1 = new Customer();</b>
+<b class="fc">&nbsp;        Customer customer2 = new Customer();</b>
+<b class="fc">&nbsp;        gameData.customers = new ArrayList&lt;Customer&gt;();</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer);</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer1);</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer2);</b>
+<b class="fc">&nbsp;        customer.outOfTime();</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer));</b>
+<b class="fc">&nbsp;        assertTrue(gameData.customers.contains(customer1));</b>
+<b class="fc">&nbsp;        assertTrue(gameData.customers.contains(customer2));</b>
+<b class="fc">&nbsp;        assertEquals(2,gameData.reputation,0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(2,gameData.gameLoop.totalCustomers);</b>
+&nbsp;
+<b class="fc">&nbsp;        customer1.outOfTime();</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer));</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer1));</b>
+<b class="fc">&nbsp;        assertTrue(gameData.customers.contains(customer2));</b>
+<b class="fc">&nbsp;        assertEquals(1,gameData.reputation,0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(1,gameData.gameLoop.totalCustomers);</b>
+&nbsp;
+<b class="fc">&nbsp;        customer2.outOfTime();</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer));</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer1));</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer2));</b>
+<b class="fc">&nbsp;        assertEquals(0,gameData.reputation,0.000001);</b>
+<b class="fc">&nbsp;        assertEquals(0,gameData.gameLoop.totalCustomers);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestAct(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.customers = new ArrayList&lt;Customer&gt;();</b>
+<b class="fc">&nbsp;        gameData.reputation = 2;</b>
+&nbsp;
+<b class="fc">&nbsp;        Customer customer = new Customer();</b>
+<b class="fc">&nbsp;        gameData.customers.add(customer);</b>
+<b class="fc">&nbsp;        gameData.gameLoop.totalCustomers=1;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        customer.timeLimit = 2;</b>
+<b class="fc">&nbsp;        customer.act(1);</b>
+<b class="fc">&nbsp;        assertEquals(1,customer.timeLimit,0.00001);</b>
+&nbsp;
+<b class="fc">&nbsp;        customer.act(1);</b>
+<b class="fc">&nbsp;        assertEquals(0,customer.timeLimit,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(1,gameData.reputation,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(0,gameData.gameLoop.totalCustomers);</b>
+<b class="fc">&nbsp;        assertFalse(gameData.customers.contains(customer));</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSetTimeLimit(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.customers = new ArrayList&lt;Customer&gt;();</b>
+<b class="fc">&nbsp;        gameData.reputation = 2;</b>
+&nbsp;
+<b class="fc">&nbsp;        Customer customer = new Customer();</b>
+<b class="fc">&nbsp;        StageFactory stageFactory = Mockito.mock(StageFactory.class);</b>
+<b class="fc">&nbsp;        stageFactory.difficultyVal=0;</b>
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(100,customer.setTimeLimit(),0.00001);</b>
+<b class="fc">&nbsp;        stageFactory.difficultyVal=1;</b>
+<b class="fc">&nbsp;        assertEquals(80,customer.setTimeLimit(),0.00001);</b>
+<b class="fc">&nbsp;        stageFactory.difficultyVal=2;</b>
+<b class="fc">&nbsp;        assertEquals(60,customer.setTimeLimit(),0.00001);</b>
+<b class="fc">&nbsp;        stageFactory.difficultyVal=3;</b>
+<b class="fc">&nbsp;        assertEquals(80,customer.setTimeLimit(),0.00001);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGetOrderString() {
+&nbsp;
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets = new ArrayList&lt;String&gt;();</b>
+<b class="fc">&nbsp;        gameData.customerSpriteSheets.add(&quot;customers\\customer_1_idle.png&quot;);</b>
+<b class="fc">&nbsp;        gameData.rand = new Random();</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.burgerDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.pizzaDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.saladDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.jacketPotatoDishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.customers = new ArrayList&lt;Customer&gt;();</b>
+<b class="fc">&nbsp;        gameData.reputation = 2;</b>
+&nbsp;
+<b class="fc">&nbsp;        Customer customer = new Customer(0, 60);</b>
+<b class="fc">&nbsp;        Customer customer1 = new Customer(1, 60);</b>
+<b class="fc">&nbsp;        Customer customer2 = new Customer(2, 60);</b>
+<b class="fc">&nbsp;        Customer customer3 = new Customer(3, 60);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        assertEquals(&quot;Burger&quot;,customer.getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Salad&quot;,customer1.getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Pizza&quot;,customer2.getOrderString());</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Jacket Potato&quot;,customer3.getOrderString());</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

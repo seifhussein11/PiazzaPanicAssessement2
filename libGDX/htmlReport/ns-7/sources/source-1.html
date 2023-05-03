@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FontHandler</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.ui</a>
+</div>
+
+<h1>Coverage Summary for Class: FontHandler (group24.piazzapanic.ui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FontHandler</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.ui;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.g2d.BitmapFont;
+&nbsp;import com.badlogic.gdx.Gdx;
+&nbsp;import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+&nbsp;import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+&nbsp;
+&nbsp;/**
+&nbsp; * A convenience class to create fonts that will be used in titles, buttons etc.
+&nbsp; */
+<b class="nc">&nbsp;public class FontHandler {</b>
+&nbsp;    /** The path to the font used for rendered text. */
+&nbsp;    public static final String FONT_PATH = &quot;fonts/ArcadeFont.ttf&quot;;
+&nbsp;    /** The font used by large text/menu titles. */
+&nbsp;    public static BitmapFont titleFormat;  // Have static objects for the fonts used in the game.
+&nbsp;    /** The font used by subtitles. */
+&nbsp;    public static BitmapFont subtitleFormat;
+&nbsp;    /** The font used on smaller buttons. */
+&nbsp;    public static BitmapFont textButtonFormat;
+&nbsp;    /** The font used for content. */
+&nbsp;    public static BitmapFont contentFormat;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create the fonts and store them as the statics.
+&nbsp;     */
+&nbsp;    public static void create() {
+&nbsp;        // Full disclosure, a bunch of the lines below have just been taken from the docs.
+<b class="nc">&nbsp;        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_PATH));</b>
+<b class="nc">&nbsp;        FreeTypeFontParameter parameter = new FreeTypeFontParameter();</b>
+<b class="nc">&nbsp;        parameter.size = 72;</b>
+<b class="nc">&nbsp;        titleFormat = generator.generateFont(parameter);</b>
+&nbsp;
+<b class="nc">&nbsp;        parameter.size = 36;</b>
+<b class="nc">&nbsp;        subtitleFormat = generator.generateFont(parameter);</b>
+&nbsp;
+<b class="nc">&nbsp;        parameter.size = 24;</b>
+<b class="nc">&nbsp;        textButtonFormat = generator.generateFont(parameter);</b>
+&nbsp;
+<b class="nc">&nbsp;        parameter.size = 24;</b>
+<b class="nc">&nbsp;        contentFormat = generator.generateFont(parameter);</b>
+&nbsp;
+<b class="nc">&nbsp;        generator.dispose();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void dispose() {
+&nbsp;        // Make sure all fonts created above are disposed of here.
+<b class="nc">&nbsp;        titleFormat.dispose();</b>
+<b class="nc">&nbsp;        subtitleFormat.dispose();</b>
+<b class="nc">&nbsp;        textButtonFormat.dispose();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

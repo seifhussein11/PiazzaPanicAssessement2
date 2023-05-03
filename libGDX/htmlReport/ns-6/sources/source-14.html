@@ -1,0 +1,239 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > StationTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: StationTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StationTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (72/72)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import group24.piazzapanic.Physics.Movable;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.game.Player;
+&nbsp;import group24.piazzapanic.levelElements.Dish;
+&nbsp;import group24.piazzapanic.levelElements.Ingredient;
+&nbsp;import group24.piazzapanic.levelElements.stations.Station;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class StationTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestStationPlaceItem(){
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Station station = new Station(texture);</b>
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        Dish item1 = Mockito.mock(Dish.class);</b>
+<b class="fc">&nbsp;        station.item = item1;</b>
+<b class="fc">&nbsp;        Ingredient item2 = Mockito.mock(Ingredient.class);</b>
+<b class="fc">&nbsp;        Mockito.when(item1.addIngredient(item2)).thenReturn(true);</b>
+<b class="fc">&nbsp;        assertEquals(true,station.placeItem(item2));</b>
+<b class="fc">&nbsp;        station.item=null;</b>
+<b class="fc">&nbsp;        station.placeItem(item2);</b>
+<b class="fc">&nbsp;        assertEquals(item2,station.item);</b>
+<b class="fc">&nbsp;        Ingredient item3 = Mockito.mock(Ingredient.class);</b>
+<b class="fc">&nbsp;        station.item=item2;</b>
+<b class="fc">&nbsp;        station.placeItem(item3);</b>
+<b class="fc">&nbsp;        assertEquals(item2,station.item);</b>
+<b class="fc">&nbsp;        assertFalse(station.placeItem(item3));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestStationHasItem(){
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Station station = new Station(texture);</b>
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        Dish item1 = Mockito.mock(Dish.class);</b>
+<b class="fc">&nbsp;        station.item = item1;</b>
+<b class="fc">&nbsp;        assertTrue(station.hasItem());</b>
+<b class="fc">&nbsp;        Ingredient item2 = Mockito.mock(Ingredient.class);</b>
+<b class="fc">&nbsp;        station.item = item2;</b>
+<b class="fc">&nbsp;        assertTrue(station.hasItem());</b>
+<b class="fc">&nbsp;        station.item=null;</b>
+<b class="fc">&nbsp;        assertFalse(station.hasItem());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestStationTakeItem(){
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Station station = new Station(texture);</b>
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        gameData.dishTexture = texture;</b>
+<b class="fc">&nbsp;        Dish item1 = Mockito.mock(Dish.class);</b>
+<b class="fc">&nbsp;        station.item = item1;</b>
+<b class="fc">&nbsp;        station.takeItem();</b>
+<b class="fc">&nbsp;        assertNull(station.item);</b>
+<b class="fc">&nbsp;        station.item=item1;</b>
+<b class="fc">&nbsp;        assertEquals(item1,station.takeItem());</b>
+<b class="fc">&nbsp;        Ingredient item2 = Mockito.mock(Ingredient.class);</b>
+<b class="fc">&nbsp;        station.item = item2;</b>
+<b class="fc">&nbsp;        assertEquals(item2,station.takeItem());</b>
+<b class="fc">&nbsp;        station.takeItem();</b>
+<b class="fc">&nbsp;        assertNull(station.item);</b>
+<b class="fc">&nbsp;        station.item=null;</b>
+<b class="fc">&nbsp;        assertNull(station.takeItem());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestStationIsEquals(){
+<b class="fc">&nbsp;        Texture texture1 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Texture texture2 = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        Movable item1 = Mockito.mock(Movable.class);</b>
+<b class="fc">&nbsp;        Movable item2 = Mockito.mock(Movable.class);</b>
+<b class="fc">&nbsp;        Station station1 = new Station(texture1);</b>
+<b class="fc">&nbsp;        Station station2 = new Station(texture1);</b>
+<b class="fc">&nbsp;        Station station3 = new Station(texture2);</b>
+<b class="fc">&nbsp;        Player player = new Player(0,0,null);</b>
+<b class="fc">&nbsp;        station3.item=item1;</b>
+<b class="fc">&nbsp;        station3.available=1;</b>
+<b class="fc">&nbsp;        station1.item = item1;</b>
+<b class="fc">&nbsp;        station2.item = item1;</b>
+<b class="fc">&nbsp;        station1.available=1;</b>
+<b class="fc">&nbsp;        station2.available=1;</b>
+<b class="fc">&nbsp;        assertTrue(station1.isEqual(station2));</b>
+<b class="fc">&nbsp;        station2.item = item2;</b>
+<b class="fc">&nbsp;        assertFalse(station1.isEqual(station2));</b>
+<b class="fc">&nbsp;        assertFalse(station1.isEqual(station3));</b>
+<b class="fc">&nbsp;        station2.available=0;</b>
+<b class="fc">&nbsp;        station2.item = item1;</b>
+<b class="fc">&nbsp;        assertFalse((station1.isEqual(station2)));</b>
+<b class="fc">&nbsp;        assertFalse(station1.isEqual(player));</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestStationConstructerGridXY(){
+<b class="fc">&nbsp;        Station station = new Station(7,5);</b>
+<b class="fc">&nbsp;        assertEquals(7,station.getGridX());</b>
+<b class="fc">&nbsp;        assertEquals(5,station.getGridY());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

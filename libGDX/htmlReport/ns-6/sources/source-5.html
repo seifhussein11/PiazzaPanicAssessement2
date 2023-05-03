@@ -1,0 +1,282 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CuttingStationTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.tests</a>
+</div>
+
+<h1>Coverage Summary for Class: CuttingStationTests (group24.piazzapanic.tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CuttingStationTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (131/131)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.tests;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import com.badlogic.gdx.scenes.scene2d.ui.Label;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;import group24.piazzapanic.game.GameLoop;
+&nbsp;import group24.piazzapanic.levelElements.Ingredient;
+&nbsp;import group24.piazzapanic.levelElements.IngredientType;
+&nbsp;import group24.piazzapanic.levelElements.stations.CuttingStation;
+&nbsp;import org.junit.Test;
+&nbsp;import org.junit.runner.RunWith;
+&nbsp;import org.mockito.Mockito;
+&nbsp;
+&nbsp;import java.io.ByteArrayOutputStream;
+&nbsp;import java.io.PrintStream;
+&nbsp;
+&nbsp;import static org.junit.Assert.assertEquals;
+&nbsp;import static org.junit.Assert.assertNotEquals;
+&nbsp;
+&nbsp;@RunWith(GdxTestRunner.class)
+<b class="fc">&nbsp;public class CuttingStationTests {</b>
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestCuttingStationInteract(){
+<b class="fc">&nbsp;        GameData gameData = Mockito.mock(GameData.class);</b>
+<b class="fc">&nbsp;        GameLoop gameLoop = Mockito.mock(GameLoop.class);</b>
+<b class="fc">&nbsp;        gameData.gameLoop = gameLoop;</b>
+<b class="fc">&nbsp;        gameData.gameLoop.cuttingStationPrice = Mockito.mock(Label.class);</b>
+<b class="fc">&nbsp;        Texture texture = Mockito.mock(Texture.class);</b>
+<b class="fc">&nbsp;        gameData.cuttingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.lockedCuttingStationTexture = texture;</b>
+<b class="fc">&nbsp;        gameData.errorTexture = texture;</b>
+<b class="fc">&nbsp;        CuttingStation cuttingStation = new CuttingStation(gameData.lockedCuttingStationTexture);</b>
+&nbsp;
+&nbsp;        // not available and money more than cost
+<b class="fc">&nbsp;        cuttingStation.available = 0;</b>
+<b class="fc">&nbsp;        gameData.money = 6;</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output1 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output1));</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(6-cuttingStation.cost,gameData.money,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(1,cuttingStation.available);</b>
+<b class="fc">&nbsp;        assertNotEquals(0,cuttingStation.available);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Disabled&quot;+System.lineSeparator(), output1.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;disabled&quot;+System.lineSeparator(), output1.toString());</b>
+&nbsp;        // not available and money less than cost
+<b class="fc">&nbsp;        cuttingStation.available=0;</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output2 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output2));</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(1,gameData.money,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(0,cuttingStation.available);</b>
+<b class="fc">&nbsp;        assertNotEquals(1,cuttingStation.available);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Disabled&quot;+System.lineSeparator(), output2.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;disabled&quot;+System.lineSeparator(), output2.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(1-cuttingStation.cost,gameData.money,0.00001);</b>
+&nbsp;        // available and money more than cost and no super item
+<b class="fc">&nbsp;        cuttingStation.available = 1;</b>
+<b class="fc">&nbsp;        gameData.money = 6;</b>
+<b class="fc">&nbsp;        IngredientType ingredientType = new IngredientType(&quot;tomato&quot;);</b>
+<b class="fc">&nbsp;        Ingredient ingredient1 = new Ingredient(ingredientType,1,-1,-1);</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output3 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output3));</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;no item to cut...&quot;+System.lineSeparator(), output3.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;disabled&quot;+System.lineSeparator(), output3.toString());</b>
+<b class="fc">&nbsp;        assertEquals(6,gameData.money,0.00001);</b>
+&nbsp;        // available and money more than cost and super item cutting process is 1
+<b class="fc">&nbsp;        cuttingStation.item = ingredient1;</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output4 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output4));</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Already cut...&quot;+System.lineSeparator(), output4.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;disabled&quot;+System.lineSeparator(), output4.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;no item to cut...&quot;+System.lineSeparator(), output4.toString());</b>
+<b class="fc">&nbsp;        assertEquals(6,gameData.money,0.00001);</b>
+&nbsp;        // not available and money more than cost and super item cutting process is 1
+<b class="fc">&nbsp;        cuttingStation.available=0;</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output5 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output5));</b>
+<b class="fc">&nbsp;        cuttingStation.timeKeyHeld = 4;</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(6-cuttingStation.cost,gameData.money,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(1,cuttingStation.available);</b>
+<b class="fc">&nbsp;        assertNotEquals(0,cuttingStation.available);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Disabled&quot;+System.lineSeparator(), output5.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;disabled&quot;+System.lineSeparator(), output5.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;Already cut...&quot;+System.lineSeparator(), output5.toString());</b>
+&nbsp;        // available and money more and super item cutting process is -1
+<b class="fc">&nbsp;        Ingredient ingredientNeg1 = new Ingredient(ingredientType,-1,-1,-1);</b>
+<b class="fc">&nbsp;        cuttingStation.item = ingredientNeg1;</b>
+<b class="fc">&nbsp;        cuttingStation.available = 1;</b>
+<b class="fc">&nbsp;        cuttingStation.timeKeyHeld = 3;</b>
+<b class="fc">&nbsp;        gameData.money =6;</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output6 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output6));</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(0,cuttingStation.timeKeyHeld,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;cannot be cut...&quot;+System.lineSeparator(), output6.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;disabled&quot;+System.lineSeparator(), output6.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;no item to cut...&quot;+System.lineSeparator(), output6.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;Already cut...&quot;+System.lineSeparator(), output6.toString());</b>
+<b class="fc">&nbsp;        assertEquals(6,gameData.money,0.00001);</b>
+&nbsp;        // not available and money more and super item cutting process is -1
+<b class="fc">&nbsp;        cuttingStation.available = 0;</b>
+<b class="fc">&nbsp;        cuttingStation.timeKeyHeld=4;</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output7 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output7));</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(4,cuttingStation.timeKeyHeld,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(6-cuttingStation.cost,gameData.money,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(1,cuttingStation.available);</b>
+<b class="fc">&nbsp;        assertNotEquals(0,cuttingStation.available);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Disabled&quot;+System.lineSeparator(), output7.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;disabled&quot;+System.lineSeparator(), output7.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;no item to cut...&quot;+System.lineSeparator(), output7.toString());</b>
+&nbsp;        // available and money less and super item cutting process is 0 and time held key &gt; 3
+<b class="fc">&nbsp;        ByteArrayOutputStream output8 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output8));</b>
+<b class="fc">&nbsp;        cuttingStation.available = 1;</b>
+<b class="fc">&nbsp;        Ingredient ingredient0 = new Ingredient(ingredientType,0,-1,-1);</b>
+<b class="fc">&nbsp;        cuttingStation.item = ingredient0;</b>
+<b class="fc">&nbsp;        cuttingStation.timeKeyHeld = 3;</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(1,ingredient0.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(0,cuttingStation.timeKeyHeld,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Cutting complete...&quot;+System.lineSeparator(), output8.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;disabled&quot;+System.lineSeparator(), output8.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;no item to cut...&quot;+System.lineSeparator(), output8.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;Already cut...&quot;+System.lineSeparator(), output8.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;cannot be cut...&quot;+System.lineSeparator(), output8.toString());</b>
+&nbsp;        // not available and money less and super item cutting process is 0 and time held key &lt; 3;
+<b class="fc">&nbsp;        cuttingStation.available = 0;</b>
+<b class="fc">&nbsp;        cuttingStation.timeKeyHeld = 1;</b>
+<b class="fc">&nbsp;        Ingredient ingredient02 = new Ingredient(ingredientType,0,-1,-1);</b>
+<b class="fc">&nbsp;        cuttingStation.item = ingredient02;</b>
+<b class="fc">&nbsp;        gameData.money = 1;</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output9 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output9));</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Disabled&quot;+System.lineSeparator(), output9.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;disabled&quot;+System.lineSeparator(), output9.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;no item to cut...&quot;+System.lineSeparator(), output9.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;Already cut...&quot;+System.lineSeparator(), output9.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;cannot be cut...&quot;+System.lineSeparator(), output9.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;Cutting complete...&quot;+System.lineSeparator(), output9.toString());</b>
+<b class="fc">&nbsp;        assertEquals(1,cuttingStation.timeKeyHeld,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(1,gameData.money,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(0,ingredient02.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(0,cuttingStation.available,0.00001);</b>
+&nbsp;        // available and money less and super item cutting process is 0 and time held key &lt; 3;
+<b class="fc">&nbsp;        cuttingStation.available= 1;</b>
+<b class="fc">&nbsp;        gameData.money = 3;</b>
+<b class="fc">&nbsp;        cuttingStation.timeKeyHeld=1;</b>
+<b class="fc">&nbsp;        ByteArrayOutputStream output10 = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;        System.setOut(new PrintStream(output10));</b>
+<b class="fc">&nbsp;        cuttingStation.interact(1);</b>
+<b class="fc">&nbsp;        assertEquals(2,cuttingStation.timeKeyHeld,0.00001);</b>
+<b class="fc">&nbsp;        assertEquals(0,ingredient02.getCuttingProgress(),0.00001);</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;Cutting complete...&quot;+System.lineSeparator(), output10.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;Disabled&quot;+System.lineSeparator(), output10.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;no item to cut...&quot;+System.lineSeparator(), output10.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;Already cut...&quot;+System.lineSeparator(), output10.toString());</b>
+<b class="fc">&nbsp;        assertNotEquals(&quot;cannot be cut...&quot;+System.lineSeparator(), output10.toString());</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>

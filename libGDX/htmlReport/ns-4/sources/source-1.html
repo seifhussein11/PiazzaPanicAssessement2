@@ -1,0 +1,195 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BakingStation</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">group24.piazzapanic.levelElements.stations</a>
+</div>
+
+<h1>Coverage Summary for Class: BakingStation (group24.piazzapanic.levelElements.stations)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BakingStation</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.5%
+  </span>
+  <span class="absValue">
+    (21/22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package group24.piazzapanic.levelElements.stations;
+&nbsp;
+&nbsp;//import com.badlogic.gdx.graphics.Texture;
+&nbsp;//import com.badlogic.gdx.math.Vector2;
+&nbsp;
+&nbsp;import com.badlogic.gdx.graphics.Texture;
+&nbsp;import com.badlogic.gdx.graphics.g2d.Sprite;
+&nbsp;import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+&nbsp;import group24.piazzapanic.Physics.Movable;
+&nbsp;import group24.piazzapanic.game.GameData;
+&nbsp;
+&nbsp;/**
+&nbsp; * BakingStation allows users to bake items.
+&nbsp; * They interact with {@link group24.piazzapanic.levelElements.Ingredient}.
+&nbsp; */
+&nbsp;public class BakingStation extends Station {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructor for BakingStation with no item.
+&nbsp;     */
+&nbsp;    public BakingStation(Texture t) {
+<b class="fc">&nbsp;        super(t);</b>
+<b class="fc">&nbsp;        this.item = null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructor for BakingStation that is holding an item.
+&nbsp;     * @param item an {@link Movable} item.
+&nbsp;     */
+&nbsp;    public BakingStation(Movable item) {
+<b class="fc">&nbsp;        super(GameData.bakingStationTexture);</b>
+<b class="fc">&nbsp;        this.item = item;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;/**
+&nbsp; * Not implemented
+&nbsp; */
+&nbsp;    @Override
+&nbsp;    public void act(float delta) {
+&nbsp;
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    
+&nbsp;        /**
+&nbsp;     * Bakes the item.
+&nbsp;     * interact(float delta) is called by the stage every frame..
+&nbsp;     * @param delta Time in seconds since the last frame.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void interact(float delta) {
+<b class="fc">&nbsp;        if (available == 0) {</b>
+<b class="fc">&nbsp;            if (GameData.money &gt;= cost) {</b>
+<b class="fc">&nbsp;                GameData.addMoney(-cost);</b>
+<b class="fc">&nbsp;                available = 1;</b>
+<b class="fc">&nbsp;                this.setDrawable(new SpriteDrawable(new Sprite(GameData.bakingStationTexture)));</b>
+<b class="fc">&nbsp;                GameData.gameLoop.bakingStationPrice.remove();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            System.out.println(&quot;Disabled&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        if (super.item == null) { // No item to bake.</b>
+<b class="fc">&nbsp;            System.out.println(&quot;no item to bake......&quot;); //new</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        if (super.item.getIngredient().getBakingProgress() == 1) { // Item already baked, so can&#39;t bake further.</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Already baked......&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        if (super.item.getIngredient().getBakingProgress() == -1) { // Item cannot be baked</b>
+<b class="fc">&nbsp;            System.out.println(&quot;cannot be baked......&quot;); // new</b>
+&nbsp;
+&nbsp;            return;
+&nbsp;        }
+<b class="fc">&nbsp;        timeKeyHeld += delta; // Increase the timeKeyHeld by the time since the last frame.</b>
+<b class="fc">&nbsp;        if (timeKeyHeld &gt; 3 &amp;&amp; super.item.getIngredient().getBakingProgress() == 0) {</b>
+<b class="fc">&nbsp;            super.item.getIngredient().bake(); // Button held for 3 seconds, so item is baked.</b>
+<b class="fc">&nbsp;            timeKeyHeld = 0; // Reset the timeKeyHeld.</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 01:57</div>
+</div>
+</body>
+</html>
