@@ -53,7 +53,7 @@ public class BakingStationTests {
         assertEquals(1, item2.getBakingProgress(),0.0000001);
         assertEquals(0,station.timeKeyHeld,0.0000001);
         station.available=0;
-        gameData.money = 3;
+        gameData.money = 6;
         Integer expectedMoneyResult = gameData.money - station.cost;
         gameData.gameLoop.bakingStationPrice = Mockito.mock(Label.class);
         ByteArrayOutputStream output4 = new ByteArrayOutputStream();

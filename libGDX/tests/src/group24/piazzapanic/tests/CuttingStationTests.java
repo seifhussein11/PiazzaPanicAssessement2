@@ -35,11 +35,11 @@ public class CuttingStationTests {
 
         // not available and money more than cost
         cuttingStation.available = 0;
-        gameData.money = 3;
+        gameData.money = 6;
         ByteArrayOutputStream output1 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output1));
         cuttingStation.interact(1);
-        assertEquals(3-cuttingStation.cost,gameData.money,0.00001);
+        assertEquals(6-cuttingStation.cost,gameData.money,0.00001);
         assertEquals(1,cuttingStation.available);
         assertNotEquals(0,cuttingStation.available);
         assertEquals("Disabled"+System.lineSeparator(), output1.toString());
@@ -57,7 +57,7 @@ public class CuttingStationTests {
         assertNotEquals(1-cuttingStation.cost,gameData.money,0.00001);
         // available and money more than cost and no super item
         cuttingStation.available = 1;
-        gameData.money = 3;
+        gameData.money = 6;
         IngredientType ingredientType = new IngredientType("tomato");
         Ingredient ingredient1 = new Ingredient(ingredientType,1,-1,-1);
         cuttingStation.interact(1);
@@ -66,7 +66,7 @@ public class CuttingStationTests {
         cuttingStation.interact(1);
         assertEquals("no item to cut..."+System.lineSeparator(), output3.toString());
         assertNotEquals("disabled"+System.lineSeparator(), output3.toString());
-        assertEquals(3,gameData.money,0.00001);
+        assertEquals(6,gameData.money,0.00001);
         // available and money more than cost and super item cutting process is 1
         cuttingStation.item = ingredient1;
         ByteArrayOutputStream output4 = new ByteArrayOutputStream();
@@ -75,14 +75,14 @@ public class CuttingStationTests {
         assertEquals("Already cut..."+System.lineSeparator(), output4.toString());
         assertNotEquals("disabled"+System.lineSeparator(), output4.toString());
         assertNotEquals("no item to cut..."+System.lineSeparator(), output4.toString());
-        assertEquals(3,gameData.money,0.00001);
+        assertEquals(6,gameData.money,0.00001);
         // not available and money more than cost and super item cutting process is 1
         cuttingStation.available=0;
         ByteArrayOutputStream output5 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output5));
         cuttingStation.timeKeyHeld = 4;
         cuttingStation.interact(1);
-        assertEquals(3-cuttingStation.cost,gameData.money,0.00001);
+        assertEquals(6-cuttingStation.cost,gameData.money,0.00001);
         assertEquals(1,cuttingStation.available);
         assertNotEquals(0,cuttingStation.available);
         assertEquals("Disabled"+System.lineSeparator(), output5.toString());
@@ -93,7 +93,7 @@ public class CuttingStationTests {
         cuttingStation.item = ingredientNeg1;
         cuttingStation.available = 1;
         cuttingStation.timeKeyHeld = 3;
-        gameData.money =3;
+        gameData.money =6;
         ByteArrayOutputStream output6 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output6));
         cuttingStation.interact(1);
@@ -102,7 +102,7 @@ public class CuttingStationTests {
         assertNotEquals("disabled"+System.lineSeparator(), output6.toString());
         assertNotEquals("no item to cut..."+System.lineSeparator(), output6.toString());
         assertNotEquals("Already cut..."+System.lineSeparator(), output6.toString());
-        assertEquals(3,gameData.money,0.00001);
+        assertEquals(6,gameData.money,0.00001);
         // not available and money more and super item cutting process is -1
         cuttingStation.available = 0;
         cuttingStation.timeKeyHeld=4;
@@ -110,7 +110,7 @@ public class CuttingStationTests {
         System.setOut(new PrintStream(output7));
         cuttingStation.interact(1);
         assertEquals(4,cuttingStation.timeKeyHeld,0.00001);
-        assertEquals(3-cuttingStation.cost,gameData.money,0.00001);
+        assertEquals(6-cuttingStation.cost,gameData.money,0.00001);
         assertEquals(1,cuttingStation.available);
         assertNotEquals(0,cuttingStation.available);
         assertEquals("Disabled"+System.lineSeparator(), output7.toString());

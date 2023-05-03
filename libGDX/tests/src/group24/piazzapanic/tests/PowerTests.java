@@ -61,7 +61,7 @@ public class PowerTests {
         assertNotEquals("Added " + System.lineSeparator() + "1 reputation",gameLoop.activePowerup.getText().toString());
 
         power.up(1);
-        assertEquals(15,gameData.money,0.00001);
+        assertEquals(13,gameData.money,0.00001);
         assertNotEquals(10,gameData.money,0.00001);
         assertEquals("Added " + System.lineSeparator() + "5 money",gameLoop.activePowerup.getText().toString());
         assertNotEquals("Added " + System.lineSeparator() + "1 reputation",gameLoop.activePowerup.getText().toString());

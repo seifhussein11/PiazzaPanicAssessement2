@@ -35,11 +35,11 @@ public class FryingStationTests {
 
         // not available and money more than cost
         fryingStation.available = 0;
-        gameData.money = 3;
+        gameData.money = 6;
         ByteArrayOutputStream output1 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output1));
         fryingStation.interact(1);
-        assertEquals(3-fryingStation.cost,gameData.money,0.00001);
+        assertEquals(6-fryingStation.cost,gameData.money,0.00001);
         assertEquals(1,fryingStation.available);
         assertNotEquals(0,fryingStation.available);
         assertEquals("Disabled"+System.lineSeparator(), output1.toString());
@@ -59,7 +59,7 @@ public class FryingStationTests {
 
         // available and money more than cost and no super item
        fryingStation.available = 1;
-        gameData.money = 3;
+        gameData.money = 6;
         IngredientType ingredientType = new IngredientType("meat");
         Ingredient ingredient3 = new Ingredient(ingredientType,-1,-1,3);
         fryingStation.interact(1);
@@ -68,7 +68,7 @@ public class FryingStationTests {
         fryingStation.interact(1);
         assertEquals("no item to fry..."+System.lineSeparator(), output3.toString());
         assertNotEquals("Disabled"+System.lineSeparator(), output3.toString());
-        assertEquals(3,gameData.money,0.00001);
+        assertEquals(6,gameData.money,0.00001);
 
         // available and money more than cost and super item frying process is 3
         fryingStation.item = ingredient3;
@@ -79,7 +79,7 @@ public class FryingStationTests {
         assertNotEquals("Disabled"+System.lineSeparator(), output4.toString());
         assertNotEquals("no item to fry..."+System.lineSeparator(), output4.toString());
         assertNotEquals("the item is already fried..."+System.lineSeparator(), output4.toString());
-        assertEquals(3,gameData.money,0.00001);
+        assertEquals(6,gameData.money,0.00001);
 
         // available and money more than cost and super item frying process is 2
         Ingredient ingredient2= new Ingredient(ingredientType,-1,-1,1);
@@ -91,7 +91,7 @@ public class FryingStationTests {
         assertNotEquals("Disabled"+System.lineSeparator(), output5.toString());
         assertNotEquals("no item to fry..."+System.lineSeparator(), output5.toString());
         assertNotEquals("the item is burnt..."+System.lineSeparator(), output5.toString());
-        assertEquals(3,gameData.money,0.00001);
+        assertEquals(6,gameData.money,0.00001);
 
         // not available and money more than cost and super item frying process is 3
         fryingStation.item = ingredient3;
@@ -100,7 +100,7 @@ public class FryingStationTests {
         System.setOut(new PrintStream(output6));
         fryingStation.timeKeyHeld = 4;
         fryingStation.interact(1);
-        assertEquals(3-fryingStation.cost,gameData.money,0.00001);
+        assertEquals(6-fryingStation.cost,gameData.money,0.00001);
         assertEquals(1,fryingStation.available);
         assertNotEquals(0,fryingStation.available);
         assertEquals("Disabled"+System.lineSeparator(), output6.toString());
@@ -112,11 +112,11 @@ public class FryingStationTests {
         // not available and money more than cost and super item frying process is 2
         fryingStation.item = ingredient2;
         fryingStation.available=0;
-        gameData.money = 3;
+        gameData.money = 6;
         ByteArrayOutputStream output7 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output7));
         fryingStation.interact(1);
-        assertEquals(3-fryingStation.cost,gameData.money,0.00001);
+        assertEquals(6-fryingStation.cost,gameData.money,0.00001);
         assertEquals(1,fryingStation.available);
         assertNotEquals(0,fryingStation.available);
         assertEquals("Disabled"+System.lineSeparator(), output7.toString());
@@ -128,7 +128,7 @@ public class FryingStationTests {
         Ingredient ingredientNeg1 = new Ingredient(ingredientType,-1,-1,-1);
         fryingStation.item = ingredientNeg1;
         fryingStation.available = 1;
-        gameData.money =3;
+        gameData.money =6;
         fryingStation.timeKeyHeld = 3;
         ByteArrayOutputStream output8 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output8));
@@ -138,7 +138,7 @@ public class FryingStationTests {
         assertNotEquals("Disabled"+System.lineSeparator(), output8.toString());
         assertNotEquals("no item to fry..."+System.lineSeparator(), output8.toString());
         assertNotEquals("the item is already fried..."+System.lineSeparator(), output8.toString());
-        assertEquals(3,gameData.money,0.00001);
+        assertEquals(6,gameData.money,0.00001);
 
         // not available and money more and super item frying process is -1
         fryingStation.available = 0;
@@ -147,7 +147,7 @@ public class FryingStationTests {
         fryingStation.timeKeyHeld=4;
         fryingStation.interact(1);
         assertEquals(4,fryingStation.timeKeyHeld,0.00001);
-        assertEquals(3-fryingStation.cost,gameData.money,0.00001);
+        assertEquals(6-fryingStation.cost,gameData.money,0.00001);
         assertEquals(1,fryingStation.available);
         assertNotEquals(0,fryingStation.available);
         assertEquals("Disabled"+System.lineSeparator(), output9.toString());
