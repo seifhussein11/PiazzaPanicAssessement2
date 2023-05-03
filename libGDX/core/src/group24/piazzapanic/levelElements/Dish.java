@@ -111,7 +111,7 @@ public class Dish extends ImageMovable {
      * @param currentIngredients an ArrayList of {@link Ingredient}s.
      * @return True if there is a recipe that matches the ingredients, false otherwise.
      */
-    private boolean setRecipe(ArrayList<Ingredient> currentIngredients) {
+    public boolean setRecipe(ArrayList<Ingredient> currentIngredients) {
         boolean matchSalad = true;
         boolean matchBurger = true;
         boolean matchPizza = true;
