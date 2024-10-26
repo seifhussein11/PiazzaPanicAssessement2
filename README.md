@@ -11,3 +11,7 @@ Navigate to the `libGDX` folder and run `.\gradlew.exe run` on Windows or `./gra
 (This only applies to assessment 1)
 The documentation for the project can be found [here](https://eng1-team24.github.io/ENG1-Team24/).
 Code is also documented with JavaDoc comments, any questions about the code can be directed to the authors.
+
+## Role
+
+In this project, I was responsible for the Testing proccess of the game, I am Seif Hussein designed all the tests and ran them to see the performance of the game and kept track of the game progress through the tests.
